@@ -11,8 +11,13 @@ import LocalAuthentication
 
 class ViewController: UIViewController, UIAlertViewDelegate {
 
+  let profileImage = UIImage(named: "profile-rabbit-toy.png")
+  let profileImageView = UIImageView()
+  let backgroundBlack = UIColor(red: 41.0/255.0, green: 41.0/255.0, blue: 41.0/255.0, alpha: 1.0)
+
   override func viewDidLoad() {
     super.viewDidLoad()
+    //self.view.backgroundColor = backgroundBlack
     NSNotificationCenter.defaultCenter().addObserver(self, selector:"applicationEnteredForeground:", name:"UIApplicationWillEnterForegroundNotification", object:nil)
     authenticateUser()
   }
@@ -27,7 +32,12 @@ class ViewController: UIViewController, UIAlertViewDelegate {
   }
 
   func loadData() {
-
+    profileImageView.image = profileImage
+    profileImageView.frame = CGRectMake(0,0,100,100)
+    profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+    profileImageView.clipsToBounds = true
+    profileImageView.layer.position = CGPoint(x: self.view.bounds.width/2, y:self.view.bounds.height/2)
+    self.view.addSubview(profileImageView)
   }
 
   func showPasswordAlert() {
@@ -35,7 +45,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     passwordAlert.alertViewStyle = UIAlertViewStyle.SecureTextInput
     passwordAlert.show()
   }
-  //http://www.ioscreator.com/tutorials/drawing-circles-uitouch-ios8-swift
+
   func authenticateUser() {
     let context = LAContext()
     var error: NSError?

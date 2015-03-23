@@ -14,6 +14,8 @@
 		80D669C61ABEB06900D8B8CE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80D669C51ABEB06900D8B8CE /* Images.xcassets */; };
 		80D669C91ABEB06900D8B8CE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D669C71ABEB06900D8B8CE /* LaunchScreen.xib */; };
 		80D669D51ABEB06900D8B8CE /* maniappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669D41ABEB06900D8B8CE /* maniappTests.swift */; };
+		80D669E11ABFC32D00D8B8CE /* profile-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D669DF1ABFC32C00D8B8CE /* profile-bg.png */; };
+		80D669E21ABFC32D00D8B8CE /* profile-rabbit-toy.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D669E01ABFC32C00D8B8CE /* profile-rabbit-toy.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		80D669CE1ABEB06900D8B8CE /* maniappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = maniappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80D669D31ABEB06900D8B8CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80D669D41ABEB06900D8B8CE /* maniappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = maniappTests.swift; sourceTree = "<group>"; };
+		80D669DF1ABFC32C00D8B8CE /* profile-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-bg.png"; sourceTree = "<group>"; };
+		80D669E01ABFC32C00D8B8CE /* profile-rabbit-toy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-rabbit-toy.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 				80D669C01ABEB06900D8B8CE /* ViewController.swift */,
 				80D669C21ABEB06900D8B8CE /* Main.storyboard */,
 				80D669C51ABEB06900D8B8CE /* Images.xcassets */,
+				80D669DE1ABFC32C00D8B8CE /* images */,
 				80D669C71ABEB06900D8B8CE /* LaunchScreen.xib */,
 				80D669BD1ABEB06900D8B8CE /* maniapp.xcdatamodeld */,
 				80D669B91ABEB06900D8B8CE /* Supporting Files */,
@@ -113,6 +118,15 @@
 				80D669D31ABEB06900D8B8CE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		80D669DE1ABFC32C00D8B8CE /* images */ = {
+			isa = PBXGroup;
+			children = (
+				80D669DF1ABFC32C00D8B8CE /* profile-bg.png */,
+				80D669E01ABFC32C00D8B8CE /* profile-rabbit-toy.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +209,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80D669E11ABFC32D00D8B8CE /* profile-bg.png in Resources */,
+				80D669E21ABFC32D00D8B8CE /* profile-rabbit-toy.png in Resources */,
 				80D669C41ABEB06900D8B8CE /* Main.storyboard in Resources */,
 				80D669C91ABEB06900D8B8CE /* LaunchScreen.xib in Resources */,
 				80D669C61ABEB06900D8B8CE /* Images.xcassets in Resources */,
