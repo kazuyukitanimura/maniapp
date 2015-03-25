@@ -9,17 +9,32 @@
 import UIKit
 import LocalAuthentication
 
-class ViewController: UIViewController, UIAlertViewDelegate {
+enum ViewState {
+  case CenterView
+  case MenuView
+}
 
-  let profileImage = UIImage(named: "profile-rabbit-toy.png")
-  let profileImageView = UIImageView()
-  let backgroundBlack = UIColor(red: 41.0/255.0, green: 41.0/255.0, blue: 41.0/255.0, alpha: 1.0)
+class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizerDelegate {
+  var centerNavigationController: UINavigationController!
+  var centerViewController = CenterViewController()
+  var menuViewController = MenuViewController()
+  var currentState: ViewState = .CenterView
+  let centerViewExpandedOffset: CGFloat = 60
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    //self.view.backgroundColor = backgroundBlack
     NSNotificationCenter.defaultCenter().addObserver(self, selector:"applicationEnteredForeground:", name:"UIApplicationWillEnterForegroundNotification", object:nil)
     authenticateUser()
+    centerNavigationController = UINavigationController(rootViewController: centerViewController)
+    view.addSubview(centerNavigationController.view)
+    addChildViewController(centerNavigationController)
+    centerNavigationController.didMoveToParentViewController(self)
+    let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+    centerNavigationController.view.addGestureRecognizer(panGestureRecognizer)
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", style: .Plain, target: self, action: "toggleMenuView:")
+    view.insertSubview(menuViewController.view, atIndex: 0)
+    addChildViewController(menuViewController)
+    menuViewController.didMoveToParentViewController(self)
   }
 
   override func didReceiveMemoryWarning() {
@@ -27,17 +42,46 @@ class ViewController: UIViewController, UIAlertViewDelegate {
     // Dispose of any resources that can be recreated.
   }
 
+  func toggleMenuView() {
+    animateMenuView(shouldExpand: currentState != .MenuView)
+  }
+
+  func animateMenuView(#shouldExpand: Bool) {
+    if (shouldExpand) {
+      currentState = .MenuView
+      UIApplication.sharedApplication().statusBarStyle = .LightContent
+      animateCenterViewXPosition(targetPosition: -CGRectGetWidth(centerNavigationController.view.frame) + centerViewExpandedOffset)
+    } else {
+      animateCenterViewXPosition(targetPosition: 0) { _ in
+        self.currentState = .CenterView
+        UIApplication.sharedApplication().statusBarStyle = .Default
+      }
+    }
+  }
+
+  func animateCenterViewXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
+    UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
+      self.centerNavigationController.view.frame.origin.x = targetPosition
+      }, completion: completion)
+  }
+
+  func handlePanGesture(recognizer: UIPanGestureRecognizer) {
+    if (recognizer.state == .Changed) {
+      recognizer.view!.center.x = min(view.center.x, recognizer.view!.center.x + recognizer.translationInView(view).x)
+      recognizer.setTranslation(CGPointZero, inView: view)
+    } else if (recognizer.state == .Ended) {
+      let rightToLeft = recognizer.velocityInView(view).x < 0
+      let lessThanQuarterway = recognizer.view!.center.x < -view.center.x / 2
+      let greaterThanQuarterway = recognizer.view!.center.x < view.center.x / 2
+      animateMenuView(shouldExpand: greaterThanQuarterway && (rightToLeft || lessThanQuarterway))
+    }
+  }
+
   func applicationEnteredForeground(notification: NSNotification) {
     authenticateUser()
   }
 
   func loadData() {
-    profileImageView.image = profileImage
-    profileImageView.frame = CGRectMake(0,0,100,100)
-    profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-    profileImageView.clipsToBounds = true
-    profileImageView.layer.position = CGPoint(x: self.view.bounds.width/2, y:self.view.bounds.height/2)
-    self.view.addSubview(profileImageView)
   }
 
   func showPasswordAlert() {
@@ -78,21 +122,7 @@ class ViewController: UIViewController, UIAlertViewDelegate {
           }
         }
       })]
-    } else {
-      // If the security policy cannot be evaluated then show a short message depending on the error.
-      println(error?.localizedDescription)
-      switch error!.code{
-      case LAError.TouchIDNotEnrolled.rawValue:
-        println("TouchID is not enrolled")
-      case LAError.PasscodeNotSet.rawValue:
-        println("A passcode has not been set")
-      default:
-        // The LAError.TouchIDNotAvailable case.
-        println("TouchID not available")
-      }
-      showPasswordAlert()
     }
   }
-
 }
 
