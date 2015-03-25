@@ -29,12 +29,12 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
     view.addSubview(centerNavigationController.view)
     addChildViewController(centerNavigationController)
     centerNavigationController.didMoveToParentViewController(self)
-    let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
-    centerNavigationController.view.addGestureRecognizer(panGestureRecognizer)
+    centerNavigationController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
     centerViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", style: .Plain, target: self, action: "toggleMenuView")
     view.insertSubview(menuViewController.view, atIndex: 0)
     addChildViewController(menuViewController)
     menuViewController.didMoveToParentViewController(self)
+    menuViewController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
   }
 
   override func didReceiveMemoryWarning() {
@@ -60,19 +60,20 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
   }
 
   func animateCenterViewXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
-    UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
+    UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
       self.centerNavigationController.view.frame.origin.x = targetPosition
       }, completion: completion)
   }
 
   func handlePanGesture(recognizer: UIPanGestureRecognizer) {
+    let targetView = centerNavigationController.view!
     if (recognizer.state == .Changed) {
-      recognizer.view!.center.x = min(view.center.x, recognizer.view!.center.x + recognizer.translationInView(view).x)
+      targetView.center.x = max(min(view.center.x, targetView.center.x + recognizer.translationInView(view).x), -view.center.x)
       recognizer.setTranslation(CGPointZero, inView: view)
     } else if (recognizer.state == .Ended) {
       let rightToLeft = recognizer.velocityInView(view).x < 0
-      let lessThanQuarterway = recognizer.view!.center.x < -view.center.x / 2
-      let greaterThanQuarterway = recognizer.view!.center.x < view.center.x / 2
+      let lessThanQuarterway = targetView.center.x < -view.center.x / 2
+      let greaterThanQuarterway = targetView.center.x < view.center.x / 2
       animateMenuView(shouldExpand: greaterThanQuarterway && (rightToLeft || lessThanQuarterway))
     }
   }
