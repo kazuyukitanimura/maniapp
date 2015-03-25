@@ -31,7 +31,7 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
     centerNavigationController.didMoveToParentViewController(self)
     let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
     centerNavigationController.view.addGestureRecognizer(panGestureRecognizer)
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", style: .Plain, target: self, action: "toggleMenuView:")
+    centerViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", style: .Plain, target: self, action: "toggleMenuView")
     view.insertSubview(menuViewController.view, atIndex: 0)
     addChildViewController(menuViewController)
     menuViewController.didMoveToParentViewController(self)
