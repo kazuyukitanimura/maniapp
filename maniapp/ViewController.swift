@@ -16,25 +16,40 @@ enum ViewState {
 
 class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizerDelegate {
   var centerNavigationController: UINavigationController!
-  var centerViewController = CenterViewController()
-  var menuViewController = MenuViewController()
+  lazy var centerViewController = CenterViewController()
+  lazy var menuViewController = MenuViewController()
   var currentState: ViewState = .CenterView
   let centerViewExpandedOffset: CGFloat = 60
+  let barOrange = UIColor(red: 255.0/255.0, green: 102.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+  let barWhite = UIColor(red: 252.0/255.0, green: 252.0/255.0, blue: 252.0/255.0, alpha: 1.0)
+  lazy var searchBar = UISearchBar()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     NSNotificationCenter.defaultCenter().addObserver(self, selector:"applicationEnteredForeground:", name:"UIApplicationWillEnterForegroundNotification", object:nil)
     authenticateUser()
+    UIApplication.sharedApplication().statusBarStyle = .LightContent
     centerNavigationController = UINavigationController(rootViewController: centerViewController)
     view.addSubview(centerNavigationController.view)
     addChildViewController(centerNavigationController)
     centerNavigationController.didMoveToParentViewController(self)
     centerNavigationController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
     centerViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", style: .Plain, target: self, action: "toggleMenuView")
+    centerViewController.navigationController!.navigationBar.barTintColor = barOrange
+    centerViewController.navigationController!.navigationBar.tintColor = barWhite
     view.insertSubview(menuViewController.view, atIndex: 0)
     addChildViewController(menuViewController)
     menuViewController.didMoveToParentViewController(self)
     menuViewController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
+    searchBar.placeholder = "Search"
+    //searchBar.showsCancelButton = true
+    searchBar.tintColor = barWhite
+    let searchField = searchBar.valueForKey("searchField") as UITextField
+    searchField.textColor = barWhite
+    searchBar.searchBarStyle = .Minimal
+    searchBar.frame = CGRectMake(0, 0, view.frame.maxX - 80, 20)
+    var leftNavBarButton = UIBarButtonItem(customView:searchBar)
+    centerViewController.navigationItem.leftBarButtonItem = leftNavBarButton
   }
 
   override func didReceiveMemoryWarning() {
@@ -49,12 +64,10 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
   func animateMenuView(#shouldExpand: Bool) {
     if (shouldExpand) {
       currentState = .MenuView
-      UIApplication.sharedApplication().statusBarStyle = .LightContent
       animateCenterViewXPosition(targetPosition: -CGRectGetWidth(centerNavigationController.view.frame) + centerViewExpandedOffset)
     } else {
       animateCenterViewXPosition(targetPosition: 0) { _ in
         self.currentState = .CenterView
-        UIApplication.sharedApplication().statusBarStyle = .Default
       }
     }
   }
