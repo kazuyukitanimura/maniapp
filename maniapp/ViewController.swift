@@ -44,10 +44,11 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
     searchBar.placeholder = "Search"
     //searchBar.showsCancelButton = true
     searchBar.tintColor = barWhite
+    searchBar.searchBarStyle = .Minimal
     let searchField = searchBar.valueForKey("searchField") as UITextField
     searchField.textColor = barWhite
-    searchBar.searchBarStyle = .Minimal
-    searchBar.frame = CGRectMake(0, 0, view.frame.maxX - 80, 20)
+    searchField.attributedPlaceholder = NSAttributedString(string:searchField.placeholder!, attributes: [NSForegroundColorAttributeName: barWhite])
+    searchBar.frame = CGRectMake(0, 0, view.frame.maxX - 80, 20) // TODO adjust the width
     var leftNavBarButton = UIBarButtonItem(customView:searchBar)
     centerViewController.navigationItem.leftBarButtonItem = leftNavBarButton
   }
