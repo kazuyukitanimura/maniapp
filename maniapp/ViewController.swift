@@ -18,6 +18,7 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
   var centerNavigationController: UINavigationController!
   lazy var centerViewController = CenterViewController()
   lazy var menuViewController = MenuViewController()
+  lazy var loginViewController = LoginViewController()
   var currentState: ViewState = .CenterView
   let centerViewExpandedOffset: CGFloat = 60
   let barOrange = UIColor(red: 255.0/255.0, green: 102.0/255.0, blue: 0.0/255.0, alpha: 1.0)
@@ -41,7 +42,7 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
     addChildViewController(menuViewController)
     menuViewController.didMoveToParentViewController(self)
     menuViewController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
-    searchBar.placeholder = "Search"
+    searchBar.placeholder = "Search friends, updates, referrals"
     //searchBar.showsCancelButton = true
     searchBar.tintColor = barWhite
     searchBar.searchBarStyle = .Minimal
@@ -51,6 +52,9 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
     searchBar.frame = CGRectMake(0, 0, view.frame.maxX - 80, 20) // TODO adjust the width
     var leftNavBarButton = UIBarButtonItem(customView:searchBar)
     centerViewController.navigationItem.leftBarButtonItem = leftNavBarButton
+    view.insertSubview(loginViewController.view, aboveSubview: centerNavigationController.view)
+    addChildViewController(loginViewController)
+    loginViewController.didMoveToParentViewController(self)
   }
 
   override func didReceiveMemoryWarning() {
