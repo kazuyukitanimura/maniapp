@@ -21,8 +21,6 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
   lazy var loginViewController = LoginViewController()
   var currentState: ViewState = .CenterView
   let centerViewExpandedOffset: CGFloat = 60
-  let barOrange = UIColor(red: 255.0/255.0, green: 102.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-  let barWhite = UIColor(red: 252.0/255.0, green: 252.0/255.0, blue: 252.0/255.0, alpha: 1.0)
   lazy var searchBar = UISearchBar()
 
   override func viewDidLoad() {
@@ -31,30 +29,27 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
     authenticateUser()
     UIApplication.sharedApplication().statusBarStyle = .LightContent
     centerNavigationController = UINavigationController(rootViewController: centerViewController)
-    view.addSubview(centerNavigationController.view)
+    view.insertSubview(centerNavigationController.view, atIndex: 1)
     addChildViewController(centerNavigationController)
     centerNavigationController.didMoveToParentViewController(self)
     centerNavigationController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
     centerViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", style: .Plain, target: self, action: "toggleMenuView")
-    centerViewController.navigationController!.navigationBar.barTintColor = barOrange
-    centerViewController.navigationController!.navigationBar.tintColor = barWhite
-    view.insertSubview(menuViewController.view, atIndex: 0)
-    addChildViewController(menuViewController)
-    menuViewController.didMoveToParentViewController(self)
-    menuViewController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
+    centerViewController.navigationController!.navigationBar.barTintColor = AppColors.Orange
+    centerViewController.navigationController!.navigationBar.tintColor = AppColors.White
     searchBar.placeholder = "Search friends, updates, referrals"
     //searchBar.showsCancelButton = true
-    searchBar.tintColor = barWhite
+    searchBar.tintColor = AppColors.White
     searchBar.searchBarStyle = .Minimal
     let searchField = searchBar.valueForKey("searchField") as UITextField
-    searchField.textColor = barWhite
-    searchField.attributedPlaceholder = NSAttributedString(string:searchField.placeholder!, attributes: [NSForegroundColorAttributeName: barWhite])
+    searchField.textColor = AppColors.White
+    searchField.attributedPlaceholder = NSAttributedString(string:searchField.placeholder!, attributes: [NSForegroundColorAttributeName: AppColors.White])
     searchBar.frame = CGRectMake(0, 0, view.frame.maxX - 80, 20) // TODO adjust the width
     var leftNavBarButton = UIBarButtonItem(customView:searchBar)
     centerViewController.navigationItem.leftBarButtonItem = leftNavBarButton
-    view.insertSubview(loginViewController.view, aboveSubview: centerNavigationController.view)
-    addChildViewController(loginViewController)
-    loginViewController.didMoveToParentViewController(self)
+    view.insertSubview(menuViewController.view, belowSubview: centerNavigationController.view)
+    addChildViewController(menuViewController)
+    menuViewController.didMoveToParentViewController(self)
+    menuViewController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
   }
 
   override func didReceiveMemoryWarning() {
@@ -103,44 +98,33 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
   func loadData() {
   }
 
-  func showPasswordAlert() {
-    var passwordAlert : UIAlertView = UIAlertView(title: "TouchIDDemo", message: "Please type your password", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Okay")
-    passwordAlert.alertViewStyle = UIAlertViewStyle.SecureTextInput
-    passwordAlert.show()
+  func showLoginView() {
+    view.insertSubview(loginViewController.view, atIndex: 1000)
+    addChildViewController(loginViewController)
+    loginViewController.didMoveToParentViewController(self)
   }
 
   func authenticateUser() {
+    if !loginViewController.isLoggedIn() {
+      showLoginView()
+      return
+    }
     let context = LAContext()
     var error: NSError?
-    var reasonString = "Please log in"
+    var reasonString = "Use your fingerprint to login"
+    context.localizedFallbackTitle = "" // hide the Enter Password Button
     if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &error) {
-      [context .evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString, reply: { (success: Bool, evalPolicyError: NSError?) -> Void in
+      context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString, reply: { (success: Bool, evalPolicyError: NSError?) -> Void in
         if success {
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             self.loadData()
           })
         } else {
-          // If authentication failed then show a message to the console with a short description.
-          // In case that the error is a user fallback, then show the password alert view.
-          println(evalPolicyError?.localizedDescription)
-          switch evalPolicyError!.code {
-          case LAError.SystemCancel.rawValue:
-            println("Authentication was cancelled by the system")
-          case LAError.UserCancel.rawValue:
-            println("Authentication was cancelled by the user")
-          case LAError.UserFallback.rawValue:
-            println("User selected to enter custom password")
-            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-              self.showPasswordAlert()
-            })
-          default:
-            println("Authentication failed")
-            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-              self.showPasswordAlert()
-            })
-          }
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            self.showLoginView()
+          })
         }
-      })]
+      })
     }
   }
 }

@@ -9,13 +9,12 @@
 import UIKit
 
 class CenterViewController: UIViewController {
-  let backgroundWhite = UIColor(red: 252.0/255.0, green: 252.0/255.0, blue: 252.0/255.0, alpha: 1.0)
   let profileImage = UIImage(named: "profile-rabbit-toy.png")
   let profileImageView = UIImageView()
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = backgroundWhite
+    self.view.backgroundColor = AppColors.White
     profileImageView.image = profileImage
     profileImageView.frame = CGRectMake(0, 0, 100, 100)
     profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2

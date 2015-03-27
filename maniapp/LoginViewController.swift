@@ -9,9 +9,10 @@
 import UIKit
 
 class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
-  let colorTop = UIColor(red: 255.0/255.0, green: 230.0/255.0, blue: 0.0/255.0, alpha: 1.0).CGColor
-  let colorBottom = UIColor(red: 255.0/255.0, green: 102.0/255.0, blue: 0.0/255.0, alpha: 1.0).CGColor
+  let colorTop = AppColors.Yellow.CGColor
+  let colorBottom = AppColors.Orange.CGColor
   let backgroundGradient = CAGradientLayer()
+  private var loginState = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -24,5 +25,10 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
   func handleTapGesture(recognizer: UITapGestureRecognizer) {
     view.removeFromSuperview()
+    loginState = true
+  }
+
+  func isLoggedIn() -> Bool {
+    return loginState
   }
 }

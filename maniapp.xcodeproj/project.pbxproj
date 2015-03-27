@@ -19,6 +19,7 @@
 		80D669E41AC2969F00D8B8CE /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669E31AC2969F00D8B8CE /* CenterViewController.swift */; };
 		80D669E61AC2981E00D8B8CE /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669E51AC2981E00D8B8CE /* MenuViewController.swift */; };
 		80D669E81AC482D700D8B8CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669E71AC482D700D8B8CE /* LoginViewController.swift */; };
+		80D669EA1AC547B400D8B8CE /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669E91AC547B400D8B8CE /* AppColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		80D669E31AC2969F00D8B8CE /* CenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
 		80D669E51AC2981E00D8B8CE /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		80D669E71AC482D700D8B8CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		80D669E91AC547B400D8B8CE /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				80D669BB1ABEB06900D8B8CE /* AppDelegate.swift */,
+				80D669E91AC547B400D8B8CE /* AppColors.swift */,
 				80D669E71AC482D700D8B8CE /* LoginViewController.swift */,
 				80D669C01ABEB06900D8B8CE /* ViewController.swift */,
 				80D669E31AC2969F00D8B8CE /* CenterViewController.swift */,
@@ -244,6 +247,7 @@
 				80D669C11ABEB06900D8B8CE /* ViewController.swift in Sources */,
 				80D669E61AC2981E00D8B8CE /* MenuViewController.swift in Sources */,
 				80D669E41AC2969F00D8B8CE /* CenterViewController.swift in Sources */,
+				80D669EA1AC547B400D8B8CE /* AppColors.swift in Sources */,
 				80D669BF1ABEB06900D8B8CE /* maniapp.xcdatamodeld in Sources */,
 				80D669BC1ABEB06900D8B8CE /* AppDelegate.swift in Sources */,
 			);
