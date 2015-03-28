@@ -10,8 +10,7 @@ import UIKit
 import LocalAuthentication
 
 enum ViewState {
-  case CenterView
-  case MenuView
+  case CenterView, MenuView
 }
 
 class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizerDelegate {
@@ -21,31 +20,18 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
   lazy var loginViewController = LoginViewController()
   var currentState: ViewState = .CenterView
   let centerViewExpandedOffset: CGFloat = 60
-  lazy var searchBar = UISearchBar()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     NSNotificationCenter.defaultCenter().addObserver(self, selector:"applicationEnteredForeground:", name:"UIApplicationWillEnterForegroundNotification", object:nil)
     authenticateUser()
     UIApplication.sharedApplication().statusBarStyle = .LightContent
+    centerViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", style: .Plain, target: self, action: "toggleMenuView")
     centerNavigationController = UINavigationController(rootViewController: centerViewController)
     view.insertSubview(centerNavigationController.view, atIndex: 1)
     addChildViewController(centerNavigationController)
     centerNavigationController.didMoveToParentViewController(self)
     centerNavigationController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
-    centerViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", style: .Plain, target: self, action: "toggleMenuView")
-    centerViewController.navigationController!.navigationBar.barTintColor = AppColors.Orange
-    centerViewController.navigationController!.navigationBar.tintColor = AppColors.White
-    searchBar.placeholder = "Search friends, updates, referrals"
-    //searchBar.showsCancelButton = true
-    searchBar.tintColor = AppColors.White
-    searchBar.searchBarStyle = .Minimal
-    let searchField = searchBar.valueForKey("searchField") as UITextField
-    searchField.textColor = AppColors.White
-    searchField.attributedPlaceholder = NSAttributedString(string:searchField.placeholder!, attributes: [NSForegroundColorAttributeName: AppColors.White])
-    searchBar.frame = CGRectMake(0, 0, view.frame.maxX - 80, 20) // TODO adjust the width
-    var leftNavBarButton = UIBarButtonItem(customView:searchBar)
-    centerViewController.navigationItem.leftBarButtonItem = leftNavBarButton
     view.insertSubview(menuViewController.view, belowSubview: centerNavigationController.view)
     addChildViewController(menuViewController)
     menuViewController.didMoveToParentViewController(self)
