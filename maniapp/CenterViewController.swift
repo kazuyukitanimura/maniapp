@@ -30,6 +30,7 @@ class CenterViewController: UITableViewController {
     navigationController!.navigationBar.barTintColor = AppColors.Orange
     navigationController!.navigationBar.tintColor = AppColors.White
     navigationController!.hidesBarsOnSwipe = true
+    navigationController!.barHideOnSwipeGestureRecognizer.addTarget(self, action: "handleHideOnSwipe:")
     searchBar.placeholder = "Search friends, updates, referrals"
     searchBar.tintColor = AppColors.White
     searchBar.searchBarStyle = .Minimal
@@ -39,4 +40,9 @@ class CenterViewController: UITableViewController {
     searchBar.frame = CGRectMake(0, 0, view.frame.maxX * 0.77, 20) // FIXME any better way to adjust the width?
     navigationItem.leftBarButtonItem = UIBarButtonItem(customView:searchBar)
   }
+
+  func handleHideOnSwipe(recognizer: UISwipeGestureRecognizer) {
+    UIApplication.sharedApplication().statusBarHidden = navigationController!.navigationBar.frame.minY < 0
+  }
+
 }
