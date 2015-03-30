@@ -13,4 +13,5 @@ struct AppColors {
   static let Yellow = UIColor(red: 255.0/255.0, green: 230.0/255.0, blue: 0.0/255.0, alpha: 1.0)
   static let White = UIColor(red: 252.0/255.0, green: 252.0/255.0, blue: 252.0/255.0, alpha: 1.0)
   static let Black = UIColor(red: 41.0/255.0, green: 41.0/255.0, blue: 41.0/255.0, alpha: 1.0)
+  static let Clear = UIColor.clearColor()
 }
