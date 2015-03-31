@@ -9,9 +9,7 @@
 import UIKit
 
 class CenterViewCell: UITableViewCell {
-
-  var nameLabel = UILabel()
-  var addressLabel = UILabel()
+  let innerView = UIView()
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -20,36 +18,35 @@ class CenterViewCell: UITableViewCell {
 
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    setupViews()
+    backgroundColor = AppColors.Clear
+    innerView.backgroundColor = UIColor.whiteColor()
+    contentView.addSubview(innerView)
+    innerView.setTranslatesAutoresizingMaskIntoConstraints(false)
+    let constraintViews:[String: UIView] = ["innerView": innerView]
+    let constraintFormats:[String] = [
+      "H:|-5-[innerView]-5-|",
+      "V:|-5-[innerView]-5-|",
+    ]
+    for format in constraintFormats {
+      contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: .AlignAllLeft, metrics: nil, views: constraintViews))
+    }
   }
 
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    setupViews()
   }
 
-  func setupViews() {
-    backgroundColor = AppColors.Clear
-
-    nameLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-    nameLabel.font = UIFont.boldSystemFontOfSize(16.0)
-    nameLabel.numberOfLines = 0
-    contentView.addSubview(nameLabel)
-
-    addressLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-    addressLabel.font = UIFont.systemFontOfSize(14.0)
-    addressLabel.numberOfLines = 0
-    addressLabel.preferredMaxLayoutWidth = bounds.size.width - 40;
-    contentView.addSubview(addressLabel)
-
-    let constraintViews:[String: UIView] = ["title": nameLabel, "body": addressLabel]
-    let constraintFormats:[String] = [
-      "H:|-5-[title]-5-|",
-      "H:|-5-[body]-5-|",
-      "V:|-5-[title]-5-[body]-(>=5)-|",
-    ]
-    for format in constraintFormats {
-      contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: .AlignAllLeft, metrics: nil, views: constraintViews))
+  func setupViews(contentViews: ContentViews) {
+    for (id, subView) in contentViews.views {
+      if let label = subView as? UILabel {
+        label.numberOfLines = 0
+        label.preferredMaxLayoutWidth = bounds.size.width - 40
+      }
+      innerView.addSubview(subView)
+      subView.setTranslatesAutoresizingMaskIntoConstraints(false)
+    }
+    for format in contentViews.formats {
+      innerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: .AlignAllLeft, metrics: nil, views: contentViews.views))
     }
   }
 
