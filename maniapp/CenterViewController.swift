@@ -60,10 +60,11 @@ class CenterViewController: UITableViewController {
     for (id, subView) in content.views {
       if let label = subView as? UILabel {
         label.text = id
-        label.font = UIFont.boldSystemFontOfSize(16.0)
+        //label.font = UIFont.boldSystemFontOfSize(16.0)
       }
     }
-    cell.setupViews(content)
+    //cell.setupViews(content)
+    cell.innerView.addConstrainedViews(content)
     return cell
   }
 }
