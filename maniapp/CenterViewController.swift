@@ -9,8 +9,6 @@
 import UIKit
 
 class CenterViewController: UITableViewController {
-  let profileImage = UIImage(named: "profile-rabbit-toy.png")
-  let profileImageView = UIImageView()
   lazy var searchBar = UISearchBar()
   let cellIdentifier = "Cell"
 
@@ -21,10 +19,10 @@ class CenterViewController: UITableViewController {
     tableView?.registerClass(CenterViewCell.self, forCellReuseIdentifier: cellIdentifier)
     tableView?.estimatedRowHeight = 68
     tableView?.rowHeight = UITableViewAutomaticDimension
-    profileImageView.image = profileImage
+    let profileImageView = UIImageView()
+    profileImageView.image = UIImage(named: "profile-rabbit-toy.png")
     profileImageView.frame = CGRectMake(0, 0, 100, 100)
-    profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-    profileImageView.clipsToBounds = true
+    profileImageView.toCircle = true
     profileImageView.layer.position = CGPoint(x: view.bounds.width/2, y: view.bounds.height/2)
     view.addSubview(profileImageView)
   }
@@ -56,15 +54,7 @@ class CenterViewController: UITableViewController {
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as CenterViewCell
-    let content = cells[indexPath.row]
-    for (id, subView) in content.views {
-      if let label = subView as? UILabel {
-        label.text = id
-        //label.font = UIFont.boldSystemFontOfSize(16.0)
-      }
-    }
-    //cell.setupViews(content)
-    cell.innerView.addConstrainedViews(content)
+    cell.innerView.addConstrainedViews(cells[indexPath.row])
     return cell
   }
 }
