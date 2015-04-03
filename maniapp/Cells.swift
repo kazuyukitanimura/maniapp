@@ -25,15 +25,21 @@ extension UIImageView {
   }
 }
 
-let titleFont = UIFont.boldSystemFontOfSize(14.0)
+let titleFont = UIFont.systemFontOfSize(17.0)
 let subTitleFont = UIFont.systemFontOfSize(12.0)
 let cells:[ConstrainedViews] = [
   // 0
   ConstrainedViews(views: [
     "title": [
-      "text": "My Profile",
+      "text": "Kazuyuki Tanimura",
       "font": titleFont,
+      "textColor": AppColors.Orange,
       ],
+    "subTitle" : [
+      "text": "Member of Technical Staff at BloomReach, Inc.",
+      "font": subTitleFont,
+      "textColor": AppColors.DarkGray,
+    ],
     "photo": [
       "image": "profile-rabbit-toy.png",
       "frame": NSValue(CGRect: CGRectMake(0, 0, 56, 56)),
@@ -41,27 +47,30 @@ let cells:[ConstrainedViews] = [
       ],
     ], formats:[
       "H:|-8-[photo(56)]-8-[title]-8-|",
-      "V:|-8-[title]-(>=8)-|",
+      "H:|-8-[photo(56)]-8-[subTitle]-8-|",
+      "V:|-8-[title]-2-[subTitle]-(>=8)-|",
       "V:|-8-[photo(56)]-(>=8)-|"]),
   // 1
   ConstrainedViews(views: [
     "title": [
       "text": "Referral Center",
       "font": titleFont,
+      "textColor": AppColors.Orange,
       ],
     "subTitle" : [
       "text": "Check your referral status or Update your interview status",
       "font": subTitleFont,
-      "textColor": AppColors.Orange,
+      "textColor": AppColors.DarkGray,
       ],
     ], formats:[
     "H:|-8-[title]-8-|",
     "H:|-8-[subTitle]-8-|",
-    "V:|-8-[title]-8-[subTitle]-8-|"]),
+    "V:|-8-[title]-2-[subTitle]-8-|"]),
   // 2
   ConstrainedViews(views: ["notification": [
     "text": "Notifications",
     "font": titleFont,
+    "textColor": AppColors.Orange,
   ]], formats:[
     "H:|-8-[notification]-8-|",
     "V:|-8-[notification]-8-|"]),
@@ -69,6 +78,7 @@ let cells:[ConstrainedViews] = [
   ConstrainedViews(views: ["news": [
     "text": "News Feed",
     "font": titleFont,
+    "textColor": AppColors.Orange,
   ]], formats:[
     "H:|-8-[news]-8-|",
     "V:|-8-[news]-8-|"]),
