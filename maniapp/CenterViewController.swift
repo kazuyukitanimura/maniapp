@@ -31,10 +31,11 @@ class CenterViewController: UITableViewController {
     searchBar.placeholder = "Search friends, updates, referrals"
     searchBar.tintColor = AppColors.White
     searchBar.searchBarStyle = .Minimal
+    searchBar.setImage(UIImage(named: "search2.png"), forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal)
     let searchField = searchBar.valueForKey("searchField") as UITextField
     searchField.textColor = AppColors.White
     searchField.attributedPlaceholder = NSAttributedString(string:searchField.placeholder!, attributes: [NSForegroundColorAttributeName: AppColors.White])
-    searchBar.frame = CGRectMake(0, 0, view.frame.maxX * 0.77, 20) // FIXME any better way to adjust the width?
+    searchBar.frame = CGRectMake(0, 0, view.frame.maxX * 0.78, 20) // FIXME any better way to adjust the width?
     navigationItem.leftBarButtonItem = UIBarButtonItem(customView:searchBar)
   }
 

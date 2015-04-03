@@ -26,7 +26,7 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
     NSNotificationCenter.defaultCenter().addObserver(self, selector:"applicationEnteredForeground:", name:"UIApplicationWillEnterForegroundNotification", object:nil)
     authenticateUser()
     UIApplication.sharedApplication().statusBarStyle = .LightContent
-    centerViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Menu", style: .Plain, target: self, action: "toggleMenuView")
+    centerViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu.png"), style: .Plain, target: self, action: "toggleMenuView")
     centerNavigationController = UINavigationController(rootViewController: centerViewController)
     view.insertSubview(centerNavigationController.view, atIndex: 1)
     addChildViewController(centerNavigationController)
