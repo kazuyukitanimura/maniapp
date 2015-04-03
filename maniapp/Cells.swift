@@ -40,6 +40,10 @@ extension UIView {
         } else if let imageName = viewProps["image"] as? String {
           subView = UIImageView()
           viewProps["image"] = UIImage(named: imageName)
+          if let frameRect = viewProps["frame"] as? NSValue {
+            (subView as UIImageView).frame = frameRect.CGRectValue()
+            viewProps.removeValueForKey("frame")
+          }
         } else {
           subView = UIView()
         }
@@ -70,12 +74,13 @@ let cells:[ConstrainedViews] = [
       ],
     "photo": [
       "image": "profile-rabbit-toy.png",
+      "frame": NSValue(CGRect: CGRectMake(0, 0, 56, 56)),
       "toCircle": true
       ]
     ], formats:[
-      "H:|-8-[photo(40)]-8-[title]-8-|",
-      "V:|-8-[photo(40)]-(>=8)-|",
-      "V:|-8-[photo(40)]-(>=8)-|"]),
+      "H:|-8-[photo(56)]-8-[title]-8-|",
+      "V:|-8-[title]-(>=8)-|",
+      "V:|-8-[photo(56)]-(>=8)-|"]),
   // 1
   ConstrainedViews(views: ["referral": [
     "text": "Referral Center",

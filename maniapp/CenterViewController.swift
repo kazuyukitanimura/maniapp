@@ -19,6 +19,7 @@ class CenterViewController: UITableViewController {
     tableView?.registerClass(CenterViewCell.self, forCellReuseIdentifier: cellIdentifier)
     tableView?.estimatedRowHeight = 68
     tableView?.rowHeight = UITableViewAutomaticDimension
+    tableView?.tableHeaderView = UIView(frame: CGRectMake(0, 0, 4, 4))
   }
 
   override func didMoveToParentViewController(parent: UIViewController?) {
@@ -50,5 +51,19 @@ class CenterViewController: UITableViewController {
     let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as CenterViewCell
     cell.innerView.addConstrainedViews(cells[indexPath.row])
     return cell
+  }
+
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let cell = tableView.cellForRowAtIndexPath(indexPath) as CenterViewCell
+    bloat(cell.innerView)
+  }
+
+  func bloat(target: UIView) {
+    var animation = CABasicAnimation(keyPath: "transform.scale")
+    animation.toValue = NSNumber(float: 0.95)
+    animation.duration = 0.1
+    animation.repeatCount = 2.0
+    animation.autoreverses = true
+    target.layer.addAnimation(animation, forKey: nil)
   }
 }

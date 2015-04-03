@@ -15,8 +15,9 @@ class CenterViewCell: UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     backgroundColor = AppColors.Clear
     innerView.backgroundColor = AppColors.White
-    let constrainedViews = ConstrainedViews(views: ["innerView": innerView], formats:["H:|-8-[innerView]-8-|", "V:|-16-[innerView]-0-|"])
+    let constrainedViews = ConstrainedViews(views: ["innerView": innerView], formats:["H:|-8-[innerView]-8-|", "V:|-4-[innerView]-4-|"])
     contentView.addConstrainedViews(constrainedViews)
+    selectionStyle = .None
   }
 
   required init(coder aDecoder: NSCoder) {
