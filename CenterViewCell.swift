@@ -14,7 +14,7 @@ class CenterViewCell: UITableViewCell {
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     backgroundColor = AppColors.Clear
-    innerView.backgroundColor = UIColor.whiteColor()
+    innerView.backgroundColor = AppColors.White
     let constrainedViews = ConstrainedViews(views: ["innerView": innerView], formats:["H:|-8-[innerView]-8-|", "V:|-16-[innerView]-0-|"])
     contentView.addConstrainedViews(constrainedViews)
   }

@@ -14,17 +14,11 @@ class CenterViewController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = AppColors.White
+    view.backgroundColor = AppColors.Gray
     tableView?.separatorStyle = .None
     tableView?.registerClass(CenterViewCell.self, forCellReuseIdentifier: cellIdentifier)
     tableView?.estimatedRowHeight = 68
     tableView?.rowHeight = UITableViewAutomaticDimension
-    let profileImageView = UIImageView()
-    profileImageView.image = UIImage(named: "profile-rabbit-toy.png")
-    profileImageView.frame = CGRectMake(0, 0, 100, 100)
-    profileImageView.toCircle = true
-    profileImageView.layer.position = CGPoint(x: view.bounds.width/2, y: view.bounds.height/2)
-    view.addSubview(profileImageView)
   }
 
   override func didMoveToParentViewController(parent: UIViewController?) {

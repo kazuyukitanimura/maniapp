@@ -28,18 +28,18 @@ extension UIImageView {
 extension UIView {
   func addConstrainedViews(constrainedViews: ConstrainedViews) {
     var views = [String: UIView]()
-    for (id, viewProps) in constrainedViews.views {
+    for (id, viewObject) in constrainedViews.views {
       var subView: UIView
-      if let viewSelf = viewProps as? UIView {
+      if let viewSelf = viewObject as? UIView {
         subView = viewSelf
       } else {
+        var viewProps = viewObject as Dictionary<String, AnyObject>
         if let textProp = viewProps["text"] as? String {
           subView = UILabel()
-          (subView as UILabel).text = textProp
           (subView as UILabel).numberOfLines = 0
-        } else if let imageProp = viewProps["image"] as? UIImage {
+        } else if let imageName = viewProps["image"] as? String {
           subView = UIImageView()
-          (subView as UIImageView).image = imageProp
+          viewProps["image"] = UIImage(named: imageName)
         } else {
           subView = UIView()
         }
@@ -50,7 +50,7 @@ extension UIView {
       views[id] = subView
     }
     for format in constrainedViews.formats {
-      addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: .AlignAllLeft, metrics: nil, views: views))
+      addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: nil, metrics: nil, views: views))
     }
   }
 }
@@ -67,17 +67,15 @@ let cells:[ConstrainedViews] = [
     "title": [
       "text": "My Profile",
       "font": titleFont
-      ]/*,
+      ],
     "photo": [
-      "image": UIImage(named: "profile-rabbit-toy.png"),
-      "frame": CGRectMake(0, 0, 100, 100),
+      "image": "profile-rabbit-toy.png",
       "toCircle": true
-      ]*/
+      ]
     ], formats:[
-      "H:|-8-[title]-8-|",
-      "V:|-8-[title]-8-|"]),
-      //"H:|-8-[photo]-8-[title]-8-|",
-      //"V:|-8-[photo]-8-|"]),
+      "H:|-8-[photo(40)]-8-[title]-8-|",
+      "V:|-8-[photo(40)]-(>=8)-|",
+      "V:|-8-[photo(40)]-(>=8)-|"]),
   // 1
   ConstrainedViews(views: ["referral": [
     "text": "Referral Center",
