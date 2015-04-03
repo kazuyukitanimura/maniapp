@@ -55,15 +55,6 @@ class CenterViewController: UITableViewController {
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let cell = tableView.cellForRowAtIndexPath(indexPath) as CenterViewCell
-    bloat(cell.innerView)
-  }
-
-  func bloat(target: UIView) {
-    var animation = CABasicAnimation(keyPath: "transform.scale")
-    animation.toValue = NSNumber(float: 0.95)
-    animation.duration = 0.1
-    animation.repeatCount = 2.0
-    animation.autoreverses = true
-    target.layer.addAnimation(animation, forKey: nil)
+    Animations.bloat(cell.innerView)
   }
 }
