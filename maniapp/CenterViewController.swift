@@ -32,6 +32,7 @@ class CenterViewController: UITableViewController {
     searchBar.tintColor = AppColors.White
     searchBar.searchBarStyle = .Minimal
     searchBar.setImage(UIImage(named: "search2.png"), forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal)
+    searchBar.setImage(UIImage(named: "clear.png"), forSearchBarIcon: UISearchBarIcon.Clear, state: UIControlState.Normal)
     let searchField = searchBar.valueForKey("searchField") as UITextField
     searchField.textColor = AppColors.White
     searchField.attributedPlaceholder = NSAttributedString(string:searchField.placeholder!, attributes: [NSForegroundColorAttributeName: AppColors.White])
