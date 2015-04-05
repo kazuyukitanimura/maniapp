@@ -39,17 +39,22 @@ let cells:[ConstrainedViews] = [
       "text": "Member of Technical Staff at BloomReach, Inc.",
       "font": subTitleFont,
       "textColor": AppColors.DarkGray,
-    ],
+      ],
     "photo": [
       "image": "profile-rabbit-toy.png",
       "frame": NSValue(CGRect: CGRectMake(0, 0, 56, 56)),
       "toCircle": true,
       ],
+    "preview" : [
+      "text": "Tap to update your target compensation",
+      "font": subTitleFont,
+      ],
     ], formats:[
       "H:|-8-[photo(56)]-8-[title]-8-|",
       "H:|-8-[photo(56)]-8-[subTitle]-8-|",
+      "H:|-8-[preview]-8-|",
       "V:|-8-[title]-2-[subTitle]-(>=8)-|",
-      "V:|-8-[photo(56)]-(>=8)-|"]),
+      "V:|-8-[photo(56)]-8-[preview]-(>=8)-|"]),
   // 1
   ConstrainedViews(views: [
     "title": [
@@ -67,13 +72,21 @@ let cells:[ConstrainedViews] = [
     "H:|-8-[subTitle]-8-|",
     "V:|-8-[title]-2-[subTitle]-8-|"]),
   // 2
-  ConstrainedViews(views: ["notification": [
-    "text": "Notifications",
-    "font": titleFont,
-    "textColor": AppColors.Orange,
-  ]], formats:[
-    "H:|-8-[notification]-8-|",
-    "V:|-8-[notification]-8-|"]),
+  ConstrainedViews(views: [
+    "title": [
+      "text": "Notifications",
+      "font": titleFont,
+      "textColor": AppColors.Orange,
+    ],
+    "subTitle" : [
+      "text": "0 notifications",
+      "font": subTitleFont,
+      "textColor": AppColors.DarkGray,
+    ],
+  ], formats:[
+    "H:|-8-[title]-8-|",
+    "H:|-8-[subTitle]-8-|",
+    "V:|-8-[title]-2-[subTitle]-8-|"]),
   // 3
   ConstrainedViews(views: ["news": [
     "text": "News Feed",
@@ -81,5 +94,5 @@ let cells:[ConstrainedViews] = [
     "textColor": AppColors.Orange,
   ]], formats:[
     "H:|-8-[news]-8-|",
-    "V:|-8-[news]-8-|"]),
+    "V:|-8-[news]-608-|"]),
 ]

@@ -11,6 +11,8 @@ import UIKit
 class CenterViewController: UITableViewController {
   lazy var searchBar = UISearchBar()
   let cellIdentifier = "Cell"
+  let headerFooterHight:CGFloat = 4
+  //var previousScrollOffset:CGFloat = 0.0
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -19,7 +21,8 @@ class CenterViewController: UITableViewController {
     tableView?.registerClass(CenterViewCell.self, forCellReuseIdentifier: cellIdentifier)
     tableView?.estimatedRowHeight = 68
     tableView?.rowHeight = UITableViewAutomaticDimension
-    tableView?.tableHeaderView = UIView(frame: CGRectMake(0, 0, 4, 4))
+    tableView?.tableHeaderView = UIView(frame: CGRectMake(0, 0, headerFooterHight, headerFooterHight))
+    tableView?.tableFooterView = UIView(frame: CGRectMake(0, 0, headerFooterHight, headerFooterHight))
   }
 
   override func didMoveToParentViewController(parent: UIViewController?) {
@@ -42,7 +45,7 @@ class CenterViewController: UITableViewController {
 
   func handleHideOnSwipe(recognizer: UISwipeGestureRecognizer) {
     // hide the status bar for up swipes, show it for down swipes
-    UIApplication.sharedApplication().statusBarHidden = navigationController!.navigationBar.frame.minY < 0
+    UIApplication.sharedApplication().setStatusBarHidden(navigationController!.navigationBar.frame.minY < -headerFooterHight, withAnimation: .Fade)
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,5 +61,23 @@ class CenterViewController: UITableViewController {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let cell = tableView.cellForRowAtIndexPath(indexPath) as CenterViewCell
     Animations.bloat(cell.innerView)
+    //tableView.beginUpdates()
+    //tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    //tableView.endUpdates()
+    UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .Fade)
+    navigationController!.navigationBarHidden = true
+    // FIXME This does not work, why? tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+    tableView.setContentOffset(CGPointMake(0, tableView.rectForRowAtIndexPath(indexPath).minY - headerFooterHight), animated: true)
   }
+
+  /*
+  override func scrollViewDidScroll(scrollView: UIScrollView) {
+    let nFrame = navigationController!.navigationBar.frame
+    let scrollOffset = scrollView.contentOffset.y
+    let scrollDiff = scrollOffset - previousScrollOffset
+    let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
+    navigationController?.navigationBar.frame = CGRectOffset(nFrame, 0, min(max(-scrollDiff, -nFrame.maxY), -nFrame.minY + statusBarHeight))
+    previousScrollOffset = scrollOffset
+  }
+*/
 }
