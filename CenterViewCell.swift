@@ -8,8 +8,13 @@
 
 import UIKit
 
+enum CellState {
+  case Collapsed, Expanded
+}
+
 class CenterViewCell: UITableViewCell {
   let innerView = UIView()
+  var cellState = CellState.Collapsed
 
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)

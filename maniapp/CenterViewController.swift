@@ -12,7 +12,6 @@ class CenterViewController: UITableViewController {
   lazy var searchBar = UISearchBar()
   let cellIdentifier = "Cell"
   let headerFooterHight:CGFloat = 4
-  //var previousScrollOffset:CGFloat = 0.0
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -61,6 +60,13 @@ class CenterViewController: UITableViewController {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let cell = tableView.cellForRowAtIndexPath(indexPath) as CenterViewCell
     Animations.bloat(cell.innerView)
+    if (cell.cellState == .Collapsed) {
+      cell.innerView.addConstrainedViews(ConstrainedViews(views:["text": ["text": "open"]], formats: []))
+      cell.cellState = .Expanded
+    } else if (cell.cellState == .Expanded) {
+      cell.innerView.addConstrainedViews(ConstrainedViews(views:["text": ["text": "close"]], formats: []))
+      cell.cellState = .Collapsed
+    }
     //tableView.beginUpdates()
     //tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     //tableView.endUpdates()
@@ -69,15 +75,4 @@ class CenterViewController: UITableViewController {
     // FIXME This does not work, why? tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
     tableView.setContentOffset(CGPointMake(0, tableView.rectForRowAtIndexPath(indexPath).minY - headerFooterHight), animated: true)
   }
-
-  /*
-  override func scrollViewDidScroll(scrollView: UIScrollView) {
-    let nFrame = navigationController!.navigationBar.frame
-    let scrollOffset = scrollView.contentOffset.y
-    let scrollDiff = scrollOffset - previousScrollOffset
-    let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
-    navigationController?.navigationBar.frame = CGRectOffset(nFrame, 0, min(max(-scrollDiff, -nFrame.maxY), -nFrame.minY + statusBarHeight))
-    previousScrollOffset = scrollOffset
-  }
-*/
 }

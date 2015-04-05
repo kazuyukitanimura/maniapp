@@ -67,10 +67,15 @@ let cells:[ConstrainedViews] = [
       "font": subTitleFont,
       "textColor": AppColors.DarkGray,
       ],
+    "preview" : [
+      "text": "Tap to update your target compensation",
+      "font": subTitleFont,
+      ],
     ], formats:[
-    "H:|-8-[title]-8-|",
-    "H:|-8-[subTitle]-8-|",
-    "V:|-8-[title]-2-[subTitle]-8-|"]),
+      "H:|-8-[title]-8-|",
+      "H:|-8-[subTitle]-8-|",
+      "H:|-8-[preview]-8-|",
+      "V:|-8-[title]-2-[subTitle]-8-[preview]-8-|"]),
   // 2
   ConstrainedViews(views: [
     "title": [
@@ -79,20 +84,32 @@ let cells:[ConstrainedViews] = [
       "textColor": AppColors.Orange,
     ],
     "subTitle" : [
-      "text": "0 notifications",
+      "text": "0 new notifications",
       "font": subTitleFont,
       "textColor": AppColors.DarkGray,
     ],
+    "preview" : [
+      "text": "Tap to update your target compensation",
+      "font": subTitleFont,
+      ],
   ], formats:[
     "H:|-8-[title]-8-|",
     "H:|-8-[subTitle]-8-|",
-    "V:|-8-[title]-2-[subTitle]-8-|"]),
+    "H:|-8-[preview]-8-|",
+    "V:|-8-[title]-2-[subTitle]-8-[preview]-8-|"]),
   // 3
-  ConstrainedViews(views: ["news": [
-    "text": "News Feed",
-    "font": titleFont,
-    "textColor": AppColors.Orange,
-  ]], formats:[
-    "H:|-8-[news]-8-|",
-    "V:|-8-[news]-608-|"]),
+  ConstrainedViews(views: [
+    "news": [
+      "text": "News Feed",
+      "font": titleFont,
+      "textColor": AppColors.Orange,
+    ],
+    "preview" : [
+      "text": "Tap to update your target compensation",
+      "font": subTitleFont,
+      ],
+    ], formats:[
+      "H:|-8-[news]-8-|",
+      "H:|-8-[preview]-8-|",
+      "V:|-8-[news]-8-[preview(600)]-8-|"]),
 ]
