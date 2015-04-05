@@ -9,8 +9,12 @@
 import UIKit
 
 extension UIView {
+  func removeAllSubviews() {
+    subviews.map { $0.removeFromSuperview() }
+  }
   func addConstrainedViews(constrainedViews: ConstrainedViews) {
     var views = [String: UIView]()
+    removeAllSubviews() // TODO take a diff instead of deleting all subviews
     for (id, viewObject) in constrainedViews.views {
       var subView: UIView
       if let viewSelf = viewObject as? UIView {

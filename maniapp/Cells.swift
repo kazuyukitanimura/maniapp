@@ -48,6 +48,7 @@ let cells:[ConstrainedViews] = [
     "preview" : [
       "text": "Tap to update your target compensation",
       "font": subTitleFont,
+      "tag": 99,
       ],
     ], formats:[
       "H:|-8-[photo(56)]-8-[title]-8-|",
@@ -70,6 +71,7 @@ let cells:[ConstrainedViews] = [
     "preview" : [
       "text": "Tap to update your target compensation",
       "font": subTitleFont,
+      "tag": 99,
       ],
     ], formats:[
       "H:|-8-[title]-8-|",
@@ -91,6 +93,7 @@ let cells:[ConstrainedViews] = [
     "preview" : [
       "text": "Tap to update your target compensation",
       "font": subTitleFont,
+      "tag": 99,
       ],
   ], formats:[
     "H:|-8-[title]-8-|",
@@ -107,6 +110,7 @@ let cells:[ConstrainedViews] = [
     "preview" : [
       "text": "Tap to update your target compensation",
       "font": subTitleFont,
+      "tag": 99,
       ],
     ], formats:[
       "H:|-8-[news]-8-|",

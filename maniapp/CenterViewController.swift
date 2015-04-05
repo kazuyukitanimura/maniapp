@@ -61,10 +61,10 @@ class CenterViewController: UITableViewController {
     let cell = tableView.cellForRowAtIndexPath(indexPath) as CenterViewCell
     Animations.bloat(cell.innerView)
     if (cell.cellState == .Collapsed) {
-      cell.innerView.addConstrainedViews(ConstrainedViews(views:["text": ["text": "open"]], formats: []))
+      (cell.innerView.viewWithTag(99) as UILabel).text = "open\nopen"
       cell.cellState = .Expanded
     } else if (cell.cellState == .Expanded) {
-      cell.innerView.addConstrainedViews(ConstrainedViews(views:["text": ["text": "close"]], formats: []))
+      (cell.innerView.viewWithTag(99) as UILabel).text = "close"
       cell.cellState = .Collapsed
     }
     //tableView.beginUpdates()
