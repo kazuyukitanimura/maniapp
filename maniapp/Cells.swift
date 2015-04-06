@@ -27,7 +27,8 @@ extension UIImageView {
 
 let titleFont = UIFont.systemFontOfSize(17.0)
 let subTitleFont = UIFont.systemFontOfSize(12.0)
-let cells:[ConstrainedViews] = [
+let profileSize:CGFloat = 56
+var cells:[ConstrainedViews] = [
   // 0
   ConstrainedViews(views: [
     "title": [
@@ -35,27 +36,27 @@ let cells:[ConstrainedViews] = [
       "font": titleFont,
       "textColor": AppColors.Orange,
       ],
-    "subTitle" : [
+    "subTitle": [
       "text": "Member of Technical Staff at BloomReach, Inc.",
       "font": subTitleFont,
       "textColor": AppColors.DarkGray,
       ],
     "photo": [
       "image": "profile-rabbit-toy.png",
-      "frame": NSValue(CGRect: CGRectMake(0, 0, 56, 56)),
+      "frame": NSValue(CGRect: CGRectMake(0, 0, profileSize, profileSize)),
       "toCircle": true,
       ],
-    "preview" : [
+    "preview": [
       "text": "Tap to update your target compensation",
       "font": subTitleFont,
-      "tag": 99,
       ],
-    ], formats:[
-      "H:|-8-[photo(56)]-8-[title]-8-|",
-      "H:|-8-[photo(56)]-8-[subTitle]-8-|",
+    ], formats: [
+      "H:|-8-[photo(\(profileSize))]-8-[title]-8-|",
+      "H:|-8-[photo(\(profileSize))]-8-[subTitle]-8-|",
       "H:|-8-[preview]-8-|",
       "V:|-8-[title]-2-[subTitle]-(>=8)-|",
-      "V:|-8-[photo(56)]-8-[preview]-(>=8)-|"]),
+      "V:|-8-[photo(\(profileSize))]-8-[preview]-(>=8)-|",
+    ]),
   // 1
   ConstrainedViews(views: [
     "title": [
@@ -63,21 +64,21 @@ let cells:[ConstrainedViews] = [
       "font": titleFont,
       "textColor": AppColors.Orange,
       ],
-    "subTitle" : [
+    "subTitle": [
       "text": "Check your referral status or Update your interview status",
       "font": subTitleFont,
       "textColor": AppColors.DarkGray,
       ],
-    "preview" : [
+    "preview": [
       "text": "Tap to update your target compensation",
       "font": subTitleFont,
-      "tag": 99,
       ],
-    ], formats:[
+    ], formats: [
       "H:|-8-[title]-8-|",
       "H:|-8-[subTitle]-8-|",
       "H:|-8-[preview]-8-|",
-      "V:|-8-[title]-2-[subTitle]-8-[preview]-8-|"]),
+      "V:|-8-[title]-2-[subTitle]-8-[preview]-8-|",
+    ]),
   // 2
   ConstrainedViews(views: [
     "title": [
@@ -85,35 +86,35 @@ let cells:[ConstrainedViews] = [
       "font": titleFont,
       "textColor": AppColors.Orange,
     ],
-    "subTitle" : [
+    "subTitle": [
       "text": "0 new notifications",
       "font": subTitleFont,
       "textColor": AppColors.DarkGray,
     ],
-    "preview" : [
+    "preview": [
       "text": "Tap to update your target compensation",
       "font": subTitleFont,
-      "tag": 99,
       ],
-  ], formats:[
-    "H:|-8-[title]-8-|",
-    "H:|-8-[subTitle]-8-|",
-    "H:|-8-[preview]-8-|",
-    "V:|-8-[title]-2-[subTitle]-8-[preview]-8-|"]),
+    ], formats: [
+      "H:|-8-[title]-8-|",
+      "H:|-8-[subTitle]-8-|",
+      "H:|-8-[preview]-8-|",
+      "V:|-8-[title]-2-[subTitle]-8-[preview]-8-|",
+    ]),
   // 3
   ConstrainedViews(views: [
-    "news": [
+    "title": [
       "text": "News Feed",
       "font": titleFont,
       "textColor": AppColors.Orange,
     ],
-    "preview" : [
+    "preview": [
       "text": "Tap to update your target compensation",
       "font": subTitleFont,
-      "tag": 99,
       ],
-    ], formats:[
-      "H:|-8-[news]-8-|",
+    ], formats: [
+      "H:|-8-[title]-8-|",
       "H:|-8-[preview]-8-|",
-      "V:|-8-[news]-8-[preview(600)]-8-|"]),
+      "V:|-8-[title]-8-[preview(600)]-8-|",
+    ]),
 ]

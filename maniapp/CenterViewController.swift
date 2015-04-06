@@ -59,20 +59,25 @@ class CenterViewController: UITableViewController {
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let cell = tableView.cellForRowAtIndexPath(indexPath) as CenterViewCell
-    Animations.bloat(cell.innerView)
-    if (cell.cellState == .Collapsed) {
-      (cell.innerView.viewWithTag(99) as UILabel).text = "open\nopen"
-      cell.cellState = .Expanded
-    } else if (cell.cellState == .Expanded) {
-      (cell.innerView.viewWithTag(99) as UILabel).text = "close"
-      cell.cellState = .Collapsed
-    }
-    //tableView.beginUpdates()
-    //tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-    //tableView.endUpdates()
+    //Animations.bloat(cell.innerView)
+
     UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .Fade)
     navigationController!.navigationBarHidden = true
-    // FIXME This does not work, why? tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+    // scrollToRowAtIndexPath requires reload
+    // tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
     tableView.setContentOffset(CGPointMake(0, tableView.rectForRowAtIndexPath(indexPath).minY - headerFooterHight), animated: true)
+
+    var d = cells[indexPath.row].views["preview"] as Dictionary<String, AnyObject>
+    if (cells[indexPath.row].state == CellState.Collapsed) {
+      d["text"] = "open\nopen"
+      cells[indexPath.row].state = .Expanded
+    } else if (cells[indexPath.row].state == CellState.Expanded) {
+      d["text"] = "close"
+      cells[indexPath.row].state = .Collapsed
+    }
+    cells[indexPath.row].views["preview"] = d
+    tableView.beginUpdates()
+    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    tableView.endUpdates()
   }
 }

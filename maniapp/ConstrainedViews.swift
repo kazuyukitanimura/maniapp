@@ -46,7 +46,16 @@ extension UIView {
   }
 }
 
+enum CellState {
+  case Collapsed, Expanded
+}
+
 struct ConstrainedViews {
   var views: [String: AnyObject]! // key: {property: value}
   var formats: [String]! // NSLayoutConstraint.constraintsWithVisualFormat
+  var state:CellState = CellState.Collapsed
+  init(views: [String: AnyObject], formats: [String]) {
+    self.views = views
+    self.formats = formats
+  }
 }
