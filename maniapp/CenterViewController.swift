@@ -59,13 +59,17 @@ class CenterViewController: UITableViewController {
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let cell = tableView.cellForRowAtIndexPath(indexPath) as CenterViewCell
-    Animations.bloat(cell.innerView)
+    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+      Animations.bloat(cell.innerView)
+    })
 
     UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .Fade)
     navigationController!.navigationBarHidden = true
     // scrollToRowAtIndexPath requires reload
     // tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
-    tableView.setContentOffset(CGPointMake(0, tableView.rectForRowAtIndexPath(indexPath).minY - headerFooterHight), animated: true)
+    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+      self.tableView.setContentOffset(CGPointMake(0, self.tableView.rectForRowAtIndexPath(indexPath).minY - self.headerFooterHight), animated: true)
+    })
 
     var constrainedView = cells[indexPath.row]
     var previewText:String!

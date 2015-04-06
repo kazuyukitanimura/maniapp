@@ -28,6 +28,7 @@
 		80D669E61AC2981E00D8B8CE /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669E51AC2981E00D8B8CE /* MenuViewController.swift */; };
 		80D669E81AC482D700D8B8CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669E71AC482D700D8B8CE /* LoginViewController.swift */; };
 		80D669EA1AC547B400D8B8CE /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669E91AC547B400D8B8CE /* AppColors.swift */; };
+		80E8221A1AD3068600D85EF7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E822191AD3068600D85EF7 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		80D669E51AC2981E00D8B8CE /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		80D669E71AC482D700D8B8CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		80D669E91AC547B400D8B8CE /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		80E822191AD3068600D85EF7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				80D669E31AC2969F00D8B8CE /* CenterViewController.swift */,
 				802CC39A1ACE66BC00465D88 /* ConstrainedViews.swift */,
 				80D669E71AC482D700D8B8CE /* LoginViewController.swift */,
+				80E822191AD3068600D85EF7 /* ProfileViewController.swift */,
 				80D669E51AC2981E00D8B8CE /* MenuViewController.swift */,
 				80D669C01ABEB06900D8B8CE /* ViewController.swift */,
 				80D669C21ABEB06900D8B8CE /* Main.storyboard */,
@@ -277,6 +280,7 @@
 				803C20301AC7F3CF00A715A7 /* CenterViewCell.swift in Sources */,
 				802CC39B1ACE66BC00465D88 /* ConstrainedViews.swift in Sources */,
 				802CC3971ACA538B00465D88 /* Cells.swift in Sources */,
+				80E8221A1AD3068600D85EF7 /* ProfileViewController.swift in Sources */,
 				80D669E41AC2969F00D8B8CE /* CenterViewController.swift in Sources */,
 				802CC3991ACE606100465D88 /* Animations.swift in Sources */,
 				80D669EA1AC547B400D8B8CE /* AppColors.swift in Sources */,
