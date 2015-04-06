@@ -59,7 +59,7 @@ class CenterViewController: UITableViewController {
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let cell = tableView.cellForRowAtIndexPath(indexPath) as CenterViewCell
-    //Animations.bloat(cell.innerView)
+    Animations.bloat(cell.innerView)
 
     UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .Fade)
     navigationController!.navigationBarHidden = true
@@ -67,15 +67,20 @@ class CenterViewController: UITableViewController {
     // tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
     tableView.setContentOffset(CGPointMake(0, tableView.rectForRowAtIndexPath(indexPath).minY - headerFooterHight), animated: true)
 
-    var d = cells[indexPath.row].views["preview"] as Dictionary<String, AnyObject>
-    if (cells[indexPath.row].state == CellState.Collapsed) {
-      d["text"] = "open\nopen"
-      cells[indexPath.row].state = .Expanded
-    } else if (cells[indexPath.row].state == CellState.Expanded) {
-      d["text"] = "close"
-      cells[indexPath.row].state = .Collapsed
+    var constrainedView = cells[indexPath.row]
+    var previewText:String!
+    if (constrainedView.state == CellState.Collapsed) {
+      previewText = "open\nopen"
+      constrainedView.state = .Expanded
+    } else if (constrainedView.state == CellState.Expanded) {
+      previewText = "close"
+      constrainedView.state = .Collapsed
     }
-    cells[indexPath.row].views["preview"] = d
+    constrainedView.updateViews([
+      "preview": [
+        "text": previewText,
+      ],
+    ])
     tableView.beginUpdates()
     tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     tableView.endUpdates()

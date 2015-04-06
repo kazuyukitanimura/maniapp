@@ -50,12 +50,29 @@ enum CellState {
   case Collapsed, Expanded
 }
 
-struct ConstrainedViews {
-  var views: [String: AnyObject]! // key: {property: value}
+class ConstrainedViews {
+  typealias Views = [String: AnyObject]
+  typealias Formats = [String]
+  var views: Views! // key: {property: value}
   var formats: [String]! // NSLayoutConstraint.constraintsWithVisualFormat
   var state:CellState = CellState.Collapsed
-  init(views: [String: AnyObject], formats: [String]) {
+
+  init(views: Views, formats: Formats) {
     self.views = views
     self.formats = formats
+  }
+
+  func updateViews(viewUpdates: Views) {
+    for (id, viewObject) in viewUpdates {
+      if let viewProps = viewObject as? Dictionary<String, AnyObject> {
+        var updatedViewProps = views[id] as Dictionary<String, AnyObject>
+        for (k, v) in viewProps {
+          updatedViewProps[k] = v
+        }
+        views[id] = updatedViewProps
+      } else {
+        views[id] = viewObject
+      }
+    }
   }
 }
