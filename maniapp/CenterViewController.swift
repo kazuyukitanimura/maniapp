@@ -72,19 +72,20 @@ class CenterViewController: UITableViewController {
     })
 
     var constrainedView = cells[indexPath.row]
-    var previewText:String!
     if (constrainedView.state == CellState.Collapsed) {
-      previewText = "open\nopen"
       constrainedView.state = .Expanded
+      let profileViewController = ProfileViewController()
+      addChildViewController(profileViewController)
+      profileViewController.didMoveToParentViewController(self)
+      constrainedView.updateViews([
+        "preview": profileViewController.view,
+      ])
     } else if (constrainedView.state == CellState.Expanded) {
-      previewText = "close"
       constrainedView.state = .Collapsed
+      constrainedView.updateViews([
+        "preview": UIView(),
+      ])
     }
-    constrainedView.updateViews([
-      "preview": [
-        "text": previewText,
-      ],
-    ])
     tableView.beginUpdates()
     tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     tableView.endUpdates()

@@ -21,7 +21,9 @@ extension UIView {
         subView = viewSelf
       } else {
         var viewProps = viewObject as Dictionary<String, AnyObject>
-        if let textProp = viewProps["text"] as? String {
+        if let textProp = viewProps["placeholder"] as? String {
+          subView = UITextField()
+        } else if let textProp = viewProps["text"] as? String {
           subView = UILabel()
           (subView as UILabel).numberOfLines = 0
         } else if let imageName = viewProps["image"] as? String {

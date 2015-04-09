@@ -35,21 +35,18 @@ var cells:[ConstrainedViews] = [
       "text": "Kazuyuki Tanimura",
       "font": titleFont,
       "textColor": AppColors.Orange,
-      ],
+    ],
     "subTitle": [
       "text": "Member of Technical Staff at BloomReach, Inc.",
       "font": subTitleFont,
       "textColor": AppColors.DarkGray,
-      ],
+    ],
     "photo": [
       "image": "profile-rabbit-toy.png",
       "frame": NSValue(CGRect: CGRectMake(0, 0, profileSize, profileSize)),
       "toCircle": true,
-      ],
-    "preview": [
-      "text": "Tap to update your target compensation",
-      "font": subTitleFont,
-      ],
+    ],
+    "preview": UIView(),
     ], formats: [
       "H:|-8-[photo(\(profileSize))]-8-[title]-8-|",
       "H:|-8-[photo(\(profileSize))]-8-[subTitle]-8-|",
@@ -63,16 +60,13 @@ var cells:[ConstrainedViews] = [
       "text": "Referral Center",
       "font": titleFont,
       "textColor": AppColors.Orange,
-      ],
+    ],
     "subTitle": [
       "text": "Check your referral status or Update your interview status",
       "font": subTitleFont,
       "textColor": AppColors.DarkGray,
-      ],
-    "preview": [
-      "text": "Tap to update your target compensation",
-      "font": subTitleFont,
-      ],
+    ],
+    "preview": UIView(),
     ], formats: [
       "H:|-8-[title]-8-|",
       "H:|-8-[subTitle]-8-|",
@@ -91,10 +85,7 @@ var cells:[ConstrainedViews] = [
       "font": subTitleFont,
       "textColor": AppColors.DarkGray,
     ],
-    "preview": [
-      "text": "Tap to update your target compensation",
-      "font": subTitleFont,
-      ],
+    "preview": UIView(),
     ], formats: [
       "H:|-8-[title]-8-|",
       "H:|-8-[subTitle]-8-|",
@@ -108,13 +99,10 @@ var cells:[ConstrainedViews] = [
       "font": titleFont,
       "textColor": AppColors.Orange,
     ],
-    "preview": [
-      "text": "Tap to update your target compensation",
-      "font": subTitleFont,
-      ],
+    "preview": UIView(),
     ], formats: [
       "H:|-8-[title]-8-|",
       "H:|-8-[preview]-8-|",
-      "V:|-8-[title]-8-[preview(600)]-8-|",
+      "V:|-8-[title]-8-[preview]-8-|",
     ]),
 ]
