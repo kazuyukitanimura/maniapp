@@ -21,7 +21,7 @@ class CenterViewController: UITableViewController {
     tableView?.estimatedRowHeight = 68
     tableView?.rowHeight = UITableViewAutomaticDimension
     tableView?.tableHeaderView = UIView(frame: CGRectMake(0, 0, headerFooterHight, headerFooterHight))
-    tableView?.tableFooterView = UIView(frame: CGRectMake(0, 0, headerFooterHight, headerFooterHight))
+    tableView?.tableFooterView = UIView(frame: CGRectMake(0, 0, headerFooterHight, headerFooterHight*100))
   }
 
   override func didMoveToParentViewController(parent: UIViewController?) {
@@ -44,7 +44,11 @@ class CenterViewController: UITableViewController {
 
   func handleHideOnSwipe(recognizer: UISwipeGestureRecognizer) {
     // hide the status bar for up swipes, show it for down swipes
-    UIApplication.sharedApplication().setStatusBarHidden(navigationController!.navigationBar.frame.minY < -headerFooterHight, withAnimation: .Fade)
+    let hideStatusBar = navigationController!.navigationBar.frame.minY < -headerFooterHight
+    UIApplication.sharedApplication().setStatusBarHidden(hideStatusBar, withAnimation: .Fade)
+    if (!hideStatusBar) {
+      automaticallyAdjustsScrollViewInsets = true
+    }
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,27 +62,26 @@ class CenterViewController: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    /*
     let cell = tableView.cellForRowAtIndexPath(indexPath) as CenterViewCell
     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
       Animations.bloat(cell.innerView)
     })
-
+    */
     UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .Fade)
-    navigationController!.navigationBarHidden = true
-    // scrollToRowAtIndexPath requires reload
-    // tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
-    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-      self.tableView.setContentOffset(CGPointMake(0, self.tableView.rectForRowAtIndexPath(indexPath).minY - self.headerFooterHight), animated: true)
-    })
-
+    navigationController!.setNavigationBarHidden(true, animated: true)
+    automaticallyAdjustsScrollViewInsets = false
     var constrainedView = cells[indexPath.row]
     if (constrainedView.state == CellState.Collapsed) {
+      // scrollToRowAtIndexPath requires reload
+      // tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+        self.tableView.setContentOffset(CGPointMake(0, self.tableView.rectForRowAtIndexPath(indexPath).minY - self.headerFooterHight), animated: true)
+      })
+
       constrainedView.state = .Expanded
-      let profileViewController = ProfileViewController()
-      addChildViewController(profileViewController)
-      profileViewController.didMoveToParentViewController(self)
       constrainedView.updateViews([
-        "preview": profileViewController.view,
+        "preview": ProfileViewController(),
       ])
     } else if (constrainedView.state == CellState.Expanded) {
       constrainedView.state = .Collapsed

@@ -67,11 +67,17 @@ class ConstrainedViews {
   func updateViews(viewUpdates: Views) {
     for (id, viewObject) in viewUpdates {
       if let viewProps = viewObject as? Dictionary<String, AnyObject> {
-        var updatedViewProps = views[id] as Dictionary<String, AnyObject>
-        for (k, v) in viewProps {
-          updatedViewProps[k] = v
+        if let updatedView = views[id] as? UIView {
+          updatedView.setValuesForKeysWithDictionary(viewProps)
+        } else {
+          var updatedViewProps = views[id] as Dictionary<String, AnyObject>
+          for (k, v) in viewProps {
+            updatedViewProps[k] = v
+          }
+          views[id] = updatedViewProps
         }
-        views[id] = updatedViewProps
+      } else if let viewController = viewObject as? UIViewController {
+        views[id] = viewController.view
       } else {
         views[id] = viewObject
       }
