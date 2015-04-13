@@ -95,7 +95,20 @@ var cells:[ConstrainedViews] = [
   // 3
   ConstrainedViews(views: [
     "title": [
-      "text": "News Feed",
+      "text": "News Feed 1",
+      "font": titleFont,
+      "textColor": AppColors.Orange,
+    ],
+    "preview": UIView(),
+    ], formats: [
+      "H:|-8-[title]-8-|",
+      "H:|-8-[preview]-8-|",
+      "V:|-8-[title]-8-[preview]-8-|",
+    ]),
+  // 4
+  ConstrainedViews(views: [
+    "title": [
+      "text": "News Feed 2",
       "font": titleFont,
       "textColor": AppColors.Orange,
     ],

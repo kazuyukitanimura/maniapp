@@ -46,10 +46,10 @@ class ProfileViewController: UIViewController {
         "placeholder": "Willing to pay $ if I get a new job",
       ],
       "github": [
-        "placeholder": "Github",
+        "placeholder": "Github URL",
       ],
       "blog": [
-        "placeholder": "Blog",
+        "placeholder": "Blog URL",
       ],
       "skills": [
         "placeholder": "Skills",
@@ -60,15 +60,9 @@ class ProfileViewController: UIViewController {
       "dreamCompanies": [
         "placeholder": "Dream companies",
       ],
-      "save": [
-        "text": "Save",
-      ],
-      "draft": [
-        "text": "Save as draft",
-      ],
-      "cancel": [
-        "text": "Cancel",
-      ],
+      "save": SaveButton(),
+      "draft": DraftButton(),
+      "cancel": CancelButton(),
       ], formats: [
         "H:|-8-[firstName]-8-|",
         "H:|-8-[lastName]-8-|",
@@ -85,7 +79,7 @@ class ProfileViewController: UIViewController {
         "H:|-8-[skills]-8-|",
         "H:|-8-[lookingFor]-8-|",
         "H:|-8-[dreamCompanies]-8-|",
-        "H:|-8-[save]-8-[draft]-8-[cancel]-8-|",
+        "H:|-8-[save(>=50)]-8-[draft(>=140)]-8-[cancel(>=90)]-8-|",
         "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-8-[save]-(>=8)-|",
         "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-8-[draft]-(>=8)-|",
         "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-8-[cancel]-(>=8)-|",
