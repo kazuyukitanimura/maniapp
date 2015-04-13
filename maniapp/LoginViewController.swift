@@ -12,7 +12,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
   let colorTop = AppColors.Yellow.CGColor
   let colorBottom = AppColors.Orange.CGColor
   let backgroundGradient = CAGradientLayer()
-  private var loginState = false
+  private let LOGGEDIN = "LOGGEDIN"
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,10 +25,10 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
   func handleTapGesture(recognizer: UITapGestureRecognizer) {
     view.removeFromSuperview()
-    loginState = true
+    kvStore(LOGGEDIN, true)
   }
 
   func isLoggedIn() -> Bool {
-    return loginState
+    return kvLoad(LOGGEDIN) as? Bool ?? false
   }
 }

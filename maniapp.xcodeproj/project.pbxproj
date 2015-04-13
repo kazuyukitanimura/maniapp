@@ -14,6 +14,7 @@
 		802CC3A31ACE7A6800465D88 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 802CC3A21ACE7A6800465D88 /* search.png */; };
 		802CC3A51ACE7B7000465D88 /* search2.png in Resources */ = {isa = PBXBuildFile; fileRef = 802CC3A41ACE7B7000465D88 /* search2.png */; };
 		802CC3B11ACE887C00465D88 /* clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 802CC3B01ACE887C00465D88 /* clear.png */; };
+		8038B8241ADB999500FC9515 /* AppKV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038B8231ADB999500FC9515 /* AppKV.swift */; };
 		803C20301AC7F3CF00A715A7 /* CenterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803C202F1AC7F3CF00A715A7 /* CenterViewCell.swift */; };
 		80D669BC1ABEB06900D8B8CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669BB1ABEB06900D8B8CE /* AppDelegate.swift */; };
 		80D669BF1ABEB06900D8B8CE /* maniapp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80D669BD1ABEB06900D8B8CE /* maniapp.xcdatamodeld */; };
@@ -50,6 +51,7 @@
 		802CC3A21ACE7A6800465D88 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search.png; path = ../search.png; sourceTree = "<group>"; };
 		802CC3A41ACE7B7000465D88 /* search2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search2.png; path = ../search2.png; sourceTree = "<group>"; };
 		802CC3B01ACE887C00465D88 /* clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clear.png; sourceTree = "<group>"; };
+		8038B8231ADB999500FC9515 /* AppKV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppKV.swift; sourceTree = "<group>"; };
 		803C202F1AC7F3CF00A715A7 /* CenterViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CenterViewCell.swift; path = ../CenterViewCell.swift; sourceTree = "<group>"; };
 		80D669B61ABEB06900D8B8CE /* maniapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = maniapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80D669BA1ABEB06900D8B8CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				80D669E91AC547B400D8B8CE /* AppColors.swift */,
 				80D669BB1ABEB06900D8B8CE /* AppDelegate.swift */,
 				80E8221B1ADB597000D85EF7 /* AppButtons.swift */,
+				8038B8231ADB999500FC9515 /* AppKV.swift */,
 				802CC3961ACA538B00465D88 /* Cells.swift */,
 				803C202F1AC7F3CF00A715A7 /* CenterViewCell.swift */,
 				80D669E31AC2969F00D8B8CE /* CenterViewController.swift */,
@@ -283,6 +286,7 @@
 				80E8221C1ADB597000D85EF7 /* AppButtons.swift in Sources */,
 				803C20301AC7F3CF00A715A7 /* CenterViewCell.swift in Sources */,
 				802CC39B1ACE66BC00465D88 /* ConstrainedViews.swift in Sources */,
+				8038B8241ADB999500FC9515 /* AppKV.swift in Sources */,
 				802CC3971ACA538B00465D88 /* Cells.swift in Sources */,
 				80E8221A1AD3068600D85EF7 /* ProfileViewController.swift in Sources */,
 				80D669E41AC2969F00D8B8CE /* CenterViewController.swift in Sources */,

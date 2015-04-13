@@ -8,14 +8,11 @@
 
 import UIKit
 
-class SaveButton: UIButton {
+class AppButton: UIButton {
   override init() {
     super.init(frame: CGRectMake(0,0,0,0))
-    backgroundColor = AppColors.Orange
     layer.masksToBounds = true
-    setTitle("Save", forState: .Normal)
-    layer.cornerRadius = 16.0
-    layer.borderColor = AppColors.Orange.CGColor
+    layer.cornerRadius = 4.0
     layer.borderWidth = 1
   }
 
@@ -24,15 +21,25 @@ class SaveButton: UIButton {
   }
 }
 
-class DraftButton: UIButton {
+class SaveButton: AppButton {
   override init() {
-    super.init(frame: CGRectMake(0,0,0,0))
-    layer.masksToBounds = true
+    super.init()
+    backgroundColor = AppColors.Orange
+    setTitle("Save", forState: .Normal)
+    layer.borderColor = AppColors.Orange.CGColor
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+}
+
+class DraftButton: AppButton {
+  override init() {
+    super.init()
     setTitle("Save as draft", forState: .Normal)
-    layer.cornerRadius = 16.0
     setTitleColor(AppColors.Orange, forState: .Normal)
     layer.borderColor = AppColors.Orange.CGColor
-    layer.borderWidth = 1
   }
 
   required init(coder aDecoder: NSCoder) {
@@ -40,15 +47,12 @@ class DraftButton: UIButton {
   }
 }
 
-class CancelButton: UIButton {
+class CancelButton: AppButton {
   override init() {
-    super.init(frame: CGRectMake(0,0,0,0))
-    layer.masksToBounds = true
+    super.init()
     setTitle("Cancel", forState: .Normal)
-    layer.cornerRadius = 16.0
     setTitleColor(AppColors.DarkGray, forState: .Normal)
     layer.borderColor = AppColors.DarkGray.CGColor
-    layer.borderWidth = 1
   }
 
   required init(coder aDecoder: NSCoder) {
