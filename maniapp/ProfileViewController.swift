@@ -9,80 +9,191 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+  let labelFont = UIFont.boldSystemFontOfSize(13.0)
+  let textFont = UIFont.systemFontOfSize(13.0)
+
   override func viewDidLoad() {
     super.viewDidLoad()
     parentViewController?.addChildViewController(self)
     didMoveToParentViewController(parentViewController?)
     view.backgroundColor = AppColors.Clear
     var profileFields = ConstrainedViews(views: [
+      "firstNameLabel" : [
+        "text": "First",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
+      ],
       "firstName": [
         "placeholder": "First name",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "lastNameLabel" : [
+        "text": "Last",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "lastName": [
         "placeholder": "Last name",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "currentAffiliationLabel": [
+        "text": "Affiliation",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "currentAffiliation": [
         "placeholder": "Current affiliation",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "currentTitleLabel": [
+        "text": "Job Title",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "currentTitle": [
         "placeholder": "Current title",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "currentLocationLabel": [
+        "text": "Your location",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "currentLocation": [
         "placeholder": "Current location",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "willingToRelocateLabel": [
+        "text": "Willing to relocate?",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "willingToRelocate": [
-        "placeholder": "Willing to relocate",
+        "placeholder": "Yes / No",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "minCashComensationLabel": [
+        "text": "Min cash compensation",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "minCashComensation": [
-        "placeholder": "Min cash compensation (including bonus) to consider for a new job",
+        "placeholder": "(inc. bonus) for a new job",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "minEquityComensationLabel": [
+        "text": "Min equity compensation",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "minEquityComensation": [
-        "placeholder": "Min equity compensation (X %) to consider for a new job",
+        "placeholder": "(X %) for a new job",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "targetCompanySizeLabel": [
+        "text": "Target company size",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "targetCompanySize": [
-        "placeholder": "Target company size",
+        "placeholder": "Number of employees",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "thankYouTipLabel": [
+        "text": "Thank you tip $ amount",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "thankYouTip": [
-        "placeholder": "Willing to pay $ if I get a new job",
+        "placeholder": "When I get a new job",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "githubLabel": [
+        "text": "Github URL",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "github": [
-        "placeholder": "Github URL",
+        "placeholder": "Show your work",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "blogLabel": [
+        "text": "Blog URL",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "blog": [
-        "placeholder": "Blog URL",
+        "placeholder": "Talk about yourself",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "skillsLabel": [
+        "text": "Skills",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "skills": [
-        "placeholder": "Skills",
+        "placeholder": "Be specific!",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "lookingForLabel": [
+        "text": "Looking for ...",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "lookingFor": [
-        "placeholder": "Looking for...",
+        "placeholder": "Your objectives",
+        "font": textFont,
+        "textColor": AppColors.Black,
+      ],
+      "dreamCompaniesLabel": [
+        "text": "Dream companies",
+        "font": labelFont,
+        "textColor": AppColors.Orange,
       ],
       "dreamCompanies": [
-        "placeholder": "Dream companies",
+        "placeholder": "Company names",
+        "font": textFont,
+        "textColor": AppColors.Black,
       ],
       "save": SaveButton(),
       "draft": DraftButton(),
       "cancel": CancelButton(),
       ], formats: [
-        "H:|-8-[firstName]-8-|",
-        "H:|-8-[lastName]-8-|",
-        "H:|-8-[currentAffiliation]-8-|",
-        "H:|-8-[currentTitle]-8-|",
-        "H:|-8-[currentLocation]-8-|",
-        "H:|-8-[willingToRelocate]-8-|",
-        "H:|-8-[minCashComensation]-8-|",
-        "H:|-8-[minEquityComensation]-8-|",
-        "H:|-8-[targetCompanySize]-8-|",
-        "H:|-8-[thankYouTip]-8-|",
-        "H:|-8-[github]-8-|",
-        "H:|-8-[blog]-8-|",
-        "H:|-8-[skills]-8-|",
-        "H:|-8-[lookingFor]-8-|",
-        "H:|-8-[dreamCompanies]-8-|",
-        "H:|-8-[save(>=50)]-8-[draft(>=140)]-8-[cancel(>=90)]-8-|",
-        "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-8-[save]-(>=8)-|",
-        "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-8-[draft]-(>=8)-|",
-        "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-8-[cancel]-(>=8)-|",
+        "H:|-8-[firstNameLabel]-(>=8)-[firstName(>=160)]-8-|",
+        "H:|-8-[lastNameLabel]-(>=8)-[lastName(>=160)]-8-|",
+        "H:|-8-[currentAffiliationLabel]-(>=8)-[currentAffiliation(>=160)]-8-|",
+        "H:|-8-[currentTitleLabel]-(>=8)-[currentTitle(>=160)]-8-|",
+        "H:|-8-[currentLocationLabel]-(>=8)-[currentLocation(>=160)]-8-|",
+        "H:|-8-[willingToRelocateLabel]-(>=8)-[willingToRelocate(>=160)]-8-|",
+        "H:|-8-[minCashComensationLabel]-(>=8)-[minCashComensation(>=160)]-8-|",
+        "H:|-8-[minEquityComensationLabel]-(>=8)-[minEquityComensation(>=160)]-8-|",
+        "H:|-8-[targetCompanySizeLabel]-(>=8)-[targetCompanySize(>=160)]-8-|",
+        "H:|-8-[thankYouTipLabel]-(>=8)-[thankYouTip(>=160)]-8-|",
+        "H:|-8-[githubLabel]-(>=8)-[github(>=160)]-8-|",
+        "H:|-8-[blogLabel]-(>=8)-[blog(>=160)]-8-|",
+        "H:|-8-[skillsLabel]-(>=8)-[skills(>=160)]-8-|",
+        "H:|-8-[lookingForLabel]-(>=8)-[lookingFor(>=160)]-8-|",
+        "H:|-8-[dreamCompaniesLabel]-(>=8)-[dreamCompanies(>=160)]-8-|",
+        "H:|-8-[save(72)]-(>=8)-[draft(128)]-8-[cancel(80)]-8-|",
+        "V:|-8-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[save]-(>=8)-|",
+        "V:|-8-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[draft]-(>=8)-|",
+        "V:|-8-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[cancel]-(>=8)-|",
+        "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[save]-(>=8)-|",
+        "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[draft]-(>=8)-|",
+        "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[cancel]-(>=8)-|",
       ])
     view.addConstrainedViews(profileFields)
   }

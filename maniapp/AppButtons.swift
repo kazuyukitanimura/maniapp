@@ -27,10 +27,15 @@ class SaveButton: AppButton {
     backgroundColor = AppColors.Orange
     setTitle("Save", forState: .Normal)
     layer.borderColor = AppColors.Orange.CGColor
+    addTarget(self, action: "onClickButton:", forControlEvents: .TouchUpInside)
   }
 
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+  }
+
+  func onClickButton(sender: UIButton) {
+    println("here")
   }
 }
 
@@ -40,10 +45,15 @@ class DraftButton: AppButton {
     setTitle("Save as draft", forState: .Normal)
     setTitleColor(AppColors.Orange, forState: .Normal)
     layer.borderColor = AppColors.Orange.CGColor
+    addTarget(self, action: "onClickButton:", forControlEvents: .TouchUpInside)
   }
 
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+  }
+
+  func onClickButton(sender: UIButton) {
+    println("here")
   }
 }
 
@@ -53,9 +63,14 @@ class CancelButton: AppButton {
     setTitle("Cancel", forState: .Normal)
     setTitleColor(AppColors.DarkGray, forState: .Normal)
     layer.borderColor = AppColors.DarkGray.CGColor
+    addTarget(self, action: "onClickButton:", forControlEvents: .TouchUpInside)
   }
 
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+  }
+
+  func onClickButton(sender: UIButton) {
+    println("here")
   }
 }
