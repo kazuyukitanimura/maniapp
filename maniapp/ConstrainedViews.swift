@@ -20,17 +20,17 @@ extension UIView {
       if let viewSelf = viewObject as? UIView {
         subView = viewSelf
       } else {
-        var viewProps = viewObject as Dictionary<String, AnyObject>
+        var viewProps = viewObject as! Dictionary<String, AnyObject>
         if let textProp = viewProps["placeholder"] as? String {
           subView = UITextField()
         } else if let textProp = viewProps["text"] as? String {
           subView = UILabel()
-          (subView as UILabel).numberOfLines = 0
+          (subView as! UILabel).numberOfLines = 0
         } else if let imageName = viewProps["image"] as? String {
           subView = UIImageView()
           viewProps["image"] = UIImage(named: imageName)
           if let frameRect = viewProps["frame"] as? NSValue {
-            (subView as UIImageView).frame = frameRect.CGRectValue()
+            (subView as! UIImageView).frame = frameRect.CGRectValue()
             viewProps.removeValueForKey("frame")
           }
         } else {
@@ -70,7 +70,7 @@ class ConstrainedViews {
         if let updatedView = views[id] as? UIView {
           updatedView.setValuesForKeysWithDictionary(viewProps)
         } else {
-          var updatedViewProps = views[id] as Dictionary<String, AnyObject>
+          var updatedViewProps = views[id] as! Dictionary<String, AnyObject>
           for (k, v) in viewProps {
             updatedViewProps[k] = v
           }

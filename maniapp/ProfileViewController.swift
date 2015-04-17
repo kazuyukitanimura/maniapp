@@ -8,14 +8,32 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+protocol ProfileViewControllerDelegate {
+  func saved(indexPath: NSIndexPath)
+  func drafted(indexPath: NSIndexPath)
+  func canceled(indexPath: NSIndexPath)
+}
+
+class ProfileViewController: UIViewController, AppButtonDelegate {
   let labelFont = UIFont.boldSystemFontOfSize(13.0)
   let textFont = UIFont.systemFontOfSize(13.0)
+  var delegate: ProfileViewControllerDelegate?
+  var indexPath: NSIndexPath?
+
+  init (delegate: ProfileViewControllerDelegate, indexPath: NSIndexPath) {
+    super.init(nibName: nil, bundle: nil)
+    self.delegate = delegate
+    self.indexPath = indexPath
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     parentViewController?.addChildViewController(self)
-    didMoveToParentViewController(parentViewController?)
+    didMoveToParentViewController(parentViewController)
     view.backgroundColor = AppColors.Clear
     var profileFields = ConstrainedViews(views: [
       "firstNameLabel" : [
@@ -168,9 +186,9 @@ class ProfileViewController: UIViewController {
         "font": textFont,
         "textColor": AppColors.Black,
       ],
-      "save": SaveButton(),
-      "draft": DraftButton(),
-      "cancel": CancelButton(),
+      "save": SaveButton(delegate: self),
+      "draft": DraftButton(delegate: self),
+      "cancel": CancelButton(delegate: self),
       ], formats: [
         "H:|-8-[firstNameLabel]-(>=8)-[firstName(>=160)]-8-|",
         "H:|-8-[lastNameLabel]-(>=8)-[lastName(>=160)]-8-|",
@@ -196,5 +214,15 @@ class ProfileViewController: UIViewController {
         "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[cancel]-(>=8)-|",
       ])
     view.addConstrainedViews(profileFields)
+  }
+
+  func saved() {
+    delegate?.saved(indexPath!)
+  }
+  func drafted() {
+    delegate?.drafted(indexPath!)
+  }
+  func canceled() {
+    delegate?.canceled(indexPath!)
   }
 }

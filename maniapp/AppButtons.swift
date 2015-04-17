@@ -8,9 +8,18 @@
 
 import UIKit
 
+protocol AppButtonDelegate {
+  func saved()
+  func drafted()
+  func canceled()
+}
+
 class AppButton: UIButton {
-  override init() {
+  var delegate: AppButtonDelegate?
+
+  init(delegate: AppButtonDelegate) {
     super.init(frame: CGRectMake(0,0,0,0))
+    self.delegate = delegate
     layer.masksToBounds = true
     layer.cornerRadius = 4.0
     layer.borderWidth = 1
@@ -22,8 +31,8 @@ class AppButton: UIButton {
 }
 
 class SaveButton: AppButton {
-  override init() {
-    super.init()
+  override init(delegate: AppButtonDelegate) {
+    super.init(delegate: delegate)
     backgroundColor = AppColors.Orange
     setTitle("Save", forState: .Normal)
     layer.borderColor = AppColors.Orange.CGColor
@@ -35,13 +44,13 @@ class SaveButton: AppButton {
   }
 
   func onClickButton(sender: UIButton) {
-    println("here")
+    delegate?.saved()
   }
 }
 
 class DraftButton: AppButton {
-  override init() {
-    super.init()
+  override init(delegate: AppButtonDelegate) {
+    super.init(delegate: delegate)
     setTitle("Save as draft", forState: .Normal)
     setTitleColor(AppColors.Orange, forState: .Normal)
     layer.borderColor = AppColors.Orange.CGColor
@@ -53,13 +62,13 @@ class DraftButton: AppButton {
   }
 
   func onClickButton(sender: UIButton) {
-    println("here")
+    delegate?.drafted()
   }
 }
 
 class CancelButton: AppButton {
-  override init() {
-    super.init()
+  override init(delegate: AppButtonDelegate) {
+    super.init(delegate: delegate)
     setTitle("Cancel", forState: .Normal)
     setTitleColor(AppColors.DarkGray, forState: .Normal)
     layer.borderColor = AppColors.DarkGray.CGColor
@@ -71,6 +80,6 @@ class CancelButton: AppButton {
   }
 
   func onClickButton(sender: UIButton) {
-    println("here")
+    delegate?.canceled()
   }
 }

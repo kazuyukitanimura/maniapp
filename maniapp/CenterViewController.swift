@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CenterViewController: UITableViewController {
+class CenterViewController: UITableViewController, ProfileViewControllerDelegate {
   lazy var searchBar = UISearchBar()
   let cellIdentifier = "Cell"
   let headerFooterHight:CGFloat = 4
@@ -35,7 +35,7 @@ class CenterViewController: UITableViewController {
     searchBar.searchBarStyle = .Minimal
     searchBar.setImage(UIImage(named: "search2.png"), forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal)
     searchBar.setImage(UIImage(named: "clear.png"), forSearchBarIcon: UISearchBarIcon.Clear, state: UIControlState.Normal)
-    let searchField = searchBar.valueForKey("searchField") as UITextField
+    let searchField = searchBar.valueForKey("searchField") as! UITextField
     searchField.textColor = AppColors.White
     searchField.attributedPlaceholder = NSAttributedString(string:searchField.placeholder!, attributes: [NSForegroundColorAttributeName: AppColors.White])
     searchBar.frame = CGRectMake(0, 0, view.frame.maxX * 0.78, 20) // FIXME any better way to adjust the width?
@@ -56,7 +56,7 @@ class CenterViewController: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as CenterViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CenterViewCell
     cell.innerView.addConstrainedViews(cells[indexPath.row])
     return cell
   }
@@ -73,24 +73,35 @@ class CenterViewController: UITableViewController {
     automaticallyAdjustsScrollViewInsets = false
     var constrainedView = cells[indexPath.row]
     if (constrainedView.state == CellState.Collapsed) {
-      // scrollToRowAtIndexPath requires reload
-      // tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
       NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
         self.tableView.setContentOffset(CGPointMake(0, self.tableView.rectForRowAtIndexPath(indexPath).minY - self.headerFooterHight), animated: true)
       })
-
       constrainedView.state = .Expanded
       constrainedView.updateViews([
-        "preview": ProfileViewController(),
+        "preview": ProfileViewController(delegate: self, indexPath: indexPath),
       ])
-    } else if (constrainedView.state == CellState.Expanded) {
-      constrainedView.state = .Collapsed
-      constrainedView.updateViews([
-        "preview": UIView(),
-      ])
+      updateSingleRow(indexPath)
     }
+  }
+  func updateSingleRow(indexPath: NSIndexPath) {
     tableView.beginUpdates()
     tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     tableView.endUpdates()
+  }
+  func saved(indexPath: NSIndexPath) {
+    println("here")
+  }
+  func drafted(indexPath: NSIndexPath) {
+    println("here")
+  }
+  func canceled(indexPath: NSIndexPath) {
+    var constrainedView = cells[indexPath.row]
+    if (constrainedView.state == CellState.Expanded) {
+      constrainedView.state = .Collapsed
+      constrainedView.updateViews([
+        "preview": UIView(),
+        ])
+      updateSingleRow(indexPath)
+    }
   }
 }
