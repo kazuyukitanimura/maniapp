@@ -21,7 +21,6 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     tableView?.estimatedRowHeight = 68
     tableView?.rowHeight = UITableViewAutomaticDimension
     tableView?.tableHeaderView = UIView(frame: CGRectMake(0, 0, headerFooterHight, headerFooterHight))
-    tableView?.tableFooterView = UIView(frame: CGRectMake(0, 0, headerFooterHight, headerFooterHight*100))
   }
 
   override func didMoveToParentViewController(parent: UIViewController?) {
@@ -58,6 +57,10 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CenterViewCell
     cell.innerView.addConstrainedViews(cells[indexPath.row])
+    if (indexPath.section == tableView.numberOfSections() - 1  && indexPath.row == tableView.numberOfRowsInSection(indexPath.section) - 1) {
+      // pad the footer in order to allow scrolling the last row to the top of the screen
+      tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, headerFooterHight, max(headerFooterHight, tableView.bounds.height - cell.bounds.maxY - headerFooterHight)))
+    }
     return cell
   }
 
