@@ -35,6 +35,8 @@ class ProfileViewController: UIViewController, AppButtonDelegate {
     parentViewController?.addChildViewController(self)
     didMoveToParentViewController(parentViewController)
     view.backgroundColor = AppColors.Clear
+    let profiles = Profile.allObjects()
+    let me = profiles[0] as! Profile
     var profileFields = ConstrainedViews(views: [
       "firstNameLabel" : [
         "text": "First",
@@ -43,6 +45,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate {
       ],
       "firstName": [
         "placeholder": "First name",
+        "text": me.firstName,
         "font": textFont,
         "textColor": AppColors.Black,
       ],
@@ -53,6 +56,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate {
       ],
       "lastName": [
         "placeholder": "Last name",
+        "text": me.lastName,
         "font": textFont,
         "textColor": AppColors.Black,
       ],
@@ -214,6 +218,12 @@ class ProfileViewController: UIViewController, AppButtonDelegate {
         "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[cancel]-(>=8)-|",
       ])
     view.addConstrainedViews(profileFields)
+  }
+
+  // hide keyboard when it lost focus
+  // http://stackoverflow.com/questions/24908966/hide-keyboard-for-text-field-in-swift-programming-language
+  override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    self.view.endEditing(true)
   }
 
   func saved() {

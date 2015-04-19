@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80228F651AE36AF400B9D0AC /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80228F641AE36AF400B9D0AC /* Realm.framework */; };
+		80228F671AE36B4A00B9D0AC /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80228F661AE36B4A00B9D0AC /* libc++.dylib */; };
+		80228F691AE36B7D00B9D0AC /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80228F681AE36B7D00B9D0AC /* RLMSupport.swift */; };
+		80228F6B1AE36E4000B9D0AC /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80228F6A1AE36E4000B9D0AC /* Models.swift */; };
 		802CC3971ACA538B00465D88 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802CC3961ACA538B00465D88 /* Cells.swift */; };
 		802CC3991ACE606100465D88 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802CC3981ACE606100465D88 /* Animations.swift */; };
 		802CC39B1ACE66BC00465D88 /* ConstrainedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802CC39A1ACE66BC00465D88 /* ConstrainedViews.swift */; };
@@ -44,6 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		80228F641AE36AF400B9D0AC /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		80228F661AE36B4A00B9D0AC /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		80228F681AE36B7D00B9D0AC /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
+		80228F6A1AE36E4000B9D0AC /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		802CC3961ACA538B00465D88 /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		802CC3981ACE606100465D88 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		802CC39A1ACE66BC00465D88 /* ConstrainedViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstrainedViews.swift; sourceTree = "<group>"; };
@@ -79,6 +87,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80228F671AE36B4A00B9D0AC /* libc++.dylib in Frameworks */,
+				80228F651AE36AF400B9D0AC /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +105,9 @@
 		80D669AD1ABEB06900D8B8CE = {
 			isa = PBXGroup;
 			children = (
+				80228F661AE36B4A00B9D0AC /* libc++.dylib */,
+				80228F681AE36B7D00B9D0AC /* RLMSupport.swift */,
+				80228F641AE36AF400B9D0AC /* Realm.framework */,
 				80D669B81ABEB06900D8B8CE /* maniapp */,
 				80D669D11ABEB06900D8B8CE /* maniappTests */,
 				80D669B71ABEB06900D8B8CE /* Products */,
@@ -125,6 +138,7 @@
 				80D669E71AC482D700D8B8CE /* LoginViewController.swift */,
 				80E822191AD3068600D85EF7 /* ProfileViewController.swift */,
 				80D669E51AC2981E00D8B8CE /* MenuViewController.swift */,
+				80228F6A1AE36E4000B9D0AC /* Models.swift */,
 				80D669C01ABEB06900D8B8CE /* ViewController.swift */,
 				80D669C21ABEB06900D8B8CE /* Main.storyboard */,
 				80D669C51ABEB06900D8B8CE /* Images.xcassets */,
@@ -287,9 +301,11 @@
 				803C20301AC7F3CF00A715A7 /* CenterViewCell.swift in Sources */,
 				802CC39B1ACE66BC00465D88 /* ConstrainedViews.swift in Sources */,
 				8038B8241ADB999500FC9515 /* AppKV.swift in Sources */,
+				80228F691AE36B7D00B9D0AC /* RLMSupport.swift in Sources */,
 				802CC3971ACA538B00465D88 /* Cells.swift in Sources */,
 				80E8221A1AD3068600D85EF7 /* ProfileViewController.swift in Sources */,
 				80D669E41AC2969F00D8B8CE /* CenterViewController.swift in Sources */,
+				80228F6B1AE36E4000B9D0AC /* Models.swift in Sources */,
 				802CC3991ACE606100465D88 /* Animations.swift in Sources */,
 				80D669EA1AC547B400D8B8CE /* AppColors.swift in Sources */,
 				80D669BF1ABEB06900D8B8CE /* maniapp.xcdatamodeld in Sources */,
@@ -418,6 +434,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = maniapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -428,6 +448,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = maniapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
