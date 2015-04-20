@@ -14,11 +14,14 @@ protocol ProfileViewControllerDelegate {
   func canceled(indexPath: NSIndexPath)
 }
 
-class ProfileViewController: UIViewController, AppButtonDelegate {
+class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDelegate {
   let labelFont = UIFont.boldSystemFontOfSize(13.0)
   let textFont = UIFont.systemFontOfSize(13.0)
   var delegate: ProfileViewControllerDelegate?
   var indexPath: NSIndexPath?
+  // field ids
+  let firstName = "firstName"
+  let lastName = "lastName"
 
   init (delegate: ProfileViewControllerDelegate, indexPath: NSIndexPath) {
     super.init(nibName: nil, bundle: nil)
@@ -43,22 +46,24 @@ class ProfileViewController: UIViewController, AppButtonDelegate {
         "font": labelFont,
         "textColor": AppColors.Orange,
       ],
-      "firstName": [
+      firstName: [
         "placeholder": "First name",
         "text": me.firstName,
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "lastNameLabel" : [
         "text": "Last",
         "font": labelFont,
         "textColor": AppColors.Orange,
       ],
-      "lastName": [
+      lastName: [
         "placeholder": "Last name",
         "text": me.lastName,
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "currentAffiliationLabel": [
         "text": "Affiliation",
@@ -194,8 +199,8 @@ class ProfileViewController: UIViewController, AppButtonDelegate {
       "draft": DraftButton(delegate: self),
       "cancel": CancelButton(delegate: self),
       ], formats: [
-        "H:|-8-[firstNameLabel]-(>=8)-[firstName(>=160)]-8-|",
-        "H:|-8-[lastNameLabel]-(>=8)-[lastName(>=160)]-8-|",
+        "H:|-8-[firstNameLabel]-(>=8)-[\(firstName)(>=160)]-8-|",
+        "H:|-8-[lastNameLabel]-(>=8)-[\(lastName)(>=160)]-8-|",
         "H:|-8-[currentAffiliationLabel]-(>=8)-[currentAffiliation(>=160)]-8-|",
         "H:|-8-[currentTitleLabel]-(>=8)-[currentTitle(>=160)]-8-|",
         "H:|-8-[currentLocationLabel]-(>=8)-[currentLocation(>=160)]-8-|",
@@ -213,9 +218,9 @@ class ProfileViewController: UIViewController, AppButtonDelegate {
         "V:|-8-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[save]-(>=8)-|",
         "V:|-8-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[draft]-(>=8)-|",
         "V:|-8-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[cancel]-(>=8)-|",
-        "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[save]-(>=8)-|",
-        "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[draft]-(>=8)-|",
-        "V:|-8-[firstName]-8-[lastName]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[cancel]-(>=8)-|",
+        "V:|-8-[\(firstName)]-8-[\(lastName)]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[save]-(>=8)-|",
+        "V:|-8-[\(firstName)]-8-[\(lastName)]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[draft]-(>=8)-|",
+        "V:|-8-[\(firstName)]-8-[\(lastName)]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[cancel]-(>=8)-|",
       ])
     view.addConstrainedViews(profileFields)
   }
@@ -226,10 +231,24 @@ class ProfileViewController: UIViewController, AppButtonDelegate {
     self.view.endEditing(true)
   }
 
+  // hide keyboard when return is pressed
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+  }
+
   func saved() {
     delegate?.saved(indexPath!)
   }
   func drafted() {
+    println((view.viewWithConstrainedViewID(firstName) as! UITextField).text)
+    println((view.viewWithConstrainedViewID(lastName) as! UITextField).text)
+    REALM.transactionWithBlock({ () -> Void in
+      let profiles = Profile.allObjects()
+      let me = profiles[0] as! Profile
+      me.firstName = (self.view.viewWithConstrainedViewID(self.firstName) as! UITextField).text
+      me.lastName = (self.view.viewWithConstrainedViewID(self.lastName) as! UITextField).text
+    })
     delegate?.drafted(indexPath!)
   }
   func canceled() {

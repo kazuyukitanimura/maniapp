@@ -92,10 +92,10 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     tableView.endUpdates()
   }
   func saved(indexPath: NSIndexPath) {
-    println("here")
+    canceled(indexPath)
   }
   func drafted(indexPath: NSIndexPath) {
-    println("here")
+    canceled(indexPath)
   }
   func canceled(indexPath: NSIndexPath) {
     var constrainedView = cells[indexPath.row]

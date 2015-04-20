@@ -12,6 +12,7 @@ extension UIView {
   func removeAllSubviews() {
     subviews.map { $0.removeFromSuperview() }
   }
+
   func addConstrainedViews(constrainedViews: ConstrainedViews) {
     var views = [String: UIView]()
     removeAllSubviews() // TODO take a diff instead of deleting all subviews
@@ -38,6 +39,7 @@ extension UIView {
         }
         subView.setValuesForKeysWithDictionary(viewProps as Dictionary)
       }
+      subView.tag = id.hash // TODO is this ok?
       addSubview(subView)
       subView.setTranslatesAutoresizingMaskIntoConstraints(false)
       views[id] = subView
@@ -45,6 +47,10 @@ extension UIView {
     for format in constrainedViews.formats {
       addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: nil, metrics: nil, views: views))
     }
+  }
+
+  func viewWithConstrainedViewID(id: String) -> UIView? {
+    return viewWithTag(id.hash)
   }
 }
 
