@@ -39,7 +39,15 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     didMoveToParentViewController(parentViewController)
     view.backgroundColor = AppColors.Clear
     let profiles = Profile.allObjects()
-    let me = profiles[0] as! Profile
+    var me: Profile
+    if (profiles.count == 0) {
+      me = Profile()
+      REALM.transactionWithBlock({ () -> Void in
+        REALM.addObject(me)
+      })
+    } else {
+      me = profiles[0] as! Profile
+    }
     var profileFields = ConstrainedViews(views: [
       "firstNameLabel" : [
         "text": "First",
@@ -215,12 +223,12 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "H:|-8-[lookingForLabel]-(>=8)-[lookingFor(>=160)]-8-|",
         "H:|-8-[dreamCompaniesLabel]-(>=8)-[dreamCompanies(>=160)]-8-|",
         "H:|-8-[save(72)]-(>=8)-[draft(128)]-8-[cancel(80)]-8-|",
-        "V:|-8-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[save]-(>=8)-|",
-        "V:|-8-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[draft]-(>=8)-|",
-        "V:|-8-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[cancel]-(>=8)-|",
-        "V:|-8-[\(firstName)]-8-[\(lastName)]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[save]-(>=8)-|",
-        "V:|-8-[\(firstName)]-8-[\(lastName)]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[draft]-(>=8)-|",
-        "V:|-8-[\(firstName)]-8-[\(lastName)]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[cancel]-(>=8)-|",
+        "V:|-12-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[save]-(>=4)-|",
+        "V:|-12-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[draft]-(>=4)-|",
+        "V:|-12-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[cancel]-(>=4)-|",
+        "V:|-12-[\(firstName)]-8-[\(lastName)]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[save]-(>=4)-|",
+        "V:|-12-[\(firstName)]-8-[\(lastName)]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[draft]-(>=4)-|",
+        "V:|-12-[\(firstName)]-8-[\(lastName)]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[cancel]-(>=4)-|",
       ])
     view.addConstrainedViews(profileFields)
   }

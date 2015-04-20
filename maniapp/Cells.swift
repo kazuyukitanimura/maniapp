@@ -52,7 +52,7 @@ var cells:[ConstrainedViews] = [
       "H:|-8-[photo(\(profileSize))]-8-[subTitle]-8-|",
       "H:|-8-[preview]-8-|",
       "V:|-8-[title]-2-[subTitle]-(>=8)-|",
-      "V:|-8-[photo(\(profileSize))]-8-[preview]-(>=8)-|",
+      "V:|-8-[photo(\(profileSize))]-4-[preview]-(>=4)-|",
     ]),
   // 1
   ConstrainedViews(views: [
@@ -71,7 +71,7 @@ var cells:[ConstrainedViews] = [
       "H:|-8-[title]-8-|",
       "H:|-8-[subTitle]-8-|",
       "H:|-8-[preview]-8-|",
-      "V:|-8-[title]-2-[subTitle]-8-[preview]-8-|",
+      "V:|-8-[title]-2-[subTitle]-4-[preview]-(>=4)-|",
     ]),
   // 2
   ConstrainedViews(views: [
@@ -90,7 +90,7 @@ var cells:[ConstrainedViews] = [
       "H:|-8-[title]-8-|",
       "H:|-8-[subTitle]-8-|",
       "H:|-8-[preview]-8-|",
-      "V:|-8-[title]-2-[subTitle]-8-[preview]-8-|",
+      "V:|-8-[title]-2-[subTitle]-4-[preview]-(>=4)-|",
     ]),
   // 3
   ConstrainedViews(views: [
@@ -103,7 +103,7 @@ var cells:[ConstrainedViews] = [
     ], formats: [
       "H:|-8-[title]-8-|",
       "H:|-8-[preview]-8-|",
-      "V:|-8-[title]-8-[preview]-8-|",
+      "V:|-8-[title]-4-[preview]-(>=4)-|",
     ]),
   // 4
   ConstrainedViews(views: [
@@ -116,6 +116,6 @@ var cells:[ConstrainedViews] = [
     ], formats: [
       "H:|-8-[title]-8-|",
       "H:|-8-[preview]-8-|",
-      "V:|-8-[title]-8-[preview]-8-|",
+      "V:|-8-[title]-4-[preview]-(>=4)-|",
     ]),
 ]
