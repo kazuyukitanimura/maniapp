@@ -76,9 +76,7 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     automaticallyAdjustsScrollViewInsets = false
     var constrainedView = cells[indexPath.row]
     if (constrainedView.state == CellState.Collapsed) {
-      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-        self.tableView.setContentOffset(CGPointMake(0, self.tableView.rectForRowAtIndexPath(indexPath).minY - self.headerFooterHight), animated: true)
-      })
+      scrollToRowAtIndexPath(indexPath)
       constrainedView.state = .Expanded
       constrainedView.updateViews([
         "preview": ProfileViewController(delegate: self, indexPath: indexPath),
@@ -86,11 +84,19 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
       updateSingleRow(indexPath)
     }
   }
+
   func updateSingleRow(indexPath: NSIndexPath) {
     tableView.beginUpdates()
     tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     tableView.endUpdates()
   }
+
+  func scrollToRowAtIndexPath(indexPath: NSIndexPath) {
+    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+      self.tableView.setContentOffset(CGPointMake(0, self.tableView.rectForRowAtIndexPath(indexPath).minY - self.headerFooterHight), animated: true)
+    })
+  }
+
   func saved(indexPath: NSIndexPath) {
     canceled(indexPath)
   }
@@ -100,6 +106,7 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
   func canceled(indexPath: NSIndexPath) {
     var constrainedView = cells[indexPath.row]
     if (constrainedView.state == CellState.Expanded) {
+      scrollToRowAtIndexPath(indexPath)
       constrainedView.state = .Collapsed
       constrainedView.updateViews([
         "preview": UIView(),
