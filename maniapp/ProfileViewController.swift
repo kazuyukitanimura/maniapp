@@ -228,7 +228,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   // hide keyboard when it lost focus
   // http://stackoverflow.com/questions/24908966/hide-keyboard-for-text-field-in-swift-programming-language
   override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-    self.view.endEditing(true)
+    view.endEditing(true)
   }
 
   // hide keyboard when return is pressed

@@ -57,6 +57,8 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CenterViewCell
     cell.innerView.addConstrainedViews(cells[indexPath.row])
+    cell.indexPath = indexPath
+    cell.delegate = self
     if (indexPath.section == tableView.numberOfSections() - 1  && indexPath.row == tableView.numberOfRowsInSection(indexPath.section) - 1) {
       // pad the footer in order to allow scrolling the last row to the top of the screen
       tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, headerFooterHight, max(headerFooterHight, tableView.bounds.height - cell.bounds.maxY - headerFooterHight)))
@@ -93,7 +95,11 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
 
   func scrollToRowAtIndexPath(indexPath: NSIndexPath) {
     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-      self.tableView.setContentOffset(CGPointMake(0, self.tableView.rectForRowAtIndexPath(indexPath).minY - self.headerFooterHight), animated: true)
+      self.navigationController!.setNavigationBarHidden(true, animated: false)
+      let offsetY = self.tableView.rectForRowAtIndexPath(indexPath).minY - self.headerFooterHight
+      if (self.tableView.contentOffset.y != offsetY) {
+        self.tableView.setContentOffset(CGPointMake(0, offsetY), animated: true)
+      }
     })
   }
 

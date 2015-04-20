@@ -10,6 +10,8 @@ import UIKit
 
 class CenterViewCell: UITableViewCell {
   let innerView = UIView()
+  var indexPath: NSIndexPath?
+  var delegate: ProfileViewControllerDelegate?
 
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,5 +32,15 @@ class CenterViewCell: UITableViewCell {
   override func setSelected(selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     // Configure the view for the selected state
+  }
+
+  override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    super.touchesBegan(touches, withEvent: event)
+    for touch in touches {
+      if ((touch as! UITouch).locationInView(self.innerView).y < 100) {
+        delegate?.drafted(indexPath!)
+        break
+      }
+    }
   }
 }
