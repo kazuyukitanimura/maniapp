@@ -96,7 +96,7 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
   func scrollToRowAtIndexPath(indexPath: NSIndexPath, onlyWhenNegative: Bool=false) {
     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
       let offsetY = self.tableView.rectForRowAtIndexPath(indexPath).minY - self.headerFooterHight
-      if (onlyWhenNegative ? (self.tableView.contentOffset.y > offsetY) : (self.tableView.contentOffset.y != offsetY)) {
+      if (onlyWhenNegative ? (self.tableView.contentOffset.y >= offsetY) : (self.tableView.contentOffset.y != offsetY)) {
         self.navigationController!.setNavigationBarHidden(true, animated: false)
         self.tableView.setContentOffset(CGPointMake(0, offsetY), animated: true)
       }
