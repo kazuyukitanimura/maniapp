@@ -245,18 +245,23 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     return true
   }
 
-  func saved() {
-    delegate?.saved(indexPath!)
-  }
-  func drafted() {
-    println((view.viewWithConstrainedViewID(firstName) as! UITextField).text)
-    println((view.viewWithConstrainedViewID(lastName) as! UITextField).text)
+
+
+  func save(published: Bool) {
     REALM.transactionWithBlock({ () -> Void in
       let profiles = Profile.allObjects()
       let me = profiles[0] as! Profile
       me.firstName = (self.view.viewWithConstrainedViewID(self.firstName) as! UITextField).text
       me.lastName = (self.view.viewWithConstrainedViewID(self.lastName) as! UITextField).text
+      me.published = published
     })
+  }
+  func saved() {
+    save(true)
+    delegate?.saved(indexPath!)
+  }
+  func drafted() {
+    save(false)
     delegate?.drafted(indexPath!)
   }
   func canceled() {
