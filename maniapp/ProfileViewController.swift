@@ -22,6 +22,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   // field ids
   let firstName = "firstName"
   let lastName = "lastName"
+  //let fieldIds = [firstName: 0, lastName: 1]
 
   init (delegate: ProfileViewControllerDelegate, indexPath: NSIndexPath) {
     super.init(nibName: nil, bundle: nil)
@@ -239,10 +240,14 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     view.endEditing(true)
   }
 
-  // hide keyboard when return is pressed
+  // move next text field or hide keyboard when return is pressed
   func textFieldShouldReturn(textField: UITextField) -> Bool {
-    textField.resignFirstResponder()
-    return true
+    if let nextField = view.viewWithConstrainedViewID(lastName) {
+      nextField.becomeFirstResponder()
+    } else {
+      textField.resignFirstResponder()
+    }
+    return false // We do not want UITextField to insert line-breaks
   }
 
 

@@ -93,11 +93,11 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     tableView.endUpdates()
   }
 
-  func scrollToRowAtIndexPath(indexPath: NSIndexPath) {
+  func scrollToRowAtIndexPath(indexPath: NSIndexPath, onlyWhenNegative: Bool=false) {
     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-      self.navigationController!.setNavigationBarHidden(true, animated: false)
       let offsetY = self.tableView.rectForRowAtIndexPath(indexPath).minY - self.headerFooterHight
-      if (self.tableView.contentOffset.y != offsetY) {
+      if (onlyWhenNegative ? (self.tableView.contentOffset.y > offsetY) : (self.tableView.contentOffset.y != offsetY)) {
+        self.navigationController!.setNavigationBarHidden(true, animated: false)
         self.tableView.setContentOffset(CGPointMake(0, offsetY), animated: true)
       }
     })
@@ -112,7 +112,7 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
   func canceled(indexPath: NSIndexPath) {
     var constrainedView = cells[indexPath.row]
     if (constrainedView.state == CellState.Expanded) {
-      scrollToRowAtIndexPath(indexPath)
+      scrollToRowAtIndexPath(indexPath, onlyWhenNegative: true)
       constrainedView.state = .Collapsed
       constrainedView.updateViews([
         "preview": UIView(),
