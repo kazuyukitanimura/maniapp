@@ -103,10 +103,20 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     })
   }
 
+  func save(indexPath: NSIndexPath, published: Bool) {
+    var constrainedView = cells[indexPath.row]
+    if (constrainedView.state == CellState.Expanded) {
+      if let profileViewController = constrainedView.views["preview"] as? ProfileViewController {
+        profileViewController.save(published)
+      }
+    }
+  }
   func saved(indexPath: NSIndexPath) {
+    save(indexPath, published: true)
     canceled(indexPath)
   }
   func drafted(indexPath: NSIndexPath) {
+    save(indexPath, published: false)
     canceled(indexPath)
   }
   func canceled(indexPath: NSIndexPath) {

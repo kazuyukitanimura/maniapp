@@ -20,6 +20,8 @@ extension UIView {
       var subView: UIView
       if let viewSelf = viewObject as? UIView {
         subView = viewSelf
+      } else if let viewSelfController = viewObject as? UIViewController {
+        subView = viewSelfController.view
       } else {
         var viewProps = viewObject as! Dictionary<String, AnyObject>
         if let textProp = viewProps["placeholder"] as? String {
@@ -75,6 +77,8 @@ class ConstrainedViews {
       if let viewProps = viewObject as? Dictionary<String, AnyObject> {
         if let updatedView = views[id] as? UIView {
           updatedView.setValuesForKeysWithDictionary(viewProps)
+        } else if let updatedViewController = views[id] as? UIViewController {
+          updatedViewController.view.setValuesForKeysWithDictionary(viewProps)
         } else {
           var updatedViewProps = views[id] as! Dictionary<String, AnyObject>
           for (k, v) in viewProps {
@@ -82,8 +86,6 @@ class ConstrainedViews {
           }
           views[id] = updatedViewProps
         }
-      } else if let viewController = viewObject as? UIViewController {
-        views[id] = viewController.view
       } else {
         views[id] = viewObject
       }
