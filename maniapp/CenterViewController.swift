@@ -109,6 +109,23 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
       if let profileViewController = constrainedView.views["preview"] as? ProfileViewController {
         profileViewController.save(published)
       }
+      if (indexPath.row == 0 && published) {
+        let profiles = Profile.allObjects()
+        var me: Profile
+        if (profiles.count == 0) {
+          me = Profile()
+          REALM.transactionWithBlock({ () -> Void in
+            REALM.addObject(me)
+          })
+        } else {
+          me = profiles[0] as! Profile
+        }
+        constrainedView.updateViews([
+          "title": [
+            "text": "\(me.firstName) \(me.lastName)",
+          ]
+        ])
+      }
     }
   }
   func saved(indexPath: NSIndexPath) {
