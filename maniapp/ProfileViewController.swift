@@ -250,10 +250,6 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     return false // We do not want UITextField to insert line-breaks
   }
 
-  func textFieldDidEndEditing(textField: UITextField) {
-    println(textField.text)
-  }
-
   func save(published: Bool) {
     REALM.transactionWithBlock({ () -> Void in
       let profiles = Profile.allObjects()

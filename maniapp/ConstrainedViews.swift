@@ -26,6 +26,7 @@ extension UIView {
         var viewProps = viewObject as! Dictionary<String, AnyObject>
         if let textProp = viewProps["placeholder"] as? String {
           subView = UITextField()
+          (subView as! UITextField).addTarget(self, action: "boldFont:", forControlEvents: .EditingChanged)
         } else if let textProp = viewProps["text"] as? String {
           subView = UILabel()
           (subView as! UILabel).numberOfLines = 0
@@ -53,6 +54,11 @@ extension UIView {
 
   func viewWithConstrainedViewID(id: String) -> UIView? {
     return viewWithTag(id.hash)
+  }
+
+  func boldFont(sender: UITextField) {
+    // TODO unbold when editted back
+    sender.font = UIFont.boldSystemFontOfSize(sender.font.pointSize)
   }
 }
 
