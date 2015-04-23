@@ -123,7 +123,10 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
         constrainedView.updateViews([
           "title": [
             "text": "\(me.firstName) \(me.lastName)",
-          ]
+          ],
+          "subTitle": [
+            "text": "\(me.currentAffiliation)",
+          ],
         ])
       }
     }

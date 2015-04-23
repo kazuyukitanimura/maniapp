@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   // field ids
   let firstName = "firstName"
   let lastName = "lastName"
+  let currentAffiliation = "currentAffiliation"
   //let fieldIds = [firstName: 0, lastName: 1]
 
   init (delegate: ProfileViewControllerDelegate, indexPath: NSIndexPath) {
@@ -80,10 +81,12 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": labelFont,
         "textColor": AppColors.Orange,
       ],
-      "currentAffiliation": [
+      currentAffiliation: [
         "placeholder": "Current affiliation",
+        "text": me.currentAffiliation,
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "currentTitleLabel": [
         "text": "Job Title",
@@ -211,7 +214,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       ], formats: [
         "H:|-8-[firstNameLabel]-(>=8)-[\(firstName)(>=160)]-8-|",
         "H:|-8-[lastNameLabel]-(>=8)-[\(lastName)(>=160)]-8-|",
-        "H:|-8-[currentAffiliationLabel]-(>=8)-[currentAffiliation(>=160)]-8-|",
+        "H:|-8-[currentAffiliationLabel]-(>=8)-[\(currentAffiliation)(>=160)]-8-|",
         "H:|-8-[currentTitleLabel]-(>=8)-[currentTitle(>=160)]-8-|",
         "H:|-8-[currentLocationLabel]-(>=8)-[currentLocation(>=160)]-8-|",
         "H:|-8-[willingToRelocateLabel]-(>=8)-[willingToRelocate(>=160)]-8-|",
@@ -228,9 +231,9 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "V:|-12-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[save]-(>=4)-|",
         "V:|-12-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[draft]-(>=4)-|",
         "V:|-12-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[cancel]-(>=4)-|",
-        "V:|-12-[\(firstName)]-8-[\(lastName)]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[save]-(>=4)-|",
-        "V:|-12-[\(firstName)]-8-[\(lastName)]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[draft]-(>=4)-|",
-        "V:|-12-[\(firstName)]-8-[\(lastName)]-8-[currentAffiliation]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[cancel]-(>=4)-|",
+        "V:|-12-[\(firstName)]-8-[\(lastName)]-8-[\(currentAffiliation)]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[save]-(>=4)-|",
+        "V:|-12-[\(firstName)]-8-[\(lastName)]-8-[\(currentAffiliation)]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[draft]-(>=4)-|",
+        "V:|-12-[\(firstName)]-8-[\(lastName)]-8-[\(currentAffiliation)]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[cancel]-(>=4)-|",
       ])
     view.addConstrainedViews(profileFields)
   }
@@ -263,6 +266,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       let me = profiles[0] as! Profile
       me.firstName = (self.view.viewWithConstrainedViewID(self.firstName) as! UITextField).text
       me.lastName = (self.view.viewWithConstrainedViewID(self.lastName) as! UITextField).text
+      me.currentAffiliation = (self.view.viewWithConstrainedViewID(self.currentAffiliation) as! UITextField).text
       me.published = published
     })
   }
