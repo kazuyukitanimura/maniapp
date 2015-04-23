@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 protocol ProfileViewControllerDelegate {
   func saved(indexPath: NSIndexPath)
@@ -250,6 +251,12 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     return false // We do not want UITextField to insert line-breaks
   }
 
+  func vibrrate() {
+    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+      AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+    })
+  }
+
   func save(published: Bool) {
     REALM.transactionWithBlock({ () -> Void in
       let profiles = Profile.allObjects()
@@ -260,6 +267,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     })
   }
   func saved() {
+    vibrrate()
     delegate?.saved(indexPath!)
   }
   func drafted() {
