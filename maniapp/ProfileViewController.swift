@@ -97,6 +97,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "placeholder": "Current title",
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "currentLocationLabel": [
         "text": "Your location",
@@ -107,6 +108,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "placeholder": "Current location",
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "willingToRelocateLabel": [
         "text": "Willing to relocate?",
@@ -117,6 +119,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "placeholder": "Yes / No",
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "minCashComensationLabel": [
         "text": "Min cash compensation",
@@ -127,6 +130,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "placeholder": "(inc. bonus) for a new job",
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "minEquityComensationLabel": [
         "text": "Min equity compensation",
@@ -137,6 +141,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "placeholder": "(X %) for a new job",
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "targetCompanySizeLabel": [
         "text": "Target company size",
@@ -147,6 +152,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "placeholder": "Number of employees",
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "thankYouTipLabel": [
         "text": "Thank you tip $ amount",
@@ -157,6 +163,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "placeholder": "When I get a new job",
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "githubLabel": [
         "text": "Github URL",
@@ -167,6 +174,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "placeholder": "Show your work",
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "blogLabel": [
         "text": "Blog URL",
@@ -177,6 +185,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "placeholder": "Talk about yourself",
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "skillsLabel": [
         "text": "Skills",
@@ -187,6 +196,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "placeholder": "Be specific!",
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "lookingForLabel": [
         "text": "Looking for ...",
@@ -197,6 +207,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "placeholder": "Your objectives",
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "dreamCompaniesLabel": [
         "text": "Dream companies",
@@ -207,6 +218,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "placeholder": "Company names",
         "font": textFont,
         "textColor": AppColors.Black,
+        "delegate": self,
       ],
       "save": SaveButton(delegate: self),
       "draft": DraftButton(delegate: self),
@@ -246,7 +258,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
 
   // move next text field or hide keyboard when return is pressed
   func textFieldShouldReturn(textField: UITextField) -> Bool {
-    if let nextField = view.viewWithConstrainedViewID(lastName) {
+    if let nextField = textField.getNextSiblingView() {
       nextField.becomeFirstResponder()
     } else {
       textField.resignFirstResponder()

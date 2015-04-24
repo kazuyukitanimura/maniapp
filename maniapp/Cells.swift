@@ -32,12 +32,12 @@ var cells:[ConstrainedViews] = [
   // 0
   ConstrainedViews(views: [
     "title": [
-      "text": "Kazuyuki Tanimura",
+      "text": "Your Name",
       "font": titleFont,
       "textColor": AppColors.Orange,
     ],
     "subTitle": [
-      "text": "Member of Technical Staff at BloomReach, Inc.",
+      "text": "Title at your affiliation",
       "font": subTitleFont,
       "textColor": AppColors.DarkGray,
     ],

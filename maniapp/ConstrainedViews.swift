@@ -14,6 +14,7 @@ extension UIView {
   }
 
   func addConstrainedViews(constrainedViews: ConstrainedViews) {
+    constrainedViews.superview = self
     var views = [String: UIView]()
     removeAllSubviews() // TODO take a diff instead of deleting all subviews
     for (id, viewObject) in constrainedViews.views {
@@ -56,6 +57,18 @@ extension UIView {
     return viewWithTag(id.hash)
   }
 
+  func getNextSiblingView() -> UIView? {
+    let subviewsInType = superview?.subviews.filter({
+      "\($0.dynamicType)" == "\(self.dynamicType)"
+    }) as! Array<UIView>
+    if let indexOfSelf = find(subviewsInType, self) {
+      if (indexOfSelf < subviewsInType.count - 1) {
+        return subviewsInType[indexOfSelf + 1]
+      }
+    }
+    return nil
+  }
+
   func boldFont(sender: UITextField) {
     // TODO unbold when editted back
     sender.font = UIFont.boldSystemFontOfSize(sender.font.pointSize)
@@ -72,6 +85,7 @@ class ConstrainedViews {
   var views: Views! // key: {property: value}
   var formats: [String]! // NSLayoutConstraint.constraintsWithVisualFormat
   var state:CellState = CellState.Collapsed
+  var superview: UIView?
 
   init(views: Views, formats: Formats) {
     self.views = views
@@ -96,5 +110,9 @@ class ConstrainedViews {
         views[id] = viewObject
       }
     }
+  }
+
+  func viewWithConstrainedViewID(id: String) -> UIView? {
+    return superview?.viewWithConstrainedViewID(id)
   }
 }

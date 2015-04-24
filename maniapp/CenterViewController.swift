@@ -125,7 +125,7 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
             "text": "\(me.firstName) \(me.lastName)",
           ],
           "subTitle": [
-            "text": "\(me.currentAffiliation)",
+            "text": "at \(me.currentAffiliation)",
           ],
         ])
       }
