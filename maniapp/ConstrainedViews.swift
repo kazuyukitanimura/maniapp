@@ -9,10 +9,6 @@
 import UIKit
 
 extension UIView {
-  func removeAllSubviews() {
-    subviews.map { $0.removeFromSuperview() }
-  }
-
   func addConstrainedViews(constrainedViews: ConstrainedViews) {
     constrainedViews.superview = self
     var views = [String: UIView]()

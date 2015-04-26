@@ -12,7 +12,7 @@ import Realm
 let REALM = RLMRealm.defaultRealm()
 
 func SetupRealm() {
-  RLMRealm.setDefaultRealmSchemaVersion(2, withMigrationBlock: {migration, oldSchemaVersion in
+  RLMRealm.setDefaultRealmSchemaVersion(3, withMigrationBlock: {migration, oldSchemaVersion in
     // do nothing here, auto migration
   })
   println(REALM.path)
@@ -22,6 +22,7 @@ class Profile: RLMObject {
   dynamic var firstName = ""
   dynamic var lastName = ""
   dynamic var currentAffiliation = ""
+  dynamic var currentTitle = ""
   dynamic var distance = 0 // myself is 0, direct friend is 1
   dynamic var published = false // published == false means draft stage
 }

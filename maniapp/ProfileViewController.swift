@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   let firstName = "firstName"
   let lastName = "lastName"
   let currentAffiliation = "currentAffiliation"
-  //let fieldIds = [firstName: 0, lastName: 1]
+  let currentTitle = "currentTitle"
 
   init (delegate: ProfileViewControllerDelegate, indexPath: NSIndexPath) {
     super.init(nibName: nil, bundle: nil)
@@ -52,7 +52,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       me = profiles[0] as! Profile
     }
     var profileFields = ConstrainedViews(views: [
-      "firstNameLabel" : [
+      "firstNameLabel": [
         "text": "First",
         "font": labelFont,
         "textColor": AppColors.Orange,
@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "textColor": AppColors.Black,
         "delegate": self,
       ],
-      "lastNameLabel" : [
+      "lastNameLabel": [
         "text": "Last",
         "font": labelFont,
         "textColor": AppColors.Orange,
@@ -93,8 +93,9 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": labelFont,
         "textColor": AppColors.Orange,
       ],
-      "currentTitle": [
+      currentTitle: [
         "placeholder": "Current title",
+        "text": me.currentTitle,
         "font": textFont,
         "textColor": AppColors.Black,
         "delegate": self,
@@ -224,28 +225,28 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       "draft": DraftButton(delegate: self),
       "cancel": CancelButton(delegate: self),
       ], formats: [
-        "H:|-8-[firstNameLabel]-(>=8)-[\(firstName)(>=160)]-8-|",
-        "H:|-8-[lastNameLabel]-(>=8)-[\(lastName)(>=160)]-8-|",
-        "H:|-8-[currentAffiliationLabel]-(>=8)-[\(currentAffiliation)(>=160)]-8-|",
-        "H:|-8-[currentTitleLabel]-(>=8)-[currentTitle(>=160)]-8-|",
-        "H:|-8-[currentLocationLabel]-(>=8)-[currentLocation(>=160)]-8-|",
-        "H:|-8-[willingToRelocateLabel]-(>=8)-[willingToRelocate(>=160)]-8-|",
-        "H:|-8-[minCashComensationLabel]-(>=8)-[minCashComensation(>=160)]-8-|",
-        "H:|-8-[minEquityComensationLabel]-(>=8)-[minEquityComensation(>=160)]-8-|",
-        "H:|-8-[targetCompanySizeLabel]-(>=8)-[targetCompanySize(>=160)]-8-|",
-        "H:|-8-[thankYouTipLabel]-(>=8)-[thankYouTip(>=160)]-8-|",
-        "H:|-8-[githubLabel]-(>=8)-[github(>=160)]-8-|",
-        "H:|-8-[blogLabel]-(>=8)-[blog(>=160)]-8-|",
-        "H:|-8-[skillsLabel]-(>=8)-[skills(>=160)]-8-|",
-        "H:|-8-[lookingForLabel]-(>=8)-[lookingFor(>=160)]-8-|",
-        "H:|-8-[dreamCompaniesLabel]-(>=8)-[dreamCompanies(>=160)]-8-|",
-        "H:|-8-[save(72)]-(>=8)-[draft(128)]-8-[cancel(80)]-8-|",
-        "V:|-12-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[save]-(>=4)-|",
-        "V:|-12-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[draft]-(>=4)-|",
-        "V:|-12-[firstNameLabel]-8-[lastNameLabel]-8-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-8-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-8-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-16-[cancel]-(>=4)-|",
-        "V:|-12-[\(firstName)]-8-[\(lastName)]-8-[\(currentAffiliation)]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[save]-(>=4)-|",
-        "V:|-12-[\(firstName)]-8-[\(lastName)]-8-[\(currentAffiliation)]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[draft]-(>=4)-|",
-        "V:|-12-[\(firstName)]-8-[\(lastName)]-8-[\(currentAffiliation)]-8-[currentTitle]-8-[currentLocation]-8-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-8-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-16-[cancel]-(>=4)-|",
+        "H:|-0-[firstNameLabel]-(>=8)-[\(firstName)(>=160)]-0-|",
+        "H:|-0-[lastNameLabel]-(>=8)-[\(lastName)(>=160)]-0-|",
+        "H:|-0-[currentAffiliationLabel]-(>=8)-[\(currentAffiliation)(>=160)]-0-|",
+        "H:|-0-[currentTitleLabel]-(>=8)-[\(currentTitle)(>=160)]-0-|",
+        "H:|-0-[currentLocationLabel]-(>=8)-[currentLocation(>=160)]-0-|",
+        "H:|-0-[willingToRelocateLabel]-(>=8)-[willingToRelocate(>=160)]-0-|",
+        "H:|-0-[minCashComensationLabel]-(>=8)-[minCashComensation(>=160)]-0-|",
+        "H:|-0-[minEquityComensationLabel]-(>=8)-[minEquityComensation(>=160)]-0-|",
+        "H:|-0-[targetCompanySizeLabel]-(>=8)-[targetCompanySize(>=160)]-0-|",
+        "H:|-0-[thankYouTipLabel]-(>=8)-[thankYouTip(>=160)]-0-|",
+        "H:|-0-[githubLabel]-(>=8)-[github(>=160)]-0-|",
+        "H:|-0-[blogLabel]-(>=8)-[blog(>=160)]-0-|",
+        "H:|-0-[skillsLabel]-(>=8)-[skills(>=160)]-0-|",
+        "H:|-0-[lookingForLabel]-(>=8)-[lookingFor(>=160)]-0-|",
+        "H:|-0-[dreamCompaniesLabel]-(>=8)-[dreamCompanies(>=160)]-0-|",
+        "H:|-0-[save(72)]-(>=8)-[draft(128)]-8-[cancel(80)]-0-|",
+        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-24-[save]-(>=8)-|",
+        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-24-[draft]-(>=8)-|",
+        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-24-[cancel]-(>=8)-|",
+        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[currentLocation]-24-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-24-[save]-(>=8)-|",
+        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[currentLocation]-24-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-24-[draft]-(>=8)-|",
+        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[currentLocation]-24-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-24-[cancel]-(>=8)-|",
       ])
     view.addConstrainedViews(profileFields)
   }
@@ -276,9 +277,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     REALM.transactionWithBlock({ () -> Void in
       let profiles = Profile.allObjects()
       let me = profiles[0] as! Profile
-      me.firstName = (self.view.viewWithConstrainedViewID(self.firstName) as! UITextField).text
-      me.lastName = (self.view.viewWithConstrainedViewID(self.lastName) as! UITextField).text
-      me.currentAffiliation = (self.view.viewWithConstrainedViewID(self.currentAffiliation) as! UITextField).text
+      me.firstName = (self.view.viewWithConstrainedViewID(self.firstName) as! UITextField).text.trim()
+      me.lastName = (self.view.viewWithConstrainedViewID(self.lastName) as! UITextField).text.trim()
+      me.currentAffiliation = (self.view.viewWithConstrainedViewID(self.currentAffiliation) as! UITextField).text.trim()
+      me.currentTitle = (self.view.viewWithConstrainedViewID(self.currentTitle) as! UITextField).text.trim()
       me.published = published
     })
   }

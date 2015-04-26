@@ -8,26 +8,11 @@
 
 import UIKit
 
-extension UIImageView {
-  var toCircle:Bool {
-    get {
-      return layer.cornerRadius == frame.size.width / 2 && clipsToBounds
-    }
-    set (value) {
-      if (value) {
-        layer.cornerRadius = frame.size.width / 2
-        clipsToBounds = true
-      } else {
-        layer.cornerRadius = 0
-        clipsToBounds = false
-      }
-    }
-  }
-}
-
 let titleFont = UIFont.systemFontOfSize(17.0)
 let subTitleFont = UIFont.systemFontOfSize(12.0)
 let profileSize:CGFloat = 56
+let pad = 16
+let padHalf = 8
 var cells:[ConstrainedViews] = [
   // 0
   ConstrainedViews(views: [
@@ -37,7 +22,7 @@ var cells:[ConstrainedViews] = [
       "textColor": AppColors.Orange,
     ],
     "subTitle": [
-      "text": "Title at your affiliation",
+      "text": "Tap to pdate your title and affiliation",
       "font": subTitleFont,
       "textColor": AppColors.DarkGray,
     ],
@@ -48,11 +33,11 @@ var cells:[ConstrainedViews] = [
     ],
     "preview": UIView(),
     ], formats: [
-      "H:|-8-[photo(\(profileSize))]-8-[title]-8-|",
-      "H:|-8-[photo(\(profileSize))]-8-[subTitle]-8-|",
-      "H:|-8-[preview]-8-|",
-      "V:|-8-[title]-2-[subTitle]-(>=8)-|",
-      "V:|-8-[photo(\(profileSize))]-4-[preview]-(>=4)-|",
+      "H:|-\(pad)-[photo(\(profileSize))]-\(pad)-[title]-\(pad)-|",
+      "H:|-\(pad)-[photo(\(profileSize))]-\(pad)-[subTitle]-\(pad)-|",
+      "H:|-\(pad)-[preview]-\(pad)-|",
+      "V:|-\(pad)-[title]-\(padHalf)-[subTitle]-(>=\(pad))-|",
+      "V:|-\(pad)-[photo(\(profileSize))]-\(padHalf)-[preview]-(>=\(padHalf))-|",
     ]),
   // 1
   ConstrainedViews(views: [
