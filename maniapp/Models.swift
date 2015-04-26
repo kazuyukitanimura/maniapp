@@ -12,10 +12,30 @@ import Realm
 let REALM = RLMRealm.defaultRealm()
 
 func SetupRealm() {
-  RLMRealm.setDefaultRealmSchemaVersion(3, withMigrationBlock: {migration, oldSchemaVersion in
+  RLMRealm.setDefaultRealmSchemaVersion(4, withMigrationBlock: {migration, oldSchemaVersion in
     // do nothing here, auto migration
   })
   println(REALM.path)
+}
+
+func GetProfile(rowId: UInt) -> Profile {
+  let profiles = Profile.allObjects()
+  if (profiles.count <= rowId) {
+    for _ in profiles.count...rowId {
+      REALM.transactionWithBlock({ () -> Void in
+        REALM.addObject(Profile())
+      })
+    }
+  }
+  return profiles[rowId] as! Profile
+}
+
+func GetMe() -> Profile {
+  return GetProfile(0)
+}
+
+func GetDraftMe() -> Profile {
+  return GetProfile(1)
 }
 
 class Profile: RLMObject {
@@ -24,5 +44,4 @@ class Profile: RLMObject {
   dynamic var currentAffiliation = ""
   dynamic var currentTitle = ""
   dynamic var distance = 0 // myself is 0, direct friend is 1
-  dynamic var published = false // published == false means draft stage
 }

@@ -56,7 +56,19 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CenterViewCell
-    cell.innerView.addConstrainedViews(cells[indexPath.row])
+    var constrainedView = cells[indexPath.row]
+    if (indexPath.row == 0) {
+      let me = GetMe()
+      constrainedView.updateViews([
+        "title": [
+          "text": "\(me.firstName) \(me.lastName)",
+        ],
+        "subTitle": [
+          "text": "\(me.currentTitle) at \(me.currentAffiliation)",
+        ],
+      ])
+    }
+    cell.innerView.addConstrainedViews(constrainedView)
     cell.indexPath = indexPath
     cell.delegate = self
     if (indexPath.section == tableView.numberOfSections() - 1  && indexPath.row == tableView.numberOfRowsInSection(indexPath.section) - 1) {
@@ -103,40 +115,20 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     })
   }
 
-  func save(indexPath: NSIndexPath, published: Bool) {
+  func save(indexPath: NSIndexPath, profile: Profile) {
     var constrainedView = cells[indexPath.row]
     if (constrainedView.state == CellState.Expanded) {
       if let profileViewController = constrainedView.views["preview"] as? ProfileViewController {
-        profileViewController.save(published)
-      }
-      if (indexPath.row == 0 && published) {
-        let profiles = Profile.allObjects()
-        var me: Profile
-        if (profiles.count == 0) {
-          me = Profile()
-          REALM.transactionWithBlock({ () -> Void in
-            REALM.addObject(me)
-          })
-        } else {
-          me = profiles[0] as! Profile
-        }
-        constrainedView.updateViews([
-          "title": [
-            "text": "\(me.firstName) \(me.lastName)",
-          ],
-          "subTitle": [
-            "text": "\(me.currentTitle) at \(me.currentAffiliation)",
-          ],
-        ])
+        profileViewController.save(profile)
       }
     }
   }
   func saved(indexPath: NSIndexPath) {
-    save(indexPath, published: true)
-    canceled(indexPath)
+    save(indexPath, profile: GetMe())
+    drafted(indexPath)
   }
   func drafted(indexPath: NSIndexPath) {
-    save(indexPath, published: false)
+    save(indexPath, profile: GetDraftMe())
     canceled(indexPath)
   }
   func canceled(indexPath: NSIndexPath) {
@@ -146,7 +138,7 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
       constrainedView.state = .Collapsed
       constrainedView.updateViews([
         "preview": UIView(),
-        ])
+      ])
       updateSingleRow(indexPath)
     }
   }

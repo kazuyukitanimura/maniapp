@@ -16,8 +16,8 @@ protocol ProfileViewControllerDelegate {
 }
 
 class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDelegate {
-  let labelFont = UIFont.boldSystemFontOfSize(13.0)
-  let textFont = UIFont.systemFontOfSize(13.0)
+  let boldFont = UIFont.boldSystemFontOfSize(13.0)
+  let normalFont = UIFont.systemFontOfSize(13.0)
   var delegate: ProfileViewControllerDelegate?
   var indexPath: NSIndexPath?
   // field ids
@@ -41,183 +41,175 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     parentViewController?.addChildViewController(self)
     didMoveToParentViewController(parentViewController)
     view.backgroundColor = AppColors.Clear
-    let profiles = Profile.allObjects()
-    var me: Profile
-    if (profiles.count == 0) {
-      me = Profile()
-      REALM.transactionWithBlock({ () -> Void in
-        REALM.addObject(me)
-      })
-    } else {
-      me = profiles[0] as! Profile
-    }
+    let me = GetMe()
+    let draftMe = GetDraftMe()
     var profileFields = ConstrainedViews(views: [
       "firstNameLabel": [
         "text": "First",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       firstName: [
         "placeholder": "First name",
-        "text": me.firstName,
-        "font": textFont,
+        "text": draftMe.firstName,
+        "font": draftMe.firstName == me.firstName ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "lastNameLabel": [
         "text": "Last",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       lastName: [
         "placeholder": "Last name",
-        "text": me.lastName,
-        "font": textFont,
+        "text": draftMe.lastName,
+        "font": draftMe.lastName == me.lastName ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "currentAffiliationLabel": [
         "text": "Affiliation",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       currentAffiliation: [
         "placeholder": "Current affiliation",
-        "text": me.currentAffiliation,
-        "font": textFont,
+        "text": draftMe.currentAffiliation,
+        "font": draftMe.currentAffiliation == me.currentAffiliation ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "currentTitleLabel": [
         "text": "Job Title",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       currentTitle: [
         "placeholder": "Current title",
-        "text": me.currentTitle,
-        "font": textFont,
+        "text": draftMe.currentTitle,
+        "font": draftMe.currentTitle == me.currentTitle ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "currentLocationLabel": [
         "text": "Your location",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       "currentLocation": [
         "placeholder": "Current location",
-        "font": textFont,
+        "font": normalFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "willingToRelocateLabel": [
         "text": "Willing to relocate?",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       "willingToRelocate": [
         "placeholder": "Yes / No",
-        "font": textFont,
+        "font": normalFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "minCashComensationLabel": [
         "text": "Min cash compensation",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       "minCashComensation": [
         "placeholder": "(inc. bonus) for a new job",
-        "font": textFont,
+        "font": normalFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "minEquityComensationLabel": [
         "text": "Min equity compensation",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       "minEquityComensation": [
         "placeholder": "(X %) for a new job",
-        "font": textFont,
+        "font": normalFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "targetCompanySizeLabel": [
         "text": "Target company size",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       "targetCompanySize": [
         "placeholder": "Number of employees",
-        "font": textFont,
+        "font": normalFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "thankYouTipLabel": [
         "text": "Thank you tip $ amount",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       "thankYouTip": [
         "placeholder": "When I get a new job",
-        "font": textFont,
+        "font": normalFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "githubLabel": [
         "text": "Github URL",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       "github": [
         "placeholder": "Show your work",
-        "font": textFont,
+        "font": normalFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "blogLabel": [
         "text": "Blog URL",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       "blog": [
         "placeholder": "Talk about yourself",
-        "font": textFont,
+        "font": normalFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "skillsLabel": [
         "text": "Skills",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       "skills": [
         "placeholder": "Be specific!",
-        "font": textFont,
+        "font": normalFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "lookingForLabel": [
         "text": "Looking for ...",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       "lookingFor": [
         "placeholder": "Your objectives",
-        "font": textFont,
+        "font": normalFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
       "dreamCompaniesLabel": [
         "text": "Dream companies",
-        "font": labelFont,
+        "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       "dreamCompanies": [
         "placeholder": "Company names",
-        "font": textFont,
+        "font": normalFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
@@ -273,15 +265,16 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     })
   }
 
-  func save(published: Bool) {
+  func stringWithConstrainedViewID(id: String) -> String {
+    return (self.view.viewWithConstrainedViewID(id) as! UITextField).text.trim()
+  }
+
+  func save(profile: Profile) {
     REALM.transactionWithBlock({ () -> Void in
-      let profiles = Profile.allObjects()
-      let me = profiles[0] as! Profile
-      me.firstName = (self.view.viewWithConstrainedViewID(self.firstName) as! UITextField).text.trim()
-      me.lastName = (self.view.viewWithConstrainedViewID(self.lastName) as! UITextField).text.trim()
-      me.currentAffiliation = (self.view.viewWithConstrainedViewID(self.currentAffiliation) as! UITextField).text.trim()
-      me.currentTitle = (self.view.viewWithConstrainedViewID(self.currentTitle) as! UITextField).text.trim()
-      me.published = published
+      profile.firstName = self.stringWithConstrainedViewID(self.firstName)
+      profile.lastName = self.stringWithConstrainedViewID(self.lastName)
+      profile.currentAffiliation = self.stringWithConstrainedViewID(self.currentAffiliation)
+      profile.currentTitle = self.stringWithConstrainedViewID(self.currentTitle)
     })
   }
   func saved() {
