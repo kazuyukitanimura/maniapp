@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		801976861AEA0AAA00FE8220 /* LinkedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801976851AEA0AAA00FE8220 /* LinkedDictionary.swift */; };
 		80228F651AE36AF400B9D0AC /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80228F641AE36AF400B9D0AC /* Realm.framework */; };
 		80228F671AE36B4A00B9D0AC /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80228F661AE36B4A00B9D0AC /* libc++.dylib */; };
 		80228F691AE36B7D00B9D0AC /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80228F681AE36B7D00B9D0AC /* RLMSupport.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		801976851AEA0AAA00FE8220 /* LinkedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedDictionary.swift; sourceTree = "<group>"; };
 		80228F641AE36AF400B9D0AC /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		80228F661AE36B4A00B9D0AC /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		80228F681AE36B7D00B9D0AC /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				803C202F1AC7F3CF00A715A7 /* CenterViewCell.swift */,
 				80D669E31AC2969F00D8B8CE /* CenterViewController.swift */,
 				802CC39A1ACE66BC00465D88 /* ConstrainedViews.swift */,
+				801976851AEA0AAA00FE8220 /* LinkedDictionary.swift */,
 				80D669E71AC482D700D8B8CE /* LoginViewController.swift */,
 				80E822191AD3068600D85EF7 /* ProfileViewController.swift */,
 				80D669E51AC2981E00D8B8CE /* MenuViewController.swift */,
@@ -300,6 +303,7 @@
 				80E8221C1ADB597000D85EF7 /* AppButtons.swift in Sources */,
 				803C20301AC7F3CF00A715A7 /* CenterViewCell.swift in Sources */,
 				802CC39B1ACE66BC00465D88 /* ConstrainedViews.swift in Sources */,
+				801976861AEA0AAA00FE8220 /* LinkedDictionary.swift in Sources */,
 				8038B8241ADB999500FC9515 /* AppKV.swift in Sources */,
 				80228F691AE36B7D00B9D0AC /* RLMSupport.swift in Sources */,
 				802CC3971ACA538B00465D88 /* Cells.swift in Sources */,
