@@ -39,7 +39,7 @@ extension UIView {
         }
         subView.setValuesForKeysWithDictionary(viewProps as Dictionary)
       }
-      subView.tag = id.hash // TODO is this ok?
+      subView.tag = ConstrainedViews.id2tag(id)
       addSubview(subView)
       subView.setTranslatesAutoresizingMaskIntoConstraints(false)
       views[id] = subView
@@ -50,16 +50,24 @@ extension UIView {
   }
 
   func viewWithConstrainedViewID(id: String) -> UIView? {
-    return viewWithTag(id.hash)
+    return viewWithTag(ConstrainedViews.id2tag(id))
   }
 
-  func getNextSiblingView() -> UIView? {
-    let subviewsInType = superview?.subviews.filter({
-      "\($0.dynamicType)" == "\(self.dynamicType)"
-    }) as! Array<UIView>
-    if let indexOfSelf = find(subviewsInType, self) {
-      if (indexOfSelf < subviewsInType.count - 1) {
-        return subviewsInType[indexOfSelf + 1]
+  func getNextSiblingView(viewOrder: [String]?=nil) -> UIView? {
+    if (viewOrder != nil) {
+      for (i, id) in enumerate(viewOrder![0..<(viewOrder!.count - 1)]) {
+        if (tag == ConstrainedViews.id2tag(id)) {
+          return superview?.viewWithConstrainedViewID(viewOrder![i + 1])
+        }
+      }
+    } else {
+      let subviewsInType = superview?.subviews.filter({
+        "\($0.dynamicType)" == "\(self.dynamicType)"
+      }) as! [UIView]
+      if let indexOfSelf = find(subviewsInType, self) {
+        if (indexOfSelf < subviewsInType.count - 1) {
+          return subviewsInType[indexOfSelf + 1]
+        }
       }
     }
     return nil
@@ -110,5 +118,9 @@ class ConstrainedViews {
 
   func viewWithConstrainedViewID(id: String) -> UIView? {
     return superview?.viewWithConstrainedViewID(id)
+  }
+
+  static func id2tag(id: String) -> Int{
+    return id.hash // TODO is this ok?
   }
 }

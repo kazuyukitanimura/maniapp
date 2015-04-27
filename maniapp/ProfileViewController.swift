@@ -251,7 +251,8 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
 
   // move next text field or hide keyboard when return is pressed
   func textFieldShouldReturn(textField: UITextField) -> Bool {
-    if let nextField = textField.getNextSiblingView() {
+    let viewOrder = [firstName, lastName, currentAffiliation, currentTitle]
+    if let nextField = textField.getNextSiblingView(viewOrder: viewOrder) {
       nextField.becomeFirstResponder()
     } else {
       textField.resignFirstResponder()
