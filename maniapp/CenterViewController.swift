@@ -61,10 +61,10 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
       let me = GetMe()
       constrainedView.updateViews([
         "title": [
-          "text": "\(me.firstName) \(me.lastName)",
+          "text": (me.firstName.isEmpty && me.lastName.isEmpty) ? "Your Name" : (me.firstName.isEmpty || me.lastName.isEmpty) ? "\(me.firstName) \(me.lastName)" : "\(me.firstName) \(me.lastName)",
         ],
         "subTitle": [
-          "text": "\(me.currentTitle) at \(me.currentAffiliation)",
+          "text": (me.currentTitle.isEmpty && me.currentAffiliation.isEmpty) ? "Tap to pdate your title and affiliation" : (me.currentTitle.isEmpty || me.currentAffiliation.isEmpty) ? "\(me.currentTitle)\(me.currentAffiliation)" : "\(me.currentTitle) at \(me.currentAffiliation)",
         ],
       ])
     }

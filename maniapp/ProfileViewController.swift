@@ -158,35 +158,13 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "textColor": AppColors.Black,
         "delegate": self,
       ],
-      "githubLabel": [
-        "text": "Github URL",
+      "dreamCompaniesLabel": [
+        "text": "Dream companies",
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
-      "github": [
-        "placeholder": "Show your work",
-        "font": normalFont,
-        "textColor": AppColors.Black,
-        "delegate": self,
-      ],
-      "blogLabel": [
-        "text": "Blog URL",
-        "font": boldFont,
-        "textColor": AppColors.Orange,
-      ],
-      "blog": [
-        "placeholder": "Talk about yourself",
-        "font": normalFont,
-        "textColor": AppColors.Black,
-        "delegate": self,
-      ],
-      "skillsLabel": [
-        "text": "Skills",
-        "font": boldFont,
-        "textColor": AppColors.Orange,
-      ],
-      "skills": [
-        "placeholder": "Be specific!",
+      "dreamCompanies": [
+        "placeholder": "Company names",
         "font": normalFont,
         "textColor": AppColors.Black,
         "delegate": self,
@@ -202,13 +180,35 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "textColor": AppColors.Black,
         "delegate": self,
       ],
-      "dreamCompaniesLabel": [
-        "text": "Dream companies",
+      "skillsLabel": [
+        "text": "Skills",
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
-      "dreamCompanies": [
-        "placeholder": "Company names",
+      "skills": [
+        "placeholder": "Be specific!",
+        "font": normalFont,
+        "textColor": AppColors.Black,
+        "delegate": self,
+      ],
+      "blogLabel": [
+        "text": "Blog URL",
+        "font": boldFont,
+        "textColor": AppColors.Orange,
+      ],
+      "blog": [
+        "placeholder": "Talk about yourself",
+        "font": normalFont,
+        "textColor": AppColors.Black,
+        "delegate": self,
+      ],
+      "githubLabel": [
+        "text": "Github URL",
+        "font": boldFont,
+        "textColor": AppColors.Orange,
+      ],
+      "github": [
+        "placeholder": "Show your work",
         "font": normalFont,
         "textColor": AppColors.Black,
         "delegate": self,
@@ -233,12 +233,12 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "H:|-0-[lookingForLabel]-(>=8)-[lookingFor(>=160)]-0-|",
         "H:|-0-[dreamCompaniesLabel]-(>=8)-[dreamCompanies(>=160)]-0-|",
         "H:|-0-[save(72)]-(>=8)-[draft(128)]-8-[cancel(80)]-0-|",
-        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-24-[save]-(>=8)-|",
-        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-24-[draft]-(>=8)-|",
-        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[githubLabel]-8-[blogLabel]-8-[skillsLabel]-8-[lookingForLabel]-8-[dreamCompaniesLabel]-24-[cancel]-(>=8)-|",
-        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[currentLocation]-24-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-24-[save]-(>=8)-|",
-        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[currentLocation]-24-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-24-[draft]-(>=8)-|",
-        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[currentLocation]-24-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[github]-8-[blog]-8-[skills]-8-[lookingFor]-8-[dreamCompanies]-24-[cancel]-(>=8)-|",
+        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[dreamCompaniesLabel]-8-[lookingForLabel]-8-[skillsLabel]-24-[blogLabel]-8-[githubLabel]-24-[save]-(>=8)-|",
+        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[dreamCompaniesLabel]-8-[lookingForLabel]-8-[skillsLabel]-24-[blogLabel]-8-[githubLabel]-24-[draft]-(>=8)-|",
+        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[dreamCompaniesLabel]-8-[lookingForLabel]-8-[skillsLabel]-24-[blogLabel]-8-[githubLabel]-24-[cancel]-(>=8)-|",
+        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[currentLocation]-24-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[dreamCompanies]-8-[lookingFor]-8-[skills]-24-[blog]-8-[github]-24-[save]-(>=8)-|",
+        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[currentLocation]-24-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[dreamCompanies]-8-[lookingFor]-8-[skills]-24-[blog]-8-[github]-24-[draft]-(>=8)-|",
+        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[currentLocation]-24-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[dreamCompanies]-8-[lookingFor]-8-[skills]-24-[blog]-8-[github]-24-[cancel]-(>=8)-|",
       ])
     view.addConstrainedViews(profileFields)
   }

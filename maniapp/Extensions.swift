@@ -36,3 +36,10 @@ extension UIImageView {
     }
   }
 }
+
+extension Array {
+  // http://stackoverflow.com/questions/24102024/how-to-check-if-an-element-is-in-an-array
+  func contains<T where T : Equatable>(obj: T) -> Bool {
+    return self.filter({$0 as? T == obj}).count > 0
+  }
+}
