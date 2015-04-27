@@ -12,7 +12,7 @@ import Realm
 let REALM = RLMRealm.defaultRealm()
 
 func SetupRealm() {
-  RLMRealm.setDefaultRealmSchemaVersion(4, withMigrationBlock: {migration, oldSchemaVersion in
+  RLMRealm.setDefaultRealmSchemaVersion(5, withMigrationBlock: {migration, oldSchemaVersion in
     // do nothing here, auto migration
   })
   println(REALM.path)
@@ -43,5 +43,7 @@ class Profile: RLMObject {
   dynamic var lastName = ""
   dynamic var currentAffiliation = ""
   dynamic var currentTitle = ""
+  dynamic var currentLocation = ""
+  dynamic var willingToRelocate = ""
   dynamic var distance = 0 // myself is 0, direct friend is 1
 }

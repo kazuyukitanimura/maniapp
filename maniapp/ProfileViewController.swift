@@ -25,6 +25,9 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   let lastName = "lastName"
   let currentAffiliation = "currentAffiliation"
   let currentTitle = "currentTitle"
+  let currentLocation = "currentLocation"
+  let willingToRelocate = "willingToRelocate"
+  var ids: [String]!
 
   init (delegate: ProfileViewControllerDelegate, indexPath: NSIndexPath) {
     super.init(nibName: nil, bundle: nil)
@@ -97,7 +100,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
-      "currentLocation": [
+      currentLocation: [
         "placeholder": "Current location",
         "font": normalFont,
         "textColor": AppColors.Black,
@@ -108,7 +111,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
-      "willingToRelocate": [
+      willingToRelocate: [
         "placeholder": "Yes / No",
         "font": normalFont,
         "textColor": AppColors.Black,
@@ -221,8 +224,8 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "H:|-0-[lastNameLabel]-(>=8)-[\(lastName)(>=160)]-0-|",
         "H:|-0-[currentAffiliationLabel]-(>=8)-[\(currentAffiliation)(>=160)]-0-|",
         "H:|-0-[currentTitleLabel]-(>=8)-[\(currentTitle)(>=160)]-0-|",
-        "H:|-0-[currentLocationLabel]-(>=8)-[currentLocation(>=160)]-0-|",
-        "H:|-0-[willingToRelocateLabel]-(>=8)-[willingToRelocate(>=160)]-0-|",
+        "H:|-0-[currentLocationLabel]-(>=8)-[\(currentLocation)(>=160)]-0-|",
+        "H:|-0-[willingToRelocateLabel]-(>=8)-[\(willingToRelocate)(>=160)]-0-|",
         "H:|-0-[minCashComensationLabel]-(>=8)-[minCashComensation(>=160)]-0-|",
         "H:|-0-[minEquityComensationLabel]-(>=8)-[minEquityComensation(>=160)]-0-|",
         "H:|-0-[targetCompanySizeLabel]-(>=8)-[targetCompanySize(>=160)]-0-|",
@@ -233,13 +236,11 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "H:|-0-[lookingForLabel]-(>=8)-[lookingFor(>=160)]-0-|",
         "H:|-0-[dreamCompaniesLabel]-(>=8)-[dreamCompanies(>=160)]-0-|",
         "H:|-0-[save(72)]-(>=8)-[draft(128)]-8-[cancel(80)]-0-|",
-        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[dreamCompaniesLabel]-8-[lookingForLabel]-8-[skillsLabel]-24-[blogLabel]-8-[githubLabel]-24-[save]-(>=8)-|",
-        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[dreamCompaniesLabel]-8-[lookingForLabel]-8-[skillsLabel]-24-[blogLabel]-8-[githubLabel]-24-[draft]-(>=8)-|",
-        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[dreamCompaniesLabel]-8-[lookingForLabel]-8-[skillsLabel]-24-[blogLabel]-8-[githubLabel]-24-[cancel]-(>=8)-|",
-        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[currentLocation]-24-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[dreamCompanies]-8-[lookingFor]-8-[skills]-24-[blog]-8-[github]-24-[save]-(>=8)-|",
-        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[currentLocation]-24-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[dreamCompanies]-8-[lookingFor]-8-[skills]-24-[blog]-8-[github]-24-[draft]-(>=8)-|",
-        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[currentLocation]-24-[willingToRelocate]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[dreamCompanies]-8-[lookingFor]-8-[skills]-24-[blog]-8-[github]-24-[cancel]-(>=8)-|",
+        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[dreamCompaniesLabel]-8-[lookingForLabel]-8-[skillsLabel]-24-[blogLabel]-8-[githubLabel]-24-[save]-8-|",
+        "V:|-(>=16)-[draft]-8-|",
+        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[\(currentLocation)]-24-[\(willingToRelocate)]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[dreamCompanies]-8-[lookingFor]-8-[skills]-24-[blog]-8-[github]-24-[cancel]-8-|",
       ])
+    ids = [firstName, lastName, currentAffiliation, currentTitle, currentLocation, willingToRelocate]
     view.addConstrainedViews(profileFields)
   }
 
@@ -251,8 +252,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
 
   // move next text field or hide keyboard when return is pressed
   func textFieldShouldReturn(textField: UITextField) -> Bool {
-    let viewOrder = [firstName, lastName, currentAffiliation, currentTitle]
-    if let nextField = textField.getNextSiblingView(viewOrder: viewOrder) {
+    if let nextField = textField.getNextSiblingView(ids: ids) {
       nextField.becomeFirstResponder()
     } else {
       textField.resignFirstResponder()
@@ -267,15 +267,14 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   }
 
   func stringWithConstrainedViewID(id: String) -> String {
-    return (self.view.viewWithConstrainedViewID(id) as! UITextField).text.trim()
+    return (view.viewWithConstrainedViewID(id) as! UITextField).text.trim()
   }
 
   func save(profile: Profile) {
     REALM.transactionWithBlock({ () -> Void in
-      profile.firstName = self.stringWithConstrainedViewID(self.firstName)
-      profile.lastName = self.stringWithConstrainedViewID(self.lastName)
-      profile.currentAffiliation = self.stringWithConstrainedViewID(self.currentAffiliation)
-      profile.currentTitle = self.stringWithConstrainedViewID(self.currentTitle)
+      for id in self.ids {
+        profile.setValue(self.stringWithConstrainedViewID(id), forKey: id)
+      }
     })
   }
   func saved() {

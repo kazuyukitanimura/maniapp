@@ -53,11 +53,11 @@ extension UIView {
     return viewWithTag(ConstrainedViews.id2tag(id))
   }
 
-  func getNextSiblingView(viewOrder: [String]?=nil) -> UIView? {
-    if (viewOrder != nil) {
-      for (i, id) in enumerate(viewOrder![0..<(viewOrder!.count - 1)]) {
+  func getNextSiblingView(ids: [String]?=nil) -> UIView? {
+    if (ids != nil) {
+      for (i, id) in enumerate(ids![0..<(ids!.count - 1)]) {
         if (tag == ConstrainedViews.id2tag(id)) {
-          return superview?.viewWithConstrainedViewID(viewOrder![i + 1])
+          return superview?.viewWithConstrainedViewID(ids![i + 1])
         }
       }
     } else {
