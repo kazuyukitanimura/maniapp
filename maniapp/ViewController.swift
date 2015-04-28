@@ -23,7 +23,7 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    SetupRealm()
+    Models.setup()
     NSNotificationCenter.defaultCenter().addObserver(self, selector:"applicationEnteredForeground:", name:"UIApplicationWillEnterForegroundNotification", object:nil)
     authenticateUser()
     UIApplication.sharedApplication().statusBarStyle = .LightContent

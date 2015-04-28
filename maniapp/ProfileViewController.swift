@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   let github = "github"
   var ids: [String]!
 
-  init (delegate: ProfileViewControllerDelegate, indexPath: NSIndexPath) {
+  init(delegate: ProfileViewControllerDelegate, indexPath: NSIndexPath) {
     super.init(nibName: nil, bundle: nil)
     self.delegate = delegate
     self.indexPath = indexPath
@@ -53,8 +53,8 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     parentViewController?.addChildViewController(self)
     didMoveToParentViewController(parentViewController)
     view.backgroundColor = AppColors.Clear
-    let me = GetMe()
-    let draftMe = GetDraftMe()
+    let me = Models.getMe()
+    let draftMe = Models.getDraftMe()
     var profileFields = ConstrainedViews(views: [
       "firstNameLabel": [
         "text": "First",
@@ -138,6 +138,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "text": draftMe.minCashComensation,
         "font": draftMe.minCashComensation == me.minCashComensation ? normalFont : boldFont,
         "textColor": AppColors.Black,
+        "keyboardType": UIKeyboardType.NumberPad.rawValue,
         "delegate": self,
       ],
       "minEquityComensationLabel": [
@@ -291,7 +292,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   }
 
   func save(profile: Profile) {
-    REALM.transactionWithBlock({ () -> Void in
+    Models.REALM.transactionWithBlock({ () -> Void in
       for id in self.ids {
         profile.setValue(self.stringWithConstrainedViewID(id), forKey: id)
       }

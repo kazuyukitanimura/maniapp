@@ -8,35 +8,38 @@
 
 import Realm
 
-// Get the default Realm
-let REALM = RLMRealm.defaultRealm()
+struct Models {
+  // Get the default Realm
+  static let REALM = RLMRealm.defaultRealm()
 
-func SetupRealm() {
-  RLMRealm.setDefaultRealmSchemaVersion(5, withMigrationBlock: {migration, oldSchemaVersion in
-    // do nothing here, auto migration
-  })
-  println(REALM.path)
-}
-
-func GetProfile(rowId: UInt) -> Profile {
-  let profiles = Profile.allObjects()
-  if (profiles.count <= rowId) {
-    for _ in profiles.count...rowId {
-      REALM.transactionWithBlock({ () -> Void in
-        REALM.addObject(Profile())
-      })
-    }
+  static func setup() {
+    RLMRealm.setDefaultRealmSchemaVersion(5, withMigrationBlock: {migration, oldSchemaVersion in
+      // do nothing here, auto migration
+    })
+    println(REALM.path)
   }
-  return profiles[rowId] as! Profile
+
+  static func getProfile(rowId: UInt) -> Profile {
+    let profiles = Profile.allObjects()
+    if (profiles.count <= rowId) {
+      for _ in profiles.count...rowId {
+        REALM.transactionWithBlock({ () -> Void in
+          self.REALM.addObject(Profile())
+        })
+      }
+    }
+    return profiles[rowId] as! Profile
+  }
+
+  static func getMe() -> Profile {
+    return getProfile(0)
+  }
+
+  static func getDraftMe() -> Profile {
+    return getProfile(1)
+  }
 }
 
-func GetMe() -> Profile {
-  return GetProfile(0)
-}
-
-func GetDraftMe() -> Profile {
-  return GetProfile(1)
-}
 
 class Profile: RLMObject {
   dynamic var firstName = ""

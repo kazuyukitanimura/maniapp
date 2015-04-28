@@ -24,6 +24,10 @@ extension UIView {
         if let textProp = viewProps["placeholder"] as? String {
           subView = UITextField()
           (subView as! UITextField).addTarget(self, action: "boldFont:", forControlEvents: .EditingChanged)
+          if let keyboardType = viewProps["keyboardType"] as? Int {
+            (subView as! UITextField).keyboardType = UIKeyboardType(rawValue: keyboardType)!
+            viewProps.removeValueForKey("keyboardType")
+          }
         } else if let textProp = viewProps["text"] as? String {
           subView = UILabel()
           (subView as! UILabel).numberOfLines = 0
@@ -37,7 +41,7 @@ extension UIView {
         } else {
           subView = UIView()
         }
-        subView.setValuesForKeysWithDictionary(viewProps as Dictionary)
+        subView.setValuesForKeysWithDictionary(viewProps)
       }
       subView.tag = ConstrainedViews.id2tag(id)
       addSubview(subView)

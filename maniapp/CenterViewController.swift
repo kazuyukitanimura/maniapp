@@ -58,7 +58,7 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CenterViewCell
     var constrainedView = cells[indexPath.row]
     if (indexPath.row == 0) {
-      let me = GetMe()
+      let me = Models.getMe()
       constrainedView.updateViews([
         "title": [
           "text": (me.firstName.isEmpty && me.lastName.isEmpty) ? "Your Name" : (me.firstName.isEmpty || me.lastName.isEmpty) ? "\(me.firstName) \(me.lastName)" : "\(me.firstName) \(me.lastName)",
@@ -124,11 +124,11 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     }
   }
   func saved(indexPath: NSIndexPath) {
-    save(indexPath, profile: GetMe())
+    save(indexPath, profile: Models.getMe())
     drafted(indexPath)
   }
   func drafted(indexPath: NSIndexPath) {
-    save(indexPath, profile: GetDraftMe())
+    save(indexPath, profile: Models.getDraftMe())
     canceled(indexPath)
   }
   func canceled(indexPath: NSIndexPath) {

@@ -13,7 +13,7 @@ class LinkedItem<Key: Hashable, Value> {
   var prev: Key?
   var next: Key?
 
-  init (value: Value, prev: Key?=nil, next: Key?=nil) {
+  init(value: Value, prev: Key?=nil, next: Key?=nil) {
     self.value = value
     self.prev = prev
     self.next = next
