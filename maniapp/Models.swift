@@ -45,5 +45,14 @@ class Profile: RLMObject {
   dynamic var currentTitle = ""
   dynamic var currentLocation = ""
   dynamic var willingToRelocate = ""
+  dynamic var minCashComensation = ""
+  dynamic var minEquityComensation = ""
+  dynamic var targetCompanySize = ""
+  dynamic var thankYouTip = ""
+  dynamic var dreamCompanies = ""
+  dynamic var lookingFor = ""
+  dynamic var skills = ""
+  dynamic var blog = ""
+  dynamic var github = ""
   dynamic var distance = 0 // myself is 0, direct friend is 1
 }

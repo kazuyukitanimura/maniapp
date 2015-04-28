@@ -27,6 +27,15 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   let currentTitle = "currentTitle"
   let currentLocation = "currentLocation"
   let willingToRelocate = "willingToRelocate"
+  let minCashComensation = "minCashComensation"
+  let minEquityComensation = "minEquityComensation"
+  let targetCompanySize = "targetCompanySize"
+  let thankYouTip = "thankYouTip"
+  let dreamCompanies = "dreamCompanies"
+  let lookingFor = "lookingFor"
+  let skills = "skills"
+  let blog = "blog"
+  let github = "github"
   var ids: [String]!
 
   init (delegate: ProfileViewControllerDelegate, indexPath: NSIndexPath) {
@@ -102,7 +111,8 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       ],
       currentLocation: [
         "placeholder": "Current location",
-        "font": normalFont,
+        "text": draftMe.currentLocation,
+        "font": draftMe.currentLocation == me.currentLocation ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
@@ -113,7 +123,8 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       ],
       willingToRelocate: [
         "placeholder": "Yes / No",
-        "font": normalFont,
+        "text": draftMe.willingToRelocate,
+        "font": draftMe.willingToRelocate == me.willingToRelocate ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
@@ -122,9 +133,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
-      "minCashComensation": [
+      minCashComensation: [
         "placeholder": "(inc. bonus) for a new job",
-        "font": normalFont,
+        "text": draftMe.minCashComensation,
+        "font": draftMe.minCashComensation == me.minCashComensation ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
@@ -133,9 +145,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
-      "minEquityComensation": [
+      minEquityComensation: [
         "placeholder": "(X %) for a new job",
-        "font": normalFont,
+        "text": draftMe.minEquityComensation,
+        "font": draftMe.minEquityComensation == me.minEquityComensation ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
@@ -144,9 +157,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
-      "targetCompanySize": [
+      targetCompanySize: [
         "placeholder": "Number of employees",
-        "font": normalFont,
+        "text": draftMe.targetCompanySize,
+        "font": draftMe.targetCompanySize == me.targetCompanySize ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
@@ -155,9 +169,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
-      "thankYouTip": [
+      thankYouTip: [
         "placeholder": "When I get a new job",
-        "font": normalFont,
+        "text": draftMe.thankYouTip,
+        "font": draftMe.thankYouTip == me.thankYouTip ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
@@ -166,9 +181,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
-      "dreamCompanies": [
+      dreamCompanies: [
         "placeholder": "Company names",
-        "font": normalFont,
+        "text": draftMe.dreamCompanies,
+        "font": draftMe.dreamCompanies == me.dreamCompanies ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
@@ -177,9 +193,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
-      "lookingFor": [
+      lookingFor: [
         "placeholder": "Your objectives",
-        "font": normalFont,
+        "text": draftMe.lookingFor,
+        "font": draftMe.lookingFor == me.lookingFor ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
@@ -188,9 +205,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
-      "skills": [
+      skills: [
         "placeholder": "Be specific!",
-        "font": normalFont,
+        "text": draftMe.skills,
+        "font": draftMe.skills == me.skills ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
@@ -199,9 +217,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
-      "blog": [
+      blog: [
         "placeholder": "Talk about yourself",
-        "font": normalFont,
+        "text": draftMe.blog,
+        "font": draftMe.blog == me.blog ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
@@ -210,9 +229,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
-      "github": [
+      github: [
         "placeholder": "Show your work",
-        "font": normalFont,
+        "text": draftMe.github,
+        "font": draftMe.github == me.github ? normalFont : boldFont,
         "textColor": AppColors.Black,
         "delegate": self,
       ],
@@ -226,21 +246,21 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "H:|-0-[currentTitleLabel]-(>=8)-[\(currentTitle)(>=160)]-0-|",
         "H:|-0-[currentLocationLabel]-(>=8)-[\(currentLocation)(>=160)]-0-|",
         "H:|-0-[willingToRelocateLabel]-(>=8)-[\(willingToRelocate)(>=160)]-0-|",
-        "H:|-0-[minCashComensationLabel]-(>=8)-[minCashComensation(>=160)]-0-|",
-        "H:|-0-[minEquityComensationLabel]-(>=8)-[minEquityComensation(>=160)]-0-|",
-        "H:|-0-[targetCompanySizeLabel]-(>=8)-[targetCompanySize(>=160)]-0-|",
-        "H:|-0-[thankYouTipLabel]-(>=8)-[thankYouTip(>=160)]-0-|",
-        "H:|-0-[githubLabel]-(>=8)-[github(>=160)]-0-|",
-        "H:|-0-[blogLabel]-(>=8)-[blog(>=160)]-0-|",
-        "H:|-0-[skillsLabel]-(>=8)-[skills(>=160)]-0-|",
-        "H:|-0-[lookingForLabel]-(>=8)-[lookingFor(>=160)]-0-|",
-        "H:|-0-[dreamCompaniesLabel]-(>=8)-[dreamCompanies(>=160)]-0-|",
+        "H:|-0-[minCashComensationLabel]-(>=8)-[\(minCashComensation)(>=160)]-0-|",
+        "H:|-0-[minEquityComensationLabel]-(>=8)-[\(minEquityComensation)(>=160)]-0-|",
+        "H:|-0-[targetCompanySizeLabel]-(>=8)-[\(targetCompanySize)(>=160)]-0-|",
+        "H:|-0-[thankYouTipLabel]-(>=8)-[\(thankYouTip)(>=160)]-0-|",
+        "H:|-0-[dreamCompaniesLabel]-(>=8)-[\(dreamCompanies)(>=160)]-0-|",
+        "H:|-0-[lookingForLabel]-(>=8)-[\(lookingFor)(>=160)]-0-|",
+        "H:|-0-[skillsLabel]-(>=8)-[\(skills)(>=160)]-0-|",
+        "H:|-0-[blogLabel]-(>=8)-[\(blog)(>=160)]-0-|",
+        "H:|-0-[githubLabel]-(>=8)-[\(github)(>=160)]-0-|",
         "H:|-0-[save(72)]-(>=8)-[draft(128)]-8-[cancel(80)]-0-|",
         "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[dreamCompaniesLabel]-8-[lookingForLabel]-8-[skillsLabel]-24-[blogLabel]-8-[githubLabel]-24-[save]-8-|",
         "V:|-(>=16)-[draft]-8-|",
-        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[\(currentLocation)]-24-[\(willingToRelocate)]-8-[minCashComensation]-8-[minEquityComensation]-8-[targetCompanySize]-8-[thankYouTip]-24-[dreamCompanies]-8-[lookingFor]-8-[skills]-24-[blog]-8-[github]-24-[cancel]-8-|",
+        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[\(currentLocation)]-24-[\(willingToRelocate)]-8-[\(minCashComensation)]-8-[\(minEquityComensation)]-8-[\(targetCompanySize)]-8-[\(thankYouTip)]-24-[\(dreamCompanies)]-8-[\(lookingFor)]-8-[\(skills)]-24-[\(blog)]-8-[\(github)]-24-[cancel]-8-|",
       ])
-    ids = [firstName, lastName, currentAffiliation, currentTitle, currentLocation, willingToRelocate]
+    ids = [firstName, lastName, currentAffiliation, currentTitle, currentLocation, willingToRelocate, minCashComensation, minEquityComensation, targetCompanySize, thankYouTip, dreamCompanies, lookingFor, skills, blog, github]
     view.addConstrainedViews(profileFields)
   }
 
