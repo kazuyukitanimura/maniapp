@@ -269,7 +269,11 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[\(currentLocation)]-24-[\(willingToRelocate)]-8-[\(minCashComensation)]-8-[\(minEquityComensation)]-8-[\(targetCompanySize)]-8-[\(thankYouTip)]-24-[\(dreamCompanies)]-8-[\(lookingFor)]-8-[\(skills)]-24-[\(blog)]-8-[\(github)]-24-[cancel]-8-|",
       ])
     ids = [firstName, lastName, currentAffiliation, currentTitle, currentLocation, willingToRelocate, minCashComensation, minEquityComensation, targetCompanySize, thankYouTip, dreamCompanies, lookingFor, skills, blog, github]
-    view.addConstrainedViews(profileFields)
+    view.addConstrainedViews(profileFields, yield: { (subView: UIView) -> Void in
+      if let textField = subView as? UITextField {
+        textField.addTarget(self, action: "textFieldEditingChanged:", forControlEvents: .EditingChanged)
+      }
+    })
   }
 
   // hide keyboard when it lost focus
@@ -286,6 +290,13 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       textField.resignFirstResponder()
     }
     return false // We do not want UITextField to insert line-breaks
+  }
+
+  func textFieldEditingChanged(textField: UITextField) {
+    textField.boldFont() // TODO unbold when editted back
+    if textField.idIs(minCashComensation) {
+      textField.text = "$" + (textField.text.replace("\\D", with: "") ?? "")
+    }
   }
 
   func vibrrate() {

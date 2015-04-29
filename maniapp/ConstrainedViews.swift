@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIView {
-  func addConstrainedViews(constrainedViews: ConstrainedViews) {
+  func addConstrainedViews(constrainedViews: ConstrainedViews, yield:((UIView) -> Void)?=nil) {
     constrainedViews.superview = self
     var views = [String: UIView]()
     removeAllSubviews() // TODO take a diff instead of deleting all subviews
@@ -23,7 +23,6 @@ extension UIView {
         var viewProps = viewObject as! Dictionary<String, AnyObject>
         if let textProp = viewProps["placeholder"] as? String {
           subView = UITextField()
-          (subView as! UITextField).addTarget(self, action: "boldFont:", forControlEvents: .EditingChanged)
           if let keyboardType = viewProps["keyboardType"] as? Int {
             (subView as! UITextField).keyboardType = UIKeyboardType(rawValue: keyboardType)!
             viewProps.removeValueForKey("keyboardType")
@@ -43,10 +42,11 @@ extension UIView {
         }
         subView.setValuesForKeysWithDictionary(viewProps)
       }
-      subView.tag = ConstrainedViews.id2tag(id)
+      subView.tag = id2tag(id)
       addSubview(subView)
       subView.setTranslatesAutoresizingMaskIntoConstraints(false)
       views[id] = subView
+      yield?(subView)
     }
     for format in constrainedViews.formats {
       addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: nil, metrics: nil, views: views))
@@ -54,13 +54,13 @@ extension UIView {
   }
 
   func viewWithConstrainedViewID(id: String) -> UIView? {
-    return viewWithTag(ConstrainedViews.id2tag(id))
+    return viewWithTag(id2tag(id))
   }
 
   func getNextSiblingView(ids: [String]?=nil) -> UIView? {
     if (ids != nil) {
       for (i, id) in enumerate(ids![0..<(ids!.count - 1)]) {
-        if (tag == ConstrainedViews.id2tag(id)) {
+        if (tag == id2tag(id)) {
           return superview?.viewWithConstrainedViewID(ids![i + 1])
         }
       }
@@ -77,9 +77,18 @@ extension UIView {
     return nil
   }
 
-  func boldFont(sender: UITextField) {
-    // TODO unbold when editted back
-    sender.font = UIFont.boldSystemFontOfSize(sender.font.pointSize)
+  func boldFont() {
+    if let textField = self as? UITextField {
+      textField.font = UIFont.boldSystemFontOfSize(textField.font.pointSize)
+    }
+  }
+
+  func id2tag(id: String) -> Int {
+    return id.hash // TODO is this ok?
+  }
+
+  func idIs(id: String) -> Bool {
+    return id2tag(id) == tag
   }
 }
 
@@ -122,9 +131,5 @@ class ConstrainedViews {
 
   func viewWithConstrainedViewID(id: String) -> UIView? {
     return superview?.viewWithConstrainedViewID(id)
-  }
-
-  static func id2tag(id: String) -> Int{
-    return id.hash // TODO is this ok?
   }
 }

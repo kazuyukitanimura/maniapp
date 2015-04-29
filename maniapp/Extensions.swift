@@ -9,8 +9,19 @@
 import UIKit
 
 extension String {
+  var length: Int {
+    get {
+      return count(self)
+    }
+  }
+
   func trim() -> String {
     return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+  }
+
+  func replace(pattern: String, with: String) -> String? {
+    let regexp = NSRegularExpression(pattern: pattern, options: nil, error: nil)
+    return regexp?.stringByReplacingMatchesInString(self, options: nil, range: NSMakeRange(0, self.length), withTemplate: with)
   }
 }
 
