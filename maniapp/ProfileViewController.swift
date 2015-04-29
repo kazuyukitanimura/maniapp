@@ -188,7 +188,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "textColor": AppColors.Orange,
       ],
       dreamCompanies: [
-        "placeholder": "Company names",
+        "placeholder": "Comma separated",
         "text": draftMe.dreamCompanies,
         "font": draftMe.dreamCompanies == me.dreamCompanies ? normalFont : boldFont,
         "textColor": AppColors.Black,
@@ -294,16 +294,24 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
 
   func textFieldEditingChanged(textField: UITextField) {
     textField.boldFont() // TODO unbold when editted back
-    if textField.idIs(minCashComensation) {
-      var digits = (textField.text.replace("[^\\.\\d]", with: "") ?? "")
-      let formatter = NSNumberFormatter()
+    let formatter = NSNumberFormatter()
+    formatter.minimumFractionDigits = 0
+    formatter.maximumFractionDigits = 0
+    let digits = (textField.text.replace("[^\\.\\d]", with: "") ?? "")
+    if (textField.idIs(minCashComensation) || textField.idIs(thankYouTip)) {
       formatter.numberStyle = .CurrencyStyle
-      textField.text = formatter.stringFromNumber(digits.toFloat())?.replace("\\.\\d\\d$", with: "")
+      textField.text = formatter.stringFromNumber(digits.toFloat())
     } else if textField.idIs(minEquityComensation) {
-      var digits = (textField.text.replace("[^\\.\\d]", with: "") ?? "")
-      let formatter = NSNumberFormatter()
       formatter.numberStyle = .PercentStyle
-      textField.text = formatter.stringFromNumber(digits.toFloat() / 100)
+      formatter.minimumFractionDigits = 3
+      formatter.maximumFractionDigits = 3
+      textField.text = formatter.stringFromNumber(digits.toFloat() / 10)
+    } else if textField.idIs(targetCompanySize) {
+      formatter.numberStyle = .DecimalStyle
+      textField.text = formatter.stringFromNumber(digits.toFloat())
+      if (textField.text.length > 0) {
+        textField.text = textField.text + " Employees"
+      }
     }
   }
 

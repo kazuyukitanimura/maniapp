@@ -13,7 +13,7 @@ struct Models {
   static let REALM = RLMRealm.defaultRealm()
 
   static func setup() {
-    RLMRealm.setDefaultRealmSchemaVersion(5, withMigrationBlock: {migration, oldSchemaVersion in
+    RLMRealm.setDefaultRealmSchemaVersion(6, withMigrationBlock: {migration, oldSchemaVersion in
       // do nothing here, auto migration
     })
     println(REALM.path)
