@@ -66,6 +66,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "text": draftMe.firstName,
         "font": draftMe.firstName == me.firstName ? normalFont : boldFont,
         "textColor": AppColors.Black,
+        "keyboardType": UIKeyboardType.NamePhonePad.rawValue,
         "delegate": self,
       ],
       "lastNameLabel": [
@@ -78,6 +79,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "text": draftMe.lastName,
         "font": draftMe.lastName == me.lastName ? normalFont : boldFont,
         "textColor": AppColors.Black,
+        "keyboardType": UIKeyboardType.NamePhonePad.rawValue,
         "delegate": self,
       ],
       "currentAffiliationLabel": [
@@ -151,6 +153,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "text": draftMe.minEquityComensation,
         "font": draftMe.minEquityComensation == me.minEquityComensation ? normalFont : boldFont,
         "textColor": AppColors.Black,
+        "keyboardType": UIKeyboardType.NumberPad.rawValue,
         "delegate": self,
       ],
       "targetCompanySizeLabel": [
@@ -163,6 +166,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "text": draftMe.targetCompanySize,
         "font": draftMe.targetCompanySize == me.targetCompanySize ? normalFont : boldFont,
         "textColor": AppColors.Black,
+        "keyboardType": UIKeyboardType.NumberPad.rawValue,
         "delegate": self,
       ],
       "thankYouTipLabel": [
@@ -175,6 +179,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "text": draftMe.thankYouTip,
         "font": draftMe.thankYouTip == me.thankYouTip ? normalFont : boldFont,
         "textColor": AppColors.Black,
+        "keyboardType": UIKeyboardType.NumberPad.rawValue,
         "delegate": self,
       ],
       "dreamCompaniesLabel": [
@@ -190,12 +195,12 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "delegate": self,
       ],
       "lookingForLabel": [
-        "text": "Looking for ...",
+        "text": "Objectives / Looking for",
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
       lookingFor: [
-        "placeholder": "Your objectives",
+        "placeholder": "Comma separated",
         "text": draftMe.lookingFor,
         "font": draftMe.lookingFor == me.lookingFor ? normalFont : boldFont,
         "textColor": AppColors.Black,
@@ -207,7 +212,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "textColor": AppColors.Orange,
       ],
       skills: [
-        "placeholder": "Be specific!",
+        "placeholder": "Comma separated",
         "text": draftMe.skills,
         "font": draftMe.skills == me.skills ? normalFont : boldFont,
         "textColor": AppColors.Black,
@@ -223,6 +228,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "text": draftMe.blog,
         "font": draftMe.blog == me.blog ? normalFont : boldFont,
         "textColor": AppColors.Black,
+        "keyboardType": UIKeyboardType.URL.rawValue,
         "delegate": self,
       ],
       "githubLabel": [
@@ -235,6 +241,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "text": draftMe.github,
         "font": draftMe.github == me.github ? normalFont : boldFont,
         "textColor": AppColors.Black,
+        "keyboardType": UIKeyboardType.URL.rawValue,
         "delegate": self,
       ],
       "save": SaveButton(delegate: self),
@@ -306,6 +313,11 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     delegate?.drafted(indexPath!)
   }
   func canceled() {
+    for id in ids {
+      if view.viewWithConstrainedViewID(id)!.resignFirstResponder() {
+        return
+      }
+    }
     delegate?.canceled(indexPath!)
   }
 }
