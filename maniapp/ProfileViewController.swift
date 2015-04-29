@@ -153,7 +153,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "text": draftMe.minEquityComensation,
         "font": draftMe.minEquityComensation == me.minEquityComensation ? normalFont : boldFont,
         "textColor": AppColors.Black,
-        "keyboardType": UIKeyboardType.NumberPad.rawValue,
+        "keyboardType": UIKeyboardType.NumbersAndPunctuation.rawValue,
         "delegate": self,
       ],
       "targetCompanySizeLabel": [
@@ -299,6 +299,11 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       let formatter = NSNumberFormatter()
       formatter.numberStyle = .CurrencyStyle
       textField.text = formatter.stringFromNumber(digits.toFloat())?.replace("\\.\\d\\d$", with: "")
+    } else if textField.idIs(minEquityComensation) {
+      var digits = (textField.text.replace("[^\\.\\d]", with: "") ?? "")
+      let formatter = NSNumberFormatter()
+      formatter.numberStyle = .PercentStyle
+      textField.text = formatter.stringFromNumber(digits.toFloat() / 100)
     }
   }
 
