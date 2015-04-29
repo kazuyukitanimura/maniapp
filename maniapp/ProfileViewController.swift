@@ -295,7 +295,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   func textFieldEditingChanged(textField: UITextField) {
     textField.boldFont() // TODO unbold when editted back
     if textField.idIs(minCashComensation) {
-      textField.text = "$" + (textField.text.replace("\\D", with: "") ?? "")
+      var digits = (textField.text.replace("[^\\.\\d]", with: "") ?? "")
+      let formatter = NSNumberFormatter()
+      formatter.numberStyle = .CurrencyStyle
+      textField.text = formatter.stringFromNumber(digits.toFloat())?.replace("\\.\\d\\d$", with: "")
     }
   }
 

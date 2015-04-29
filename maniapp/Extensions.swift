@@ -23,6 +23,10 @@ extension String {
     let regexp = NSRegularExpression(pattern: pattern, options: nil, error: nil)
     return regexp?.stringByReplacingMatchesInString(self, options: nil, range: NSMakeRange(0, self.length), withTemplate: with)
   }
+
+  func toFloat() -> Float {
+    return (self as NSString).floatValue
+  }
 }
 
 extension UIView {
