@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   let normalFont = UIFont.systemFontOfSize(13.0)
   var delegate: ProfileViewControllerDelegate?
   var indexPath: NSIndexPath?
+  var backspace = false
   // field ids
   let firstName = "firstName"
   let lastName = "lastName"
@@ -272,6 +273,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     view.addConstrainedViews(profileFields, yield: { (subView: UIView) -> Void in
       if let textField = subView as? UITextField {
         textField.addTarget(self, action: "textFieldEditingChanged:", forControlEvents: .EditingChanged)
+        textField.returnKeyType = textField.idIs(self.ids!.last!) ? .Done : .Next
       }
     })
   }
@@ -292,6 +294,13 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     return false // We do not want UITextField to insert line-breaks
   }
 
+  // http://stackoverflow.com/questions/25371254/how-to-detect-delete-key-on-an-uitextfield-in-ios-8
+  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    // delete key is pressed
+    backspace = (range.length==1 && string.length==0)
+    return true
+  }
+
   func textFieldEditingChanged(textField: UITextField) {
     textField.boldFont() // TODO unbold when editted back
     textField.textColor = AppColors.Orange
@@ -301,15 +310,18 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     let digits = (textField.text.replace("[^\\.\\d]", with: "") ?? "")
     if (textField.idIs(minCashComensation) || textField.idIs(thankYouTip)) {
       formatter.numberStyle = .CurrencyStyle
+      formatter.maximumIntegerDigits = 6
       textField.text = formatter.stringFromNumber(digits.toFloat())
     } else if textField.idIs(minEquityComensation) {
       formatter.numberStyle = .PercentStyle
       formatter.minimumFractionDigits = 3
       formatter.maximumFractionDigits = 3
-      textField.text = formatter.stringFromNumber(digits.toFloat() / 10)
+      formatter.maximumIntegerDigits = 2
+      textField.text = formatter.stringFromNumber(digits.toFloat() * (backspace ? 0.001 : 0.1))
     } else if textField.idIs(targetCompanySize) {
       formatter.numberStyle = .DecimalStyle
-      textField.text = formatter.stringFromNumber(digits.toFloat())
+      formatter.maximumIntegerDigits = 8
+      textField.text = formatter.stringFromNumber(digits.toFloat() * (backspace ? 0.1 : 1))
       if (textField.text.length > 0) {
         textField.text = textField.text + " Employees"
       }
