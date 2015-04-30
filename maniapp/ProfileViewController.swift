@@ -263,7 +263,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "H:|-0-[skillsLabel]-(>=8)-[\(skills)(>=160)]-0-|",
         "H:|-0-[blogLabel]-(>=8)-[\(blog)(>=160)]-0-|",
         "H:|-0-[githubLabel]-(>=8)-[\(github)(>=160)]-0-|",
-        "H:|-0-[save(72)]-(>=8)-[draft(128)]-8-[cancel(80)]-0-|",
+        "H:|-0-[save(72)]-8-[draft(128)]-(>=8)-[cancel(80)]-0-|",
         "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[dreamCompaniesLabel]-8-[lookingForLabel]-8-[skillsLabel]-24-[blogLabel]-8-[githubLabel]-24-[save]-8-|",
         "V:|-(>=16)-[draft]-8-|",
         "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[\(currentLocation)]-24-[\(willingToRelocate)]-8-[\(minCashComensation)]-8-[\(minEquityComensation)]-8-[\(targetCompanySize)]-8-[\(thankYouTip)]-24-[\(dreamCompanies)]-8-[\(lookingFor)]-8-[\(skills)]-24-[\(blog)]-8-[\(github)]-24-[cancel]-8-|",
@@ -294,6 +294,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
 
   func textFieldEditingChanged(textField: UITextField) {
     textField.boldFont() // TODO unbold when editted back
+    textField.textColor = AppColors.Orange
     let formatter = NSNumberFormatter()
     formatter.minimumFractionDigits = 0
     formatter.maximumFractionDigits = 0
