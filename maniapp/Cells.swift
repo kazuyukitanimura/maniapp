@@ -13,6 +13,7 @@ let subTitleFont = UIFont.systemFontOfSize(12.0)
 let profileSize:CGFloat = 56
 let pad = 16
 let padHalf = 8
+let padQuarter = 4
 var cells:[ConstrainedViews] = [
   // 0
   ConstrainedViews(views: [
@@ -33,8 +34,8 @@ var cells:[ConstrainedViews] = [
     ],
     "preview": UIView(),
     ], formats: [
-      "H:|-\(pad)-[photo(\(profileSize))]-\(pad)-[title]-\(pad)-|",
-      "H:|-\(pad)-[photo(\(profileSize))]-\(pad)-[subTitle]-\(pad)-|",
+      "H:|-\(padHalf + padQuarter)-[photo(\(profileSize))]-\(pad)-[title]-\(pad)-|",
+      "H:|-\(padHalf + padQuarter)-[photo(\(profileSize))]-\(pad)-[subTitle]-\(pad)-|",
       "H:|-\(pad)-[preview]-\(pad)-|",
       "V:|-\(pad)-[title]-\(padHalf)-[subTitle]-(>=\(pad))-|",
       "V:|-\(pad)-[photo(\(profileSize))]-\(padHalf)-[preview]-(>=\(padHalf))-|",

@@ -154,7 +154,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "text": draftMe.minEquityComensation,
         "font": draftMe.minEquityComensation == me.minEquityComensation ? normalFont : boldFont,
         "textColor": AppColors.Black,
-        "keyboardType": UIKeyboardType.NumbersAndPunctuation.rawValue,
+        "keyboardType": UIKeyboardType.NumberPad.rawValue,
         "delegate": self,
       ],
       "targetCompanySizeLabel": [
