@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 struct Animations {
   static func bloat(target: UIView) {
@@ -17,4 +18,11 @@ struct Animations {
     animation.autoreverses = true
     target.layer.addAnimation(animation, forKey: nil)
   }
+}
+
+
+func Vibrrate() {
+  NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+  })
 }

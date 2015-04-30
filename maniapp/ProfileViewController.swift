@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AudioToolbox
 
 protocol ProfileViewControllerDelegate {
   func saved(indexPath: NSIndexPath)
@@ -15,7 +14,7 @@ protocol ProfileViewControllerDelegate {
   func canceled(indexPath: NSIndexPath)
 }
 
-class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDelegate {
+class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
   let boldFont = UIFont.boldSystemFontOfSize(13.0)
   let normalFont = UIFont.systemFontOfSize(13.0)
   var delegate: ProfileViewControllerDelegate?
@@ -38,6 +37,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   let blog = "blog"
   let github = "github"
   var ids: [String]!
+
+  // for the pickerView
+  var choices:[String]!
+  var pickerTarget: UITextField!
 
   init(delegate: ProfileViewControllerDelegate, indexPath: NSIndexPath) {
     super.init(nibName: nil, bundle: nil)
@@ -272,8 +275,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     ids = [firstName, lastName, currentAffiliation, currentTitle, currentLocation, willingToRelocate, minCashComensation, minEquityComensation, targetCompanySize, thankYouTip, dreamCompanies, lookingFor, skills, blog, github]
     view.addConstrainedViews(profileFields, yield: { (subView: UIView) -> Void in
       if let textField = subView as? UITextField {
-        textField.addTarget(self, action: "textFieldEditingChanged:", forControlEvents: .EditingChanged)
-        textField.returnKeyType = textField.idIs(self.ids!.last!) ? .Done : .Next
+        if !textField.hasId(self.willingToRelocate) {
+          textField.addTarget(self, action: "textFieldEditingChanged:", forControlEvents: .EditingChanged)
+          textField.returnKeyType = textField.hasId(self.ids!.last!) ? .Done : .Next
+        }
       }
     })
   }
@@ -282,6 +287,18 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   // http://stackoverflow.com/questions/24908966/hide-keyboard-for-text-field-in-swift-programming-language
   override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
     view.endEditing(true)
+  }
+
+  func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    if textField.hasId(willingToRelocate) {
+      choices = ["", "Yes", "No"]
+      let pickerView = UIPickerView()
+      pickerView.dataSource = self
+      pickerView.delegate = self
+      textField.inputView = pickerView
+      pickerTarget = textField
+    }
+    return true
   }
 
   // move next text field or hide keyboard when return is pressed
@@ -302,23 +319,22 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   }
 
   func textFieldEditingChanged(textField: UITextField) {
-    textField.boldFont() // TODO unbold when editted back
-    textField.textColor = AppColors.Orange
+    highlightTextField(textField)
     let formatter = NSNumberFormatter()
     formatter.minimumFractionDigits = 0
     formatter.maximumFractionDigits = 0
     let digits = (textField.text.replace("[^\\.\\d]", with: "") ?? "")
-    if (textField.idIs(minCashComensation) || textField.idIs(thankYouTip)) {
+    if (textField.hasId(minCashComensation) || textField.hasId(thankYouTip)) {
       formatter.numberStyle = .CurrencyStyle
       formatter.maximumIntegerDigits = 6
       textField.text = formatter.stringFromNumber(digits.toFloat())
-    } else if textField.idIs(minEquityComensation) {
+    } else if textField.hasId(minEquityComensation) {
       formatter.numberStyle = .PercentStyle
       formatter.minimumFractionDigits = 3
       formatter.maximumFractionDigits = 3
       formatter.maximumIntegerDigits = 2
       textField.text = formatter.stringFromNumber(digits.toFloat() * (backspace ? 0.001 : 0.1))
-    } else if textField.idIs(targetCompanySize) {
+    } else if textField.hasId(targetCompanySize) {
       formatter.numberStyle = .DecimalStyle
       formatter.maximumIntegerDigits = 8
       textField.text = formatter.stringFromNumber(digits.toFloat() * (backspace ? 0.1 : 1))
@@ -328,11 +344,37 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     }
   }
 
-  func vibrrate() {
-    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-      AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-    })
+  func highlightTextField(textField: UITextField) {
+    textField.boldFont() // TODO unbold when editted back
+    textField.textColor = AppColors.Orange
   }
+
+  func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    return 1
+  }
+
+  func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return choices.count
+  }
+
+  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    return choices[row]
+  }
+
+  func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    highlightTextField(pickerTarget)
+    pickerTarget.text = choices[row]
+  }
+
+  func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
+    let pickerLabel = UILabel()
+    pickerLabel.textColor = AppColors.Orange
+    pickerLabel.text = choices[row]
+    pickerLabel.font = UIFont.boldSystemFontOfSize(26.0)
+    pickerLabel.textAlignment = NSTextAlignment.Center
+    return pickerLabel
+  }
+
 
   func stringWithConstrainedViewID(id: String) -> String {
     return (view.viewWithConstrainedViewID(id) as! UITextField).text.trim()
@@ -346,7 +388,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     })
   }
   func saved() {
-    vibrrate()
+    Vibrrate()
     delegate?.saved(indexPath!)
   }
   func drafted() {

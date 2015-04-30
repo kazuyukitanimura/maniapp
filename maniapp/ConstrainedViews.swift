@@ -87,7 +87,7 @@ extension UIView {
     return id.hash // TODO is this ok?
   }
 
-  func idIs(id: String) -> Bool {
+  func hasId(id: String) -> Bool {
     return id2tag(id) == tag
   }
 }
