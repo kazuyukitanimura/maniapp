@@ -77,12 +77,6 @@ extension UIView {
     return nil
   }
 
-  func boldFont() {
-    if let textField = self as? UITextField {
-      textField.font = UIFont.boldSystemFontOfSize(textField.font.pointSize)
-    }
-  }
-
   func id2tag(id: String) -> Int {
     return id.hash // TODO is this ok?
   }

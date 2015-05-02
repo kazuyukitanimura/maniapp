@@ -14,7 +14,7 @@ protocol ProfileViewControllerDelegate {
   func canceled(indexPath: NSIndexPath)
 }
 
-class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDelegate {
   let boldFont = UIFont.boldSystemFontOfSize(13.0)
   let normalFont = UIFont.systemFontOfSize(13.0)
   var delegate: ProfileViewControllerDelegate?
@@ -37,10 +37,6 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   let blog = "blog"
   let github = "github"
   var ids: [String]!
-
-  // for the pickerView
-  var choices:[String]!
-  var pickerTarget: UITextField!
 
   init(delegate: ProfileViewControllerDelegate, indexPath: NSIndexPath) {
     super.init(nibName: nil, bundle: nil)
@@ -291,13 +287,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
 
   func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
     if textField.hasId(willingToRelocate) {
-      choices = ["", "Yes", "No"]
-      let pickerView = UIPickerView()
-      pickerView.dataSource = self
-      pickerView.delegate = self
-      textField.inputView = pickerView
-      pickerTarget = textField
-      pickerView.selectRow(find(choices, textField.text) ?? 0, inComponent: 0, animated: false)
+      MultipleChoiceView(choices: ["", "Yes", "No"], textField: textField)
     }
     return true
   }
@@ -320,7 +310,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   }
 
   func textFieldEditingChanged(textField: UITextField) {
-    highlightTextField(textField)
+    textField.highlight() // TODO unhighlight when editted back
     let formatter = NSNumberFormatter()
     formatter.minimumFractionDigits = 0
     formatter.maximumFractionDigits = 0
@@ -344,38 +334,6 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       }
     }
   }
-
-  func highlightTextField(textField: UITextField) {
-    textField.boldFont() // TODO unbold when editted back
-    textField.textColor = AppColors.Orange
-  }
-
-  func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-    return 1
-  }
-
-  func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return choices.count
-  }
-
-  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-    return choices[row]
-  }
-
-  func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    highlightTextField(pickerTarget)
-    pickerTarget.text = choices[row]
-  }
-
-  func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
-    let pickerLabel = UILabel()
-    pickerLabel.textColor = AppColors.Orange
-    pickerLabel.text = choices[row]
-    pickerLabel.font = UIFont.boldSystemFontOfSize(39.0)
-    pickerLabel.textAlignment = NSTextAlignment.Center
-    return pickerLabel
-  }
-
 
   func stringWithConstrainedViewID(id: String) -> String {
     return (view.viewWithConstrainedViewID(id) as! UITextField).text.trim()

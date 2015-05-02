@@ -52,6 +52,17 @@ extension UIImageView {
   }
 }
 
+extension UITextField {
+  func boldFont() {
+    font = UIFont.boldSystemFontOfSize(font.pointSize)
+  }
+
+  func highlight() {
+    boldFont()
+    textColor = AppColors.Orange
+  }
+}
+
 extension Array {
   // http://stackoverflow.com/questions/24102024/how-to-check-if-an-element-is-in-an-array
   func contains<T where T : Equatable>(obj: T) -> Bool {

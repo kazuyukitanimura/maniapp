@@ -8,19 +8,17 @@
 
 import UIKit
 
-class MultipleChoiceViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-  let pickerView = UIPickerView()
+class MultipleChoiceView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
   var choices: [String]!
   weak var textField: UITextField!
 
   init (choices: [String], textField: UITextField) {
-    super.init(nibName: nil, bundle: nil)
+    super.init(frame: CGRectMake(1, 1, 1, 1))
     self.choices = choices
     self.textField = textField
-    pickerView.dataSource = self
-    pickerView.delegate = self
-    textField.inputView = pickerView
-    textField.addSubview(view)
+    dataSource = self
+    delegate = self
+    textField.inputView = self
   }
 
   required init(coder aDecoder: NSCoder) {
@@ -40,15 +38,16 @@ class MultipleChoiceViewController: UIViewController, UIPickerViewDataSource, UI
   }
 
   func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    textField.highlight() // TODO unhighlight when editted back
     textField.text = choices[row]
-    view.endEditing(true)
   }
 
-/*  func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
+  func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
     let pickerLabel = UILabel()
-    let titleData = choices[row]
-    let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 26.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
-    pickerLabel.attributedText = myTitle
+    pickerLabel.textColor = AppColors.Orange
+    pickerLabel.text = choices[row]
+    pickerLabel.font = UIFont.systemFontOfSize(26.0)
+    pickerLabel.textAlignment = NSTextAlignment.Center
     return pickerLabel
-  }*/
+  }
 }
