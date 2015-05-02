@@ -19,6 +19,7 @@ class MultipleChoiceView: UIPickerView, UIPickerViewDataSource, UIPickerViewDele
     dataSource = self
     delegate = self
     textField.inputView = self
+    backgroundColor = AppColors.Orange.colorWithAlphaComponent(0.9)
   }
 
   required init(coder aDecoder: NSCoder) {
@@ -44,7 +45,7 @@ class MultipleChoiceView: UIPickerView, UIPickerViewDataSource, UIPickerViewDele
 
   func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
     let pickerLabel = UILabel()
-    pickerLabel.textColor = AppColors.Orange
+    pickerLabel.textColor = AppColors.White
     pickerLabel.text = choices[row]
     pickerLabel.font = UIFont.systemFontOfSize(26.0)
     pickerLabel.textAlignment = NSTextAlignment.Center
