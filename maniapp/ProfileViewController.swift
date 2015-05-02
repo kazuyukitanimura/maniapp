@@ -297,6 +297,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       pickerView.delegate = self
       textField.inputView = pickerView
       pickerTarget = textField
+      pickerView.selectRow(find(choices, textField.text) ?? 0, inComponent: 0, animated: false)
     }
     return true
   }
@@ -370,7 +371,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     let pickerLabel = UILabel()
     pickerLabel.textColor = AppColors.Orange
     pickerLabel.text = choices[row]
-    pickerLabel.font = UIFont.boldSystemFontOfSize(26.0)
+    pickerLabel.font = UIFont.boldSystemFontOfSize(39.0)
     pickerLabel.textAlignment = NSTextAlignment.Center
     return pickerLabel
   }
