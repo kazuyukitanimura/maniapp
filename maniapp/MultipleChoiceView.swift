@@ -1,5 +1,5 @@
 //
-//  MultipleChoiceViewController.swift
+//  MultipleChoiceView.swift
 //  maniapp
 //
 //  Created by Kazuyuki Tanimura on 4/30/15.
@@ -13,13 +13,14 @@ class MultipleChoiceView: UIPickerView, UIPickerViewDataSource, UIPickerViewDele
   weak var textField: UITextField!
 
   init (choices: [String], textField: UITextField) {
-    super.init(frame: CGRectMake(1, 1, 1, 1))
+    super.init(frame: CGRectMake(0, 0, 0, 0))
     self.choices = choices
     self.textField = textField
     dataSource = self
     delegate = self
     textField.inputView = self
     backgroundColor = AppColors.Orange.colorWithAlphaComponent(0.9)
+    selectRow(find(choices, textField.text) ?? 0, inComponent: 0, animated: false)
   }
 
   required init(coder aDecoder: NSCoder) {

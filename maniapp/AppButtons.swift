@@ -17,7 +17,7 @@ protocol AppButtonDelegate {
 class AppButton: UIButton {
   var delegate: AppButtonDelegate?
 
-  init(delegate: AppButtonDelegate) {
+  init(delegate: AppButtonDelegate?) {
     super.init(frame: CGRectMake(0,0,0,0))
     self.delegate = delegate
     layer.masksToBounds = true
@@ -31,10 +31,11 @@ class AppButton: UIButton {
 }
 
 class SaveButton: AppButton {
-  override init(delegate: AppButtonDelegate) {
+  override init(delegate: AppButtonDelegate?) {
     super.init(delegate: delegate)
     backgroundColor = AppColors.Orange
     setTitle("Save", forState: .Normal)
+    setTitleColor(AppColors.White, forState: .Normal)
     layer.borderColor = AppColors.Orange.CGColor
     addTarget(self, action: "onClickButton:", forControlEvents: .TouchUpInside)
   }
@@ -49,7 +50,7 @@ class SaveButton: AppButton {
 }
 
 class DraftButton: AppButton {
-  override init(delegate: AppButtonDelegate) {
+  override init(delegate: AppButtonDelegate?) {
     super.init(delegate: delegate)
     setTitle("Save as draft", forState: .Normal)
     setTitleColor(AppColors.Orange, forState: .Normal)
@@ -67,7 +68,7 @@ class DraftButton: AppButton {
 }
 
 class CancelButton: AppButton {
-  override init(delegate: AppButtonDelegate) {
+  override init(delegate: AppButtonDelegate?) {
     super.init(delegate: delegate)
     setTitle("Cancel", forState: .Normal)
     setTitleColor(AppColors.DarkGray, forState: .Normal)
@@ -81,5 +82,25 @@ class CancelButton: AppButton {
 
   func onClickButton(sender: UIButton) {
     delegate?.canceled()
+  }
+}
+
+
+class UpdatePhotoButton: AppButton {
+  init() {
+    super.init(delegate: nil)
+    setTitle("Update photo", forState: .Normal)
+    setTitleColor(AppColors.Orange, forState: .Normal)
+    titleLabel!.font = UIFont.boldSystemFontOfSize(13.0)
+    layer.borderColor = AppColors.Orange.CGColor
+    addTarget(self, action: "onClickButton:", forControlEvents: .TouchUpInside)
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+
+  func onClickButton(sender: UIButton) {
+    PhotoController()
   }
 }

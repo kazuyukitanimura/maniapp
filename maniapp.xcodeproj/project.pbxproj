@@ -21,7 +21,8 @@
 		802CC3B11ACE887C00465D88 /* clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 802CC3B01ACE887C00465D88 /* clear.png */; };
 		8038B8241ADB999500FC9515 /* AppKV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038B8231ADB999500FC9515 /* AppKV.swift */; };
 		803C20301AC7F3CF00A715A7 /* CenterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803C202F1AC7F3CF00A715A7 /* CenterViewCell.swift */; };
-		809714E61AF28D9C00D313BD /* MultipleChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809714E51AF28D9C00D313BD /* MultipleChoiceViewController.swift */; };
+		809714E61AF28D9C00D313BD /* MultipleChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809714E51AF28D9C00D313BD /* MultipleChoiceView.swift */; };
+		809714E81AF5A4ED00D313BD /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809714E71AF5A4ED00D313BD /* PhotoController.swift */; };
 		80CC30C51AECC38900DFA988 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC30C41AECC38900DFA988 /* Extensions.swift */; };
 		80D669BC1ABEB06900D8B8CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669BB1ABEB06900D8B8CE /* AppDelegate.swift */; };
 		80D669BF1ABEB06900D8B8CE /* maniapp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80D669BD1ABEB06900D8B8CE /* maniapp.xcdatamodeld */; };
@@ -65,7 +66,8 @@
 		802CC3B01ACE887C00465D88 /* clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clear.png; sourceTree = "<group>"; };
 		8038B8231ADB999500FC9515 /* AppKV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppKV.swift; sourceTree = "<group>"; };
 		803C202F1AC7F3CF00A715A7 /* CenterViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CenterViewCell.swift; path = ../CenterViewCell.swift; sourceTree = "<group>"; };
-		809714E51AF28D9C00D313BD /* MultipleChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceViewController.swift; sourceTree = "<group>"; };
+		809714E51AF28D9C00D313BD /* MultipleChoiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceView.swift; sourceTree = "<group>"; };
+		809714E71AF5A4ED00D313BD /* PhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		80CC30C41AECC38900DFA988 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		80D669B61ABEB06900D8B8CE /* maniapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = maniapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80D669BA1ABEB06900D8B8CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,10 +146,11 @@
 				802CC39A1ACE66BC00465D88 /* ConstrainedViews.swift */,
 				801976851AEA0AAA00FE8220 /* LinkedDictionary.swift */,
 				80D669E71AC482D700D8B8CE /* LoginViewController.swift */,
+				809714E71AF5A4ED00D313BD /* PhotoController.swift */,
 				80E822191AD3068600D85EF7 /* ProfileViewController.swift */,
 				80D669E51AC2981E00D8B8CE /* MenuViewController.swift */,
 				80228F6A1AE36E4000B9D0AC /* Models.swift */,
-				809714E51AF28D9C00D313BD /* MultipleChoiceViewController.swift */,
+				809714E51AF28D9C00D313BD /* MultipleChoiceView.swift */,
 				80D669C01ABEB06900D8B8CE /* ViewController.swift */,
 				80D669C21ABEB06900D8B8CE /* Main.storyboard */,
 				80D669C51ABEB06900D8B8CE /* Images.xcassets */,
@@ -313,6 +316,7 @@
 				801976861AEA0AAA00FE8220 /* LinkedDictionary.swift in Sources */,
 				8038B8241ADB999500FC9515 /* AppKV.swift in Sources */,
 				80228F691AE36B7D00B9D0AC /* RLMSupport.swift in Sources */,
+				809714E81AF5A4ED00D313BD /* PhotoController.swift in Sources */,
 				802CC3971ACA538B00465D88 /* Cells.swift in Sources */,
 				80E8221A1AD3068600D85EF7 /* ProfileViewController.swift in Sources */,
 				80D669E41AC2969F00D8B8CE /* CenterViewController.swift in Sources */,
@@ -320,7 +324,7 @@
 				802CC3991ACE606100465D88 /* Animations.swift in Sources */,
 				80D669EA1AC547B400D8B8CE /* AppColors.swift in Sources */,
 				80D669BF1ABEB06900D8B8CE /* maniapp.xcdatamodeld in Sources */,
-				809714E61AF28D9C00D313BD /* MultipleChoiceViewController.swift in Sources */,
+				809714E61AF28D9C00D313BD /* MultipleChoiceView.swift in Sources */,
 				80D669BC1ABEB06900D8B8CE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

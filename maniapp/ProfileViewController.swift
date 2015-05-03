@@ -87,6 +87,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "font": boldFont,
         "textColor": AppColors.Orange,
       ],
+      "updatePhoto": UpdatePhotoButton(),
       currentAffiliation: [
         "placeholder": "Current affiliation",
         "text": draftMe.currentAffiliation,
@@ -250,6 +251,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       ], formats: [
         "H:|-0-[firstNameLabel]-(>=8)-[\(firstName)(>=160)]-0-|",
         "H:|-0-[lastNameLabel]-(>=8)-[\(lastName)(>=160)]-0-|",
+        "H:|-0-[updatePhoto(>=160)]-(>=0)-|",
         "H:|-0-[currentAffiliationLabel]-(>=8)-[\(currentAffiliation)(>=160)]-0-|",
         "H:|-0-[currentTitleLabel]-(>=8)-[\(currentTitle)(>=160)]-0-|",
         "H:|-0-[currentLocationLabel]-(>=8)-[\(currentLocation)(>=160)]-0-|",
@@ -264,9 +266,9 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         "H:|-0-[blogLabel]-(>=8)-[\(blog)(>=160)]-0-|",
         "H:|-0-[githubLabel]-(>=8)-[\(github)(>=160)]-0-|",
         "H:|-0-[save(72)]-8-[draft(128)]-(>=8)-[cancel(80)]-0-|",
-        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[dreamCompaniesLabel]-8-[lookingForLabel]-8-[skillsLabel]-24-[blogLabel]-8-[githubLabel]-24-[save]-8-|",
+        "V:|-16-[firstNameLabel]-8-[lastNameLabel]-8-[updatePhoto]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[dreamCompaniesLabel]-8-[lookingForLabel]-8-[skillsLabel]-24-[blogLabel]-8-[githubLabel]-24-[save]-8-|",
         "V:|-(>=16)-[draft]-8-|",
-        "V:|-16-[\(firstName)]-8-[\(lastName)]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[\(currentLocation)]-24-[\(willingToRelocate)]-8-[\(minCashComensation)]-8-[\(minEquityComensation)]-8-[\(targetCompanySize)]-8-[\(thankYouTip)]-24-[\(dreamCompanies)]-8-[\(lookingFor)]-8-[\(skills)]-24-[\(blog)]-8-[\(github)]-24-[cancel]-8-|",
+        "V:|-16-[\(firstName)]-8-[\(lastName)]-8-[updatePhoto]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[\(currentLocation)]-24-[\(willingToRelocate)]-8-[\(minCashComensation)]-8-[\(minEquityComensation)]-8-[\(targetCompanySize)]-8-[\(thankYouTip)]-24-[\(dreamCompanies)]-8-[\(lookingFor)]-8-[\(skills)]-24-[\(blog)]-8-[\(github)]-24-[cancel]-8-|",
       ])
     ids = [firstName, lastName, currentAffiliation, currentTitle, currentLocation, willingToRelocate, minCashComensation, minEquityComensation, targetCompanySize, thankYouTip, dreamCompanies, lookingFor, skills, blog, github]
     view.addConstrainedViews(profileFields, yield: { (subView: UIView) -> Void in
