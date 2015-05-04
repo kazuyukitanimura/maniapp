@@ -101,6 +101,8 @@ class UpdatePhotoButton: AppButton {
   }
 
   func onClickButton(sender: UIButton) {
-    PhotoController()
+    let photoController = PhotoController()
+    addSubview(photoController.view)
+    photoController.presentViewController()
   }
 }

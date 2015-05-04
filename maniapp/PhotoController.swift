@@ -8,18 +8,19 @@
 
 import UIKit
 
-class PhotoController: UIImagePickerController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-  init() {
-    super.init(nibName: nil, bundle: nil)
-    delegate = self
+class PhotoController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  var imagePicker: UIImagePickerController!
+
+  override func viewDidLoad() {
     if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
-      sourceType = .PhotoLibrary
-      presentViewController(self, animated: true, completion: nil)
+      imagePicker = UIImagePickerController()
+      imagePicker.delegate = self
+      imagePicker.sourceType = .PhotoLibrary
     }
   }
 
-  required init(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
+  func presentViewController() {
+    presentViewController(imagePicker, animated: true, completion: nil)
   }
 
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
