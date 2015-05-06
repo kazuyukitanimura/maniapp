@@ -8,6 +8,15 @@
 
 import UIKit
 
+/*
+extension NSObject {
+  func setValuesForKeysWithAnyDictionary(keyedValues: [NSObject : Any]) {
+    for (id, value) in keyedValues {
+      self[id] = value
+    }
+  }
+}*/
+
 extension String {
   var length: Int {
     get {
@@ -71,5 +80,11 @@ extension Array {
 
   func contains<T where T : Equatable>(obj: AnyObject?, compare: (lhs: T?, rhs:AnyObject?) -> Bool) -> Bool {
     return self.filter({ compare(lhs: ($0 as? T), rhs: obj) }).count > 0
+  }
+}
+
+extension Dictionary {
+  func hasKey(_key: Key) -> Bool {
+    return indexForKey(_key) != nil
   }
 }

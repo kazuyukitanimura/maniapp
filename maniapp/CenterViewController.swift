@@ -66,6 +66,9 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
         "subTitle": [
           "text": (me.currentTitle.isEmpty && me.currentAffiliation.isEmpty) ? "Tap to pdate your title and affiliation" : (me.currentTitle.isEmpty || me.currentAffiliation.isEmpty) ? "\(me.currentTitle)\(me.currentAffiliation)" : "\(me.currentTitle) at \(me.currentAffiliation)",
         ],
+        "photo": [
+          "image": (me.photo.length > 0) ? me.photo : "defaultProfile2.png",
+        ],
       ])
     }
     cell.innerView.addConstrainedViews(constrainedView)

@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Kazuyuki Tanimura. All rights reserved.
 //
 
+import UIKit
 import Realm
 
 struct Models {
@@ -13,7 +14,7 @@ struct Models {
   static let REALM = RLMRealm.defaultRealm()
 
   static func setup() {
-    RLMRealm.setDefaultRealmSchemaVersion(6, withMigrationBlock: {migration, oldSchemaVersion in
+    RLMRealm.setDefaultRealmSchemaVersion(7, withMigrationBlock: {migration, oldSchemaVersion in
       // do nothing here, auto migration
     })
     println(REALM.path)
@@ -57,5 +58,6 @@ class Profile: RLMObject {
   dynamic var skills = ""
   dynamic var blog = ""
   dynamic var github = ""
+  dynamic var photo = UIImageJPEGRepresentation(UIImage(named: "defaultProfile2.png"), 1.0)
   dynamic var distance = 0 // myself is 0, direct friend is 1
 }

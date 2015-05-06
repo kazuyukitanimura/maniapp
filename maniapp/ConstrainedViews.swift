@@ -30,9 +30,17 @@ extension UIView {
         } else if let textProp = viewProps["text"] as? String {
           subView = UILabel()
           (subView as! UILabel).numberOfLines = 0
-        } else if let imageName = viewProps["image"] as? String {
+        } else if viewProps.hasKey("image") {
           subView = UIImageView()
-          viewProps["image"] = UIImage(named: imageName)
+          if let imageName = viewProps["image"] as? String {
+            viewProps["image"] = UIImage(named: imageName)
+          } else if let imageData = viewProps["image"] as? NSData {
+            viewProps["image"] = UIImage(data: imageData)
+          } else if let image = viewProps["image"] as? UIImage {
+            viewProps["image"] = image
+          } else {
+            fatalError("unrecognized image")
+          }
           if let frameRect = viewProps["frame"] as? NSValue {
             (subView as! UIImageView).frame = frameRect.CGRectValue()
             viewProps.removeValueForKey("frame")
