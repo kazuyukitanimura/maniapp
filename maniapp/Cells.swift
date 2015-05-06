@@ -28,7 +28,7 @@ var cells:[ConstrainedViews] = [
       "textColor": AppColors.DarkGray,
     ],
     "photo": [
-      "image": "profile-rabbit-toy.png",
+      "image": "defaultProfile2.png",
       "frame": NSValue(CGRect: CGRectMake(0, 0, profileSize, profileSize)),
       "toCircle": true,
     ],
