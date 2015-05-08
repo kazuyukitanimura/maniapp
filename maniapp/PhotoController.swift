@@ -21,14 +21,19 @@ class PhotoController: UIViewController, UIImagePickerControllerDelegate, UINavi
 
   func presentViewController() {
     presentViewController(imagePicker, animated: true, completion: nil)
+    UIApplication.sharedApplication().statusBarStyle = .LightContent
   }
 
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-    println(image)
-    picker.dismissViewControllerAnimated(true, completion: nil)
+    Models.REALM.transactionWithBlock({ () -> Void in
+      Models.getDraftMe().photo = UIImageJPEGRepresentation(image, 1.0)
+    })
+    imagePickerControllerDidCancel(picker)
   }
 
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
     picker.dismissViewControllerAnimated(true, completion: nil)
+    removeFromParentViewController()
+    view.removeFromSuperview()
   }
 }
