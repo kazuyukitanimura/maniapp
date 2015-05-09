@@ -88,3 +88,16 @@ extension Dictionary {
     return indexForKey(_key) != nil
   }
 }
+
+extension UIImage {
+  func resizeTo(length: CGFloat) -> UIImage {
+    let minLength = min(size.width, size.height)
+    let raito = minLength / min(minLength, length)
+    let newSize = CGSizeMake(size.width / raito, size.height / raito)
+    UIGraphicsBeginImageContextWithOptions(newSize, true, 0)
+    drawInRect(CGRect(origin: CGPointZero, size: newSize))
+    let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return scaledImage
+  }
+}

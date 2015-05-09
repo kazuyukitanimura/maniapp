@@ -21,12 +21,11 @@ class PhotoController: UIViewController, UIImagePickerControllerDelegate, UINavi
 
   func presentViewController(completion: (() -> Void)?) {
     presentViewController(imagePicker, animated: true, completion: completion)
-    UIApplication.sharedApplication().statusBarStyle = .LightContent
   }
 
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
     Models.REALM.transactionWithBlock({ () -> Void in
-      Models.getDraftMe().photo = UIImageJPEGRepresentation(image, 1.0)
+      Models.getDraftMe().photo = UIImageJPEGRepresentation(image.resizeTo(160), 1.0)
     })
     imagePickerControllerDidCancel(picker)
   }
@@ -34,5 +33,6 @@ class PhotoController: UIViewController, UIImagePickerControllerDelegate, UINavi
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
     picker.dismissViewControllerAnimated(true, completion: view.removeFromSuperview)
     removeFromParentViewController()
+    UIApplication.sharedApplication().statusBarStyle = .LightContent
   }
 }

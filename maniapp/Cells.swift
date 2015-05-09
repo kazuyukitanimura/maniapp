@@ -31,6 +31,7 @@ var cells:[ConstrainedViews] = [
       "image": "defaultProfile2.png",
       "frame": NSValue(CGRect: CGRectMake(0, 0, profileSize, profileSize)),
       "toCircle": true,
+      "contentMode": UIViewContentMode.ScaleAspectFill.rawValue,
     ],
     "preview": UIView(),
     ], formats: [
