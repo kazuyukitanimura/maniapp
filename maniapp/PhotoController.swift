@@ -19,8 +19,8 @@ class PhotoController: UIViewController, UIImagePickerControllerDelegate, UINavi
     }
   }
 
-  func presentViewController() {
-    presentViewController(imagePicker, animated: true, completion: nil)
+  func presentViewController(completion: (() -> Void)?) {
+    presentViewController(imagePicker, animated: true, completion: completion)
     UIApplication.sharedApplication().statusBarStyle = .LightContent
   }
 
