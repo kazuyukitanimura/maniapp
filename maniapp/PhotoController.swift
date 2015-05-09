@@ -32,8 +32,7 @@ class PhotoController: UIViewController, UIImagePickerControllerDelegate, UINavi
   }
 
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    picker.dismissViewControllerAnimated(true, completion: nil)
+    picker.dismissViewControllerAnimated(true, completion: view.removeFromSuperview)
     removeFromParentViewController()
-    view.removeFromSuperview()
   }
 }
