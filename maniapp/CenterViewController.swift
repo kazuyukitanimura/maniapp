@@ -128,9 +128,6 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
   }
   func saved(indexPath: NSIndexPath) {
     save(indexPath, profile: Models.getMe())
-    Models.REALM.transactionWithBlock({ () -> Void in
-      Models.getMe().photo = Models.getDraftMe().photo
-    })
     drafted(indexPath)
   }
   func drafted(indexPath: NSIndexPath) {

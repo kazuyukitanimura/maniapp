@@ -36,6 +36,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
   let skills = "skills"
   let blog = "blog"
   let github = "github"
+  let updatePhotoLabel = "updatePhotoLabel"
   var ids: [String]!
 
   init(delegate: ProfileViewControllerDelegate, indexPath: NSIndexPath) {
@@ -87,13 +88,13 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       "font": boldFont,
       "textColor": AppColors.Orange,
     ]
-    profileViews["updatePhotoLabel"] = [
+    profileViews[updatePhotoLabel] = [
       "image": (draftMe.photo.length > 0) ? draftMe.photo : "defaultProfile2.png",
       "frame": NSValue(CGRect: CGRectMake(0, 0, profileSize * 0.6, profileSize * 0.6)),
       "toCircle": true,
       "contentMode": UIViewContentMode.ScaleAspectFill.rawValue,
     ]
-    profileViews["updatePhoto"] = UpdatePhotoButton()
+    profileViews["updatePhoto"] = UpdatePhotoButton(idOfPhoto: updatePhotoLabel)
     profileViews[currentAffiliation] = [
       "placeholder": "Current affiliation",
       "text": draftMe.currentAffiliation,
@@ -257,7 +258,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     let profileFields = ConstrainedViews(views: profileViews, formats: [
       "H:|-0-[firstNameLabel]-(>=8)-[\(firstName)(>=160)]-0-|",
       "H:|-0-[lastNameLabel]-(>=8)-[\(lastName)(>=160)]-0-|",
-      "H:|-0-[updatePhotoLabel(\(profileSize * 0.6))]-(>=8)-[updatePhoto(>=160)]-0-|",
+      "H:|-0-[\(updatePhotoLabel)(\(profileSize * 0.6))]-(>=8)-[updatePhoto(>=160)]-0-|",
       "H:|-0-[currentAffiliationLabel]-(>=8)-[\(currentAffiliation)(>=160)]-0-|",
       "H:|-0-[currentTitleLabel]-(>=8)-[\(currentTitle)(>=160)]-0-|",
       "H:|-0-[currentLocationLabel]-(>=8)-[\(currentLocation)(>=160)]-0-|",
@@ -272,7 +273,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       "H:|-0-[blogLabel]-(>=8)-[\(blog)(>=160)]-0-|",
       "H:|-0-[githubLabel]-(>=8)-[\(github)(>=160)]-0-|",
       "H:|-0-[save(72)]-8-[draft(128)]-(>=8)-[cancel(80)]-0-|",
-      "V:|-16-[firstNameLabel]-8-[lastNameLabel]-8-[updatePhotoLabel(\(profileSize * 0.6))]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[dreamCompaniesLabel]-8-[lookingForLabel]-8-[skillsLabel]-24-[blogLabel]-8-[githubLabel]-24-[save]-8-|",
+      "V:|-16-[firstNameLabel]-8-[lastNameLabel]-8-[\(updatePhotoLabel)(\(profileSize * 0.6))]-24-[currentAffiliationLabel]-8-[currentTitleLabel]-8-[currentLocationLabel]-24-[willingToRelocateLabel]-8-[minCashComensationLabel]-8-[minEquityComensationLabel]-8-[targetCompanySizeLabel]-8-[thankYouTipLabel]-24-[dreamCompaniesLabel]-8-[lookingForLabel]-8-[skillsLabel]-24-[blogLabel]-8-[githubLabel]-24-[save]-8-|",
       "V:|-(>=16)-[draft]-8-|",
       "V:|-16-[\(firstName)]-8-[\(lastName)]-8-[updatePhoto(\(profileSize * 0.6))]-24-[\(currentAffiliation)]-8-[\(currentTitle)]-8-[\(currentLocation)]-24-[\(willingToRelocate)]-8-[\(minCashComensation)]-8-[\(minEquityComensation)]-8-[\(targetCompanySize)]-8-[\(thankYouTip)]-24-[\(dreamCompanies)]-8-[\(lookingFor)]-8-[\(skills)]-24-[\(blog)]-8-[\(github)]-24-[cancel]-8-|",
     ])
@@ -347,11 +348,16 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     return (view.viewWithConstrainedViewID(id) as! UITextField).text.trim()
   }
 
+  func imageWithConstrainedViewID(id: String) -> UIImage {
+    return (view.viewWithConstrainedViewID(id) as! UIImageView).image!
+  }
+
   func save(profile: Profile) {
     Models.REALM.transactionWithBlock({ () -> Void in
       for id in self.ids {
         profile.setValue(self.stringWithConstrainedViewID(id), forKey: id)
       }
+      profile.photo = UIImageJPEGRepresentation(self.imageWithConstrainedViewID(self.updatePhotoLabel), 1.0)
     })
   }
   func saved() {

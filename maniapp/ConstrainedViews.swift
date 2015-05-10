@@ -65,6 +65,13 @@ extension UIView {
     return viewWithTag(id2tag(id))
   }
 
+  func getSiblingView(id: String?) -> UIView? {
+    if (id == nil) {
+      return nil
+    }
+    return superview?.viewWithConstrainedViewID(id!)
+  }
+
   func getNextSiblingView(ids: [String]?=nil) -> UIView? {
     if (ids != nil) {
       for (i, id) in enumerate(ids![0..<(ids!.count - 1)]) {

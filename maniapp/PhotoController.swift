@@ -10,6 +10,16 @@ import UIKit
 
 class PhotoController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   var imagePicker: UIImagePickerController!
+  var photoView: UIImageView?
+
+  init(photoView: UIImageView?) {
+    super.init(nibName: nil, bundle: nil)
+    self.photoView = photoView
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
 
   override func viewDidLoad() {
     if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
@@ -24,15 +34,15 @@ class PhotoController: UIViewController, UIImagePickerControllerDelegate, UINavi
   }
 
   func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-    Models.REALM.transactionWithBlock({ () -> Void in
-      Models.getDraftMe().photo = UIImageJPEGRepresentation(image.resizeTo(160), 1.0)
-    })
+    self.photoView?.image = image.resizeTo(160)
     imagePickerControllerDidCancel(picker)
   }
 
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    picker.dismissViewControllerAnimated(true, completion: view.removeFromSuperview)
-    removeFromParentViewController()
-    UIApplication.sharedApplication().statusBarStyle = .LightContent
+    picker.dismissViewControllerAnimated(true, completion: { () -> Void in
+      self.view.removeFromSuperview()
+      self.removeFromParentViewController()
+      UIApplication.sharedApplication().statusBarStyle = .LightContent
+    })
   }
 }

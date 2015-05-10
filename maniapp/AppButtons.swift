@@ -88,9 +88,11 @@ class CancelButton: AppButton {
 
 class UpdatePhotoButton: AppButton {
   let activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+  var idOfPhoto: String?
 
-  init() {
+  init(idOfPhoto: String) {
     super.init(delegate: nil)
+    self.idOfPhoto = idOfPhoto
     setTitle("Update photo", forState: .Normal)
     setTitleColor(AppColors.Orange, forState: .Normal)
     titleLabel!.font = UIFont.boldSystemFontOfSize(13.0)
@@ -106,7 +108,8 @@ class UpdatePhotoButton: AppButton {
 
   func onClickButton(sender: UIButton) {
     addSubview(activityView)
-    let photoController = PhotoController()
+    let photoView = self.getSiblingView(self.idOfPhoto) as? UIImageView
+    let photoController = PhotoController(photoView: photoView)
     addSubview(photoController.view)
     photoController.presentViewController(activityView.removeFromSuperview)
   }
