@@ -296,7 +296,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
 
   func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
     if textField.hasId(willingToRelocate) {
-      MultipleChoiceView(choices: ["Undecided", "Yes", "No"], textField: textField)
+      MultipleChoiceView(choices: ["", "Undecided", "Yes", "No"], textField: textField)
     }
     return true
   }

@@ -39,6 +39,7 @@
 		80D669E61AC2981E00D8B8CE /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669E51AC2981E00D8B8CE /* MenuViewController.swift */; };
 		80D669E81AC482D700D8B8CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669E71AC482D700D8B8CE /* LoginViewController.swift */; };
 		80D669EA1AC547B400D8B8CE /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669E91AC547B400D8B8CE /* AppColors.swift */; };
+		80E17DC31B0024D600CCE800 /* DoneBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E17DC21B0024D600CCE800 /* DoneBar.swift */; };
 		80E8221A1AD3068600D85EF7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E822191AD3068600D85EF7 /* ProfileViewController.swift */; };
 		80E8221C1ADB597000D85EF7 /* AppButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E8221B1ADB597000D85EF7 /* AppButtons.swift */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,7 @@
 		80D669E51AC2981E00D8B8CE /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		80D669E71AC482D700D8B8CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		80D669E91AC547B400D8B8CE /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		80E17DC21B0024D600CCE800 /* DoneBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneBar.swift; sourceTree = "<group>"; };
 		80E822191AD3068600D85EF7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		80E8221B1ADB597000D85EF7 /* AppButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppButtons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +150,7 @@
 				803C202F1AC7F3CF00A715A7 /* CenterViewCell.swift */,
 				80D669E31AC2969F00D8B8CE /* CenterViewController.swift */,
 				802CC39A1ACE66BC00465D88 /* ConstrainedViews.swift */,
+				80E17DC21B0024D600CCE800 /* DoneBar.swift */,
 				801976851AEA0AAA00FE8220 /* LinkedDictionary.swift */,
 				80D669E71AC482D700D8B8CE /* LoginViewController.swift */,
 				809714E71AF5A4ED00D313BD /* PhotoController.swift */,
@@ -323,6 +326,7 @@
 				802CC39B1ACE66BC00465D88 /* ConstrainedViews.swift in Sources */,
 				801976861AEA0AAA00FE8220 /* LinkedDictionary.swift in Sources */,
 				8038B8241ADB999500FC9515 /* AppKV.swift in Sources */,
+				80E17DC31B0024D600CCE800 /* DoneBar.swift in Sources */,
 				80228F691AE36B7D00B9D0AC /* RLMSupport.swift in Sources */,
 				809714E81AF5A4ED00D313BD /* PhotoController.swift in Sources */,
 				802CC3971ACA538B00465D88 /* Cells.swift in Sources */,
