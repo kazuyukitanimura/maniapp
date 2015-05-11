@@ -13,7 +13,7 @@ class DoneBar: UIToolbar {
   var textField: UITextField!
 
   init(target: UITextFieldDelegate, textField: UITextField) {
-    super.init(frame: CGRectMake(0, 0, 1, 32))
+    super.init(frame: CGRectMake(0, 0, 1, 44))
     self.target = target
     self.textField = textField
     barTintColor = AppColors.White
