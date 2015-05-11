@@ -25,9 +25,6 @@ extension UIView {
           subView = UITextField()
           if let keyboardType = viewProps["keyboardType"] as? Int {
             (subView as! UITextField).keyboardType = UIKeyboardType(rawValue: keyboardType)!
-            if [UIKeyboardType.PhonePad.rawValue, UIKeyboardType.NumberPad.rawValue, UIKeyboardType.DecimalPad.rawValue].contains(keyboardType) {
-              (subView as! UITextField).inputAccessoryView = DoneBar(target: subView)
-            }
             viewProps.removeValueForKey("keyboardType")
           }
         } else if let textProp = viewProps["text"] as? String {

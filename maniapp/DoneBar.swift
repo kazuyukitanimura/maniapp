@@ -9,17 +9,27 @@
 import UIKit
 
 class DoneBar: UIToolbar {
-  init(target: UIView) {
+  var target: UITextFieldDelegate!
+  var textField: UITextField!
+
+  init(target: UITextFieldDelegate, textField: UITextField) {
     super.init(frame: CGRectMake(0, 0, 1, 32))
+    self.target = target
+    self.textField = textField
     barTintColor = AppColors.White
     alpha = 0.7
     let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-    let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: target, action: "resignFirstResponder")
+    let title = (textField.returnKeyType == .Next) ? "Next" : "Done"
+    let doneButton = UIBarButtonItem(title: title, style: .Done, target: self, action: "doneButtonPressed:")
     items = [flexSpace, doneButton]
   }
 
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+  }
+
+  func doneButtonPressed(sender: UIBarButtonItem) {
+    target.textFieldShouldReturn?(textField)
   }
 }
 

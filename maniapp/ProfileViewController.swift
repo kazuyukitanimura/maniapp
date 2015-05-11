@@ -136,6 +136,7 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       "text": draftMe.willingToRelocate,
       "font": draftMe.willingToRelocate == me.willingToRelocate ? normalFont : boldFont,
       "textColor": AppColors.Black,
+      "keyboardType": UIKeyboardType.NumberPad.rawValue, // fake
       "delegate": self,
     ]
     profileViews["minCashComensationLabel"] = [
@@ -282,7 +283,10 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
       if let textField = subView as? UITextField {
         if !textField.hasId(self.willingToRelocate) {
           textField.addTarget(self, action: "textFieldEditingChanged:", forControlEvents: .EditingChanged)
-          textField.returnKeyType = textField.hasId(self.ids!.last!) ? .Done : .Next
+        }
+        textField.returnKeyType = textField.hasId(self.ids!.last!) ? .Done : .Next
+        if [UIKeyboardType.PhonePad, UIKeyboardType.NumberPad, UIKeyboardType.DecimalPad].contains(textField.keyboardType) {
+          textField.inputAccessoryView = DoneBar(target: self, textField: textField)
         }
       }
     })

@@ -13,7 +13,7 @@ class MultipleChoiceView: UIPickerView, UIPickerViewDataSource, UIPickerViewDele
   weak var textField: UITextField!
 
   init (choices: [String], textField: UITextField) {
-    super.init(frame: CGRectMake(0, 0, 0, 0))
+    super.init(frame: CGRectMake(0, 0, 0, 40))
     self.choices = choices
     self.textField = textField
     dataSource = self
