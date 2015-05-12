@@ -26,6 +26,7 @@
 		80D11DBC1B01DAF600DE6B1C /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D11DB91B01DAF600DE6B1C /* menu.png */; };
 		80D11DBD1B01DAF600DE6B1C /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D11DBA1B01DAF600DE6B1C /* search.png */; };
 		80D11DBE1B01DAF600DE6B1C /* search2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D11DBB1B01DAF600DE6B1C /* search2.png */; };
+		80D11DC01B01DDB500DE6B1C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D11DBF1B01DDB500DE6B1C /* FBSDKLoginKit.framework */; };
 		80D669BC1ABEB06900D8B8CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669BB1ABEB06900D8B8CE /* AppDelegate.swift */; };
 		80D669BF1ABEB06900D8B8CE /* referralio.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80D669BD1ABEB06900D8B8CE /* referralio.xcdatamodeld */; };
 		80D669C11ABEB06900D8B8CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669C01ABEB06900D8B8CE /* ViewController.swift */; };
@@ -73,6 +74,7 @@
 		80D11DB91B01DAF600DE6B1C /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		80D11DBA1B01DAF600DE6B1C /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		80D11DBB1B01DAF600DE6B1C /* search2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search2.png; sourceTree = "<group>"; };
+		80D11DBF1B01DDB500DE6B1C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		80D669B61ABEB06900D8B8CE /* referralio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = referralio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80D669BA1ABEB06900D8B8CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80D669BB1ABEB06900D8B8CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			files = (
 				80228F671AE36B4A00B9D0AC /* libc++.dylib in Frameworks */,
 				80E17DC71B01C85800CCE800 /* FBSDKCoreKit.framework in Frameworks */,
+				80D11DC01B01DDB500DE6B1C /* FBSDKLoginKit.framework in Frameworks */,
 				80228F651AE36AF400B9D0AC /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +124,7 @@
 				80228F661AE36B4A00B9D0AC /* libc++.dylib */,
 				80228F681AE36B7D00B9D0AC /* RLMSupport.swift */,
 				80E17DC61B01C85800CCE800 /* FBSDKCoreKit.framework */,
+				80D11DBF1B01DDB500DE6B1C /* FBSDKLoginKit.framework */,
 				80228F641AE36AF400B9D0AC /* Realm.framework */,
 				80D669B81ABEB06900D8B8CE /* referralio */,
 				80D669D11ABEB06900D8B8CE /* referralioTests */,

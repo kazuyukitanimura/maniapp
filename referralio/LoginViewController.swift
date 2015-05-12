@@ -23,6 +23,9 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     backgroundGradient.frame = view.frame
     view.layer.insertSublayer(backgroundGradient, atIndex: 0)
     view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTapGesture:"))
+    let loginButton = FBSDKLoginButton()
+    loginButton.center = view.center
+    view.addSubview(loginButton)
   }
 
   func handleTapGesture(recognizer: UITapGestureRecognizer) {
