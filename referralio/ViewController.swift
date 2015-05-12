@@ -37,6 +37,7 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
     addChildViewController(menuViewController)
     menuViewController.didMoveToParentViewController(self)
     menuViewController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
+    menuViewController.loginButton.delegate = loginViewController
   }
 
   override func didReceiveMemoryWarning() {

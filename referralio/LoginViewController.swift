@@ -10,7 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
+class LoginViewController: UIViewController, UIGestureRecognizerDelegate, FBSDKLoginButtonDelegate {
   let colorTop = AppColors.Yellow.CGColor
   let colorBottom = AppColors.Orange.CGColor
   let backgroundGradient = CAGradientLayer()
@@ -24,6 +24,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     view.layer.insertSublayer(backgroundGradient, atIndex: 0)
     view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTapGesture:"))
     let loginButton = FBSDKLoginButton()
+    loginButton.delegate = self
     loginButton.center = view.center
     view.addSubview(loginButton)
   }
@@ -35,5 +36,25 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
   func isLoggedIn() -> Bool {
     return kvLoad(LOGGEDIN) as? Bool ?? false
+  }
+
+  func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    if (error != nil) {
+      // alert error
+      return
+    } else if (result.declinedPermissions.count > 0) {
+      // logout for declined permissions
+      loginButtonDidLogOut(loginButton)
+      return
+    } else if (result.isCancelled) {
+      // do nothing
+      return
+    }
+    // FIXME This will be called after authentication is checked...
+    kvStore(LOGGEDIN, true)
+  }
+
+  func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+    kvStore(LOGGEDIN, false)
   }
 }
