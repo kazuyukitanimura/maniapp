@@ -1,6 +1,6 @@
 //
 //  CenterViewController.swift
-//  maniapp
+//  referralio
 //
 //  Created by Kazuyuki Tanimura on 3/25/15.
 //  Copyright (c) 2015 Kazuyuki Tanimura. All rights reserved.

@@ -1,6 +1,6 @@
 //
-//  maniappTests.swift
-//  maniappTests
+//  referralioTests.swift
+//  referralioTests
 //
 //  Created by Kazuyuki Tanimura on 3/22/15.
 //  Copyright (c) 2015 Kazuyuki Tanimura. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-class maniappTests: XCTestCase {
+class referralioTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
