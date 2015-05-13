@@ -41,6 +41,11 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     navigationItem.leftBarButtonItem = UIBarButtonItem(customView:searchBar)
   }
 
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    removeFromParentViewController()
+  }
+
   func handleHideOnSwipe(recognizer: UISwipeGestureRecognizer) {
     // hide the status bar for up swipes, show it for down swipes
     let hideStatusBar = navigationController!.navigationBar.frame.minY < -headerFooterHight

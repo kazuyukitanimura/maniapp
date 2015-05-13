@@ -29,6 +29,11 @@ class PhotoController: UIViewController, UIImagePickerControllerDelegate, UINavi
     }
   }
 
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    removeFromParentViewController()
+  }
+
   func presentViewController(completion: (() -> Void)?) {
     presentViewController(imagePicker, animated: true, completion: completion)
   }

@@ -10,11 +10,12 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController, UIGestureRecognizerDelegate, FBSDKLoginButtonDelegate {
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
   let colorTop = AppColors.Yellow.CGColor
   let colorBottom = AppColors.Orange.CGColor
   let backgroundGradient = CAGradientLayer()
   private let LOGGEDIN = "LOGGEDIN"
+  private let FB_GRAPH_API_PREFIX = "https://graph.facebook.com/"
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,16 +23,18 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate, FBSDKL
     backgroundGradient.locations = [0.0, 1.0]
     backgroundGradient.frame = view.frame
     view.layer.insertSublayer(backgroundGradient, atIndex: 0)
-    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTapGesture:"))
     let loginButton = FBSDKLoginButton()
+    loginButton.readPermissions = ["public_profile", "email", "user_friends"]
     loginButton.delegate = self
     loginButton.center = view.center
     view.addSubview(loginButton)
+    FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "onProfileUpdated:", name: FBSDKProfileDidChangeNotification, object: nil)
   }
 
-  func handleTapGesture(recognizer: UITapGestureRecognizer) {
-    view.removeFromSuperview()
-    kvStore(LOGGEDIN, true)
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    removeFromParentViewController()
   }
 
   func isLoggedIn() -> Bool {
@@ -50,11 +53,35 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate, FBSDKL
       // do nothing
       return
     }
-    // FIXME This will be called after authentication is checked...
     kvStore(LOGGEDIN, true)
+    NSNotificationCenter.defaultCenter().postNotificationName("loadData", object: nil) // TODO change to delegate?
   }
 
   func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
     kvStore(LOGGEDIN, false)
+  }
+
+  func onProfileUpdated(loginButton: FBSDKLoginButton!) {
+    let currentProfile = FBSDKProfile.currentProfile()
+    let imageUrl = FB_GRAPH_API_PREFIX + currentProfile.imagePathForPictureMode(.Square, size: CGSizeMake(160, 160))
+    let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+    Models.REALM.transactionWithBlock({ () -> Void in
+      var profile = Models.getMe()
+      if (profile.firstName == "") {
+        profile.firstName = currentProfile.firstName
+      }
+      if (profile.lastName == "") {
+        profile.lastName = currentProfile.lastName
+      }
+      if (profile.photo.length == 0) {
+        profile.photo = imageData
+      }
+    })
+    /*
+    if !isLoggedIn() {
+      NSNotificationCenter.defaultCenter().postNotificationName("loadData", object: nil) // TODO change to delegate?
+      kvStore(LOGGEDIN, true)
+    }
+    */
   }
 }

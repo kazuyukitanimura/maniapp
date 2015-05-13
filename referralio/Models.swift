@@ -14,7 +14,7 @@ struct Models {
   static let REALM = RLMRealm.defaultRealm()
 
   static func setup() {
-    RLMRealm.setDefaultRealmSchemaVersion(7, withMigrationBlock: {migration, oldSchemaVersion in
+    RLMRealm.setDefaultRealmSchemaVersion(8, withMigrationBlock: {migration, oldSchemaVersion in
       // do nothing here, auto migration
     })
     println(REALM.path)
@@ -58,6 +58,7 @@ class Profile: RLMObject {
   dynamic var skills = ""
   dynamic var blog = ""
   dynamic var github = ""
-  dynamic var photo = UIImageJPEGRepresentation(UIImage(named: "defaultProfile2.png"), 1.0)
+  dynamic var photo:NSData! = NSData()
+  dynamic var email = ""
   dynamic var distance = 0 // myself is 0, direct friend is 1
 }

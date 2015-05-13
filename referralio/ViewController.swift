@@ -15,7 +15,6 @@ enum ViewState {
 
 class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizerDelegate {
   var centerNavigationController: UINavigationController!
-  lazy var centerViewController = CenterViewController()
   lazy var menuViewController = MenuViewController()
   lazy var loginViewController = LoginViewController()
   var currentState: ViewState = .CenterView
@@ -25,24 +24,16 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
     super.viewDidLoad()
     Models.setup()
     NSNotificationCenter.defaultCenter().addObserver(self, selector:"applicationEnteredForeground:", name:"UIApplicationWillEnterForegroundNotification", object:nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector:"loadData:", name:"loadData", object:nil)
     authenticateUser()
     UIApplication.sharedApplication().statusBarStyle = .LightContent
-    centerViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu.png"), style: .Plain, target: self, action: "toggleMenuView")
-    centerNavigationController = UINavigationController(rootViewController: centerViewController)
-    view.insertSubview(centerNavigationController.view, atIndex: 1)
-    addChildViewController(centerNavigationController)
-    centerNavigationController.didMoveToParentViewController(self)
-    centerNavigationController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
-    view.insertSubview(menuViewController.view, belowSubview: centerNavigationController.view)
-    addChildViewController(menuViewController)
-    menuViewController.didMoveToParentViewController(self)
-    menuViewController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
-    menuViewController.loginButton.delegate = loginViewController
   }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+    centerNavigationController.view.removeFromSuperview()
+    menuViewController.view.removeFromSuperview()
   }
 
   func toggleMenuView() {
@@ -83,7 +74,26 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
     authenticateUser()
   }
 
-  func loadData() {
+  func loadData(notification: NSNotification) {
+    if (centerNavigationController == nil) {
+      let centerViewController = CenterViewController()
+      centerViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu.png"), style: .Plain, target: self, action: "toggleMenuView")
+      centerNavigationController = UINavigationController(rootViewController: centerViewController)
+    }
+    if (centerNavigationController.view.superview == nil) {
+      view.insertSubview(centerNavigationController.view, atIndex: 1)
+      addChildViewController(centerNavigationController)
+      centerNavigationController.didMoveToParentViewController(self)
+      centerNavigationController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
+    }
+    if (menuViewController.view.superview == nil) {
+      view.insertSubview(menuViewController.view, belowSubview: centerNavigationController.view)
+      addChildViewController(menuViewController)
+      menuViewController.didMoveToParentViewController(self)
+      menuViewController.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "handlePanGesture:"))
+      menuViewController.loginButton.delegate = loginViewController
+    }
+    hideLoginView()
   }
 
   func showLoginView() {
@@ -92,9 +102,13 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
     loginViewController.didMoveToParentViewController(self)
   }
 
+  func hideLoginView() {
+    loginViewController.view.removeFromSuperview()
+  }
+
   func authenticateUser() {
+    showLoginView()
     if !loginViewController.isLoggedIn() {
-      showLoginView()
       return
     }
     let context = LAContext()
@@ -105,10 +119,11 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
       context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString, reply: { (success: Bool, evalPolicyError: NSError?) -> Void in
         if success {
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-            self.loadData()
+            NSNotificationCenter.defaultCenter().postNotificationName("loadData", object: nil) // self.loadData()
           })
         } else {
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            // TODO logout from facebook?
             self.showLoginView()
           })
         }

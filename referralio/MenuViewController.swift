@@ -16,7 +16,13 @@ class MenuViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = AppColors.Black
+    loginButton.readPermissions = ["public_profile", "email", "user_friends"]
     let constrainedViews = ConstrainedViews(views: ["loginButton": loginButton], formats:["H:|-(>=16)-[loginButton]-16-|", "V:|-64-[loginButton]-(>=32)-|"])
     view.addConstrainedViews(constrainedViews)
+  }
+
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    removeFromParentViewController()
   }
 }
