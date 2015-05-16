@@ -16,6 +16,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
   let backgroundGradient = CAGradientLayer()
   private let LOGGEDIN = "LOGGEDIN"
   private let FB_GRAPH_API_PREFIX = "https://graph.facebook.com/"
+  private var notificationToken: Models.NotificationToken!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,7 +51,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
       return
     } else if (result.declinedPermissions.count > 0) {
       // logout for declined permissions
-      FBSDKLoginManager().logOut()
+      logout()
       return
     } else if (result.isCancelled) {
       // do nothing
@@ -64,8 +65,16 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     kvStore(LOGGEDIN, false)
   }
 
+  func logout() {
+    FBSDKLoginManager().logOut()
+    kvStore(LOGGEDIN, false)
+  }
+
   func onProfileUpdated(loginButton: FBSDKLoginButton!) {
     let currentProfile = FBSDKProfile.currentProfile()
+    if (currentProfile == nil) {
+      return
+    }
     let imageUrl = FB_GRAPH_API_PREFIX + currentProfile.imagePathForPictureMode(.Square, size: CGSizeMake(160, 160))
     let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
     Models.REALM.transactionWithBlock({ () -> Void in
@@ -80,6 +89,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         profile.photo = imageData
       }
     })
+    notificationToken = Models.REALM.addNotificationBlock { notification, realm in
+      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+        NSNotificationCenter.defaultCenter().postNotificationName("loadData", object: nil) // TODO change to delegate?
+        Models.REALM.removeNotification(self.notificationToken)
+      })
+    }
     /*
     if !isLoggedIn() {
       NSNotificationCenter.defaultCenter().postNotificationName("loadData", object: nil) // TODO change to delegate?

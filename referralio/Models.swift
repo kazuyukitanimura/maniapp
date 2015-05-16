@@ -10,6 +10,8 @@ import UIKit
 import Realm
 
 struct Models {
+  typealias NotificationToken = RLMNotificationToken
+
   // Get the default Realm
   static let REALM = RLMRealm.defaultRealm()
 
@@ -17,17 +19,17 @@ struct Models {
     RLMRealm.setDefaultRealmSchemaVersion(8, withMigrationBlock: {migration, oldSchemaVersion in
       // do nothing here, auto migration
     })
-    println(REALM.path)
+    //println(REALM.path)
   }
 
   static func getProfile(rowId: UInt) -> Profile {
     let profiles = Profile.allObjects()
     if (profiles.count <= rowId) {
-      for _ in profiles.count...rowId {
-        REALM.transactionWithBlock({ () -> Void in
+      REALM.transactionWithBlock({ () -> Void in
+        for _ in profiles.count...rowId {
           self.REALM.addObject(Profile())
-        })
-      }
+        }
+      })
     }
     return profiles[rowId] as! Profile
   }
@@ -37,6 +39,12 @@ struct Models {
   }
 
   static func getDraftMe() -> Profile {
+    let profiles = Profile.allObjects()
+    if (profiles.count <= 1) {
+      REALM.transactionWithBlock({ () -> Void in
+        self.REALM.addObject(self.getMe())
+      })
+    }
     return getProfile(1)
   }
 }

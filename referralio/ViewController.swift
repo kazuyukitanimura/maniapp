@@ -123,7 +123,7 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
           })
         } else {
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-            // TODO logout from facebook?
+            self.loginViewController.logout()
             self.showLoginView()
           })
         }
