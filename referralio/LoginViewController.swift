@@ -44,10 +44,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
   func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
     if (error != nil) {
       // alert error
+      var alert = UIAlertController(title: error.localizedDescription, message: "Please check the network connection", preferredStyle: UIAlertControllerStyle.Alert)
+      alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+      self.presentViewController(alert, animated: true, completion: nil)
       return
     } else if (result.declinedPermissions.count > 0) {
       // logout for declined permissions
-      loginButtonDidLogOut(loginButton)
+      FBSDKLoginManager().logOut()
       return
     } else if (result.isCancelled) {
       // do nothing
