@@ -58,7 +58,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
       return
     }
     kvStore(LOGGEDIN, true)
-    NSNotificationCenter.defaultCenter().postNotificationName("loadData", object: nil) // TODO change to delegate?
   }
 
   func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
@@ -77,8 +76,17 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     let imageUrl = FB_GRAPH_API_PREFIX + currentProfile.imagePathForPictureMode(.Square, size: CGSizeMake(160, 160))
     let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+    var profile = Models.getMe()
+
+    // need to register notification first before changing models
+    notificationToken = Models.REALM.addNotificationBlock { notification, realm in
+      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+        NSNotificationCenter.defaultCenter().postNotificationName("loadData", object: nil) // TODO change to delegate?
+        Models.REALM.removeNotification(self.notificationToken)
+      })
+    }
+
     Models.REALM.transactionWithBlock({ () -> Void in
-      var profile = Models.getMe()
       if (profile.firstName == "") {
         profile.firstName = currentProfile.firstName
       }
@@ -89,17 +97,5 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         profile.photo = imageData
       }
     })
-    notificationToken = Models.REALM.addNotificationBlock { notification, realm in
-      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-        NSNotificationCenter.defaultCenter().postNotificationName("loadData", object: nil) // TODO change to delegate?
-        Models.REALM.removeNotification(self.notificationToken)
-      })
-    }
-    /*
-    if !isLoggedIn() {
-      NSNotificationCenter.defaultCenter().postNotificationName("loadData", object: nil) // TODO change to delegate?
-      kvStore(LOGGEDIN, true)
-    }
-    */
   }
 }
