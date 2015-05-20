@@ -11,9 +11,10 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
-  let colorTop = AppColors.Yellow.CGColor
-  let colorBottom = AppColors.Orange.CGColor
-  let backgroundGradient = CAGradientLayer()
+  private let colorTop = AppColors.Yellow.CGColor
+  private let colorBottom = AppColors.Orange.CGColor
+  private let backgroundGradient = CAGradientLayer()
+  private let activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
   private let LOGGEDIN = "LOGGEDIN"
   private let FB_GRAPH_API_PREFIX = "https://graph.facebook.com/"
   private var notificationToken: Models.NotificationToken!
@@ -31,6 +32,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     view.addSubview(loginButton)
     FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "onProfileUpdated:", name: FBSDKProfileDidChangeNotification, object: nil)
+    activityView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+    activityView.center = view.center
+    activityView.startAnimating()
   }
 
   override func viewDidDisappear(animated: Bool) {
@@ -43,18 +47,19 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
   }
 
   func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    view.addSubview(activityView)
     if (error != nil) {
       // alert error
       var alert = UIAlertController(title: error.localizedDescription, message: "Please check the network connection", preferredStyle: UIAlertControllerStyle.Alert)
       alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
       self.presentViewController(alert, animated: true, completion: nil)
       return
+    } else if (result.isCancelled) {
+      // do nothing
+      return
     } else if (result.declinedPermissions.count > 0) {
       // logout for declined permissions
       logout()
-      return
-    } else if (result.isCancelled) {
-      // do nothing
       return
     }
     kvStore(LOGGEDIN, true)
@@ -84,6 +89,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
       NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
         NSNotificationCenter.defaultCenter().postNotificationName("loadData", object: nil) // TODO change to delegate?
         Models.REALM.removeNotification(self.notificationToken)
+        self.activityView.removeFromSuperview()
       })
     }
 
