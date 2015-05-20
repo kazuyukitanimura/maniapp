@@ -39,12 +39,6 @@ struct Models {
   }
 
   static func getDraftMe() -> Profile {
-    let profiles = Profile.allObjects()
-    if (profiles.count <= 1) {
-      REALM.transactionWithBlock({ () -> Void in
-        self.REALM.addObject(self.getMe())
-      })
-    }
     return getProfile(1)
   }
 }

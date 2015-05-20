@@ -76,7 +76,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     let imageUrl = FB_GRAPH_API_PREFIX + currentProfile.imagePathForPictureMode(.Square, size: CGSizeMake(160, 160))
     let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
-    var profile = Models.getMe()
+    var me = Models.getMe()
+    var draftMe = Models.getDraftMe()
 
     // need to register notification first before changing models
     notificationToken = Models.REALM.addNotificationBlock { notification, realm in
@@ -87,14 +88,23 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
 
     Models.REALM.transactionWithBlock({ () -> Void in
-      if (profile.firstName == "") {
-        profile.firstName = currentProfile.firstName
+      if (me.firstName.isEmpty) {
+        if (draftMe.firstName.isEmpty) {
+          draftMe.firstName = currentProfile.firstName
+        }
+        me.firstName = currentProfile.firstName
       }
-      if (profile.lastName == "") {
-        profile.lastName = currentProfile.lastName
+      if (me.lastName.isEmpty) {
+        if (draftMe.lastName.isEmpty) {
+          draftMe.lastName = currentProfile.lastName
+        }
+        me.lastName = currentProfile.lastName
       }
-      if (profile.photo.length == 0) {
-        profile.photo = imageData
+      if (me.photo.length == 0) {
+        if (draftMe.photo.length == 0) {
+          draftMe.photo = imageData
+        }
+        me.photo = imageData
       }
     })
   }
