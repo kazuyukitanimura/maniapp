@@ -14,6 +14,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
   private let colorTop = AppColors.Yellow.CGColor
   private let colorBottom = AppColors.Orange.CGColor
   private let backgroundGradient = CAGradientLayer()
+  // TODO create a better loading indicator
   private let activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
   private let LOGGEDIN = "LOGGEDIN"
   private let FB_GRAPH_API_PREFIX = "https://graph.facebook.com/"
@@ -37,12 +38,20 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     activityView.startAnimating()
   }
 
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    activityView.removeFromSuperview()
+  }
+
   override func viewDidDisappear(animated: Bool) {
     super.viewDidDisappear(animated)
     removeFromParentViewController()
   }
 
   func isLoggedIn() -> Bool {
+    if TARGET_IPHONE_SIMULATOR == 1 { // skip authentication for debugging
+      return true
+    }
     return kvLoad(LOGGEDIN) as? Bool ?? false
   }
 
@@ -79,8 +88,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     if (currentProfile == nil) {
       return
     }
-    let imageUrl = FB_GRAPH_API_PREFIX + currentProfile.imagePathForPictureMode(.Square, size: CGSizeMake(160, 160))
-    let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
     var me = Models.getMe()
     var draftMe = Models.getDraftMe()
 
@@ -107,6 +114,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         me.lastName = currentProfile.lastName
       }
       if (me.photo.length == 0) {
+        let imageUrl = self.FB_GRAPH_API_PREFIX + currentProfile.imagePathForPictureMode(.Square, size: CGSizeMake(160, 160))
+        let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!) // TODO this is a blocking call
         if (draftMe.photo.length == 0) {
           draftMe.photo = imageData
         }

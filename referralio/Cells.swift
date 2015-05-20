@@ -11,7 +11,9 @@ import UIKit
 let titleFont = UIFont.systemFontOfSize(17.0)
 let subTitleFont = UIFont.systemFontOfSize(12.0)
 let profileSize:CGFloat = 56
+let bigPad = 24
 let pad = 16
+let padThreeQuarter = 12
 let padHalf = 8
 let padQuarter = 4
 var cells:[ConstrainedViews] = [
@@ -35,8 +37,8 @@ var cells:[ConstrainedViews] = [
     ],
     "preview": UIView(),
     ], formats: [
-      "H:|-\(padHalf + padQuarter)-[photo(\(profileSize))]-\(pad)-[title]-\(pad)-|",
-      "H:|-\(padHalf + padQuarter)-[photo(\(profileSize))]-\(pad)-[subTitle]-\(pad)-|",
+      "H:|-\(padThreeQuarter)-[photo(\(profileSize))]-\(pad)-[title]-\(pad)-|",
+      "H:|-\(padThreeQuarter)-[photo(\(profileSize))]-\(pad)-[subTitle]-\(pad)-|",
       "H:|-\(pad)-[preview]-\(pad)-|",
       "V:|-\(pad)-[title]-\(padHalf)-[subTitle]-(>=\(pad))-|",
       "V:|-\(pad)-[photo(\(profileSize))]-\(padHalf)-[preview]-(>=\(padHalf))-|",
@@ -55,10 +57,10 @@ var cells:[ConstrainedViews] = [
     ],
     "preview": UIView(),
     ], formats: [
-      "H:|-8-[title]-8-|",
-      "H:|-8-[subTitle]-8-|",
-      "H:|-8-[preview]-8-|",
-      "V:|-8-[title]-2-[subTitle]-4-[preview]-(>=4)-|",
+      "H:|-\(padThreeQuarter)-[title]-\(pad)-|",
+      "H:|-\(padThreeQuarter)-[subTitle]-\(pad)-|",
+      "H:|-\(pad)-[preview]-\(pad)-|",
+      "V:|-\(pad)-[title]-\(padHalf)-[subTitle]-\(padHalf)-[preview]-(>=\(padHalf))-|",
     ]),
   // 2
   ConstrainedViews(views: [
@@ -74,10 +76,10 @@ var cells:[ConstrainedViews] = [
     ],
     "preview": UIView(),
     ], formats: [
-      "H:|-8-[title]-8-|",
-      "H:|-8-[subTitle]-8-|",
-      "H:|-8-[preview]-8-|",
-      "V:|-8-[title]-2-[subTitle]-4-[preview]-(>=4)-|",
+      "H:|-\(padThreeQuarter)-[title]-\(pad)-|",
+      "H:|-\(padThreeQuarter)-[subTitle]-\(pad)-|",
+      "H:|-\(pad)-[preview]-\(pad)-|",
+      "V:|-\(pad)-[title]-\(padHalf)-[subTitle]-\(padHalf)-[preview]-(>=\(padHalf))-|",
     ]),
   // 3
   ConstrainedViews(views: [
@@ -88,9 +90,9 @@ var cells:[ConstrainedViews] = [
     ],
     "preview": UIView(),
     ], formats: [
-      "H:|-8-[title]-8-|",
-      "H:|-8-[preview]-8-|",
-      "V:|-8-[title]-4-[preview]-(>=4)-|",
+      "H:|-\(padThreeQuarter)-[title]-\(pad)-|",
+      "H:|-\(pad)-[preview]-\(pad)-|",
+      "V:|-\(pad)-[title]-\(padHalf)-[preview]-(>=\(padHalf))-|",
     ]),
   // 4
   ConstrainedViews(views: [
@@ -101,8 +103,8 @@ var cells:[ConstrainedViews] = [
     ],
     "preview": UIView(),
     ], formats: [
-      "H:|-8-[title]-8-|",
-      "H:|-8-[preview]-8-|",
-      "V:|-8-[title]-4-[preview]-(>=4)-|",
+      "H:|-\(padThreeQuarter)-[title]-\(pad)-|",
+      "H:|-\(pad)-[preview]-\(pad)-|",
+      "V:|-\(pad)-[title]-\(padHalf)-[preview]-(>=\(padHalf))-|",
     ]),
 ]

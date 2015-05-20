@@ -128,6 +128,10 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
           })
         }
       })
+    } else {
+      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+        NSNotificationCenter.defaultCenter().postNotificationName("loadData", object: nil) // self.loadData()
+      })
     }
   }
 }
