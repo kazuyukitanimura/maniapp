@@ -15,8 +15,6 @@ protocol ProfileViewControllerDelegate {
 }
 
 class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDelegate {
-  let boldFont = UIFont.boldSystemFontOfSize(13.0)
-  let normalFont = UIFont.systemFontOfSize(13.0)
   var delegate: ProfileViewControllerDelegate?
   var indexPath: NSIndexPath?
   var backspace = false
@@ -59,33 +57,33 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     var profileViews = [String:AnyObject]()
     profileViews["firstNameLabel"] = [
       "text": "First",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[firstName] = [
       "placeholder": "First name",
       "text": draftMe.firstName,
-      "font": draftMe.firstName == me.firstName ? normalFont : boldFont,
+      "font": draftMe.firstName == me.firstName ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "keyboardType": UIKeyboardType.NamePhonePad.rawValue,
       "delegate": self,
     ]
     profileViews["lastNameLabel"] = [
       "text": "Last",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[lastName] = [
       "placeholder": "Last name",
       "text": draftMe.lastName,
-      "font": draftMe.lastName == me.lastName ? normalFont : boldFont,
+      "font": draftMe.lastName == me.lastName ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "keyboardType": UIKeyboardType.NamePhonePad.rawValue,
       "delegate": self,
     ]
     profileViews["currentAffiliationLabel"] = [
       "text": "Affiliation",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[updatePhotoLabel] = [
@@ -98,157 +96,157 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
     profileViews[currentAffiliation] = [
       "placeholder": "Current affiliation",
       "text": draftMe.currentAffiliation,
-      "font": draftMe.currentAffiliation == me.currentAffiliation ? normalFont : boldFont,
+      "font": draftMe.currentAffiliation == me.currentAffiliation ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "delegate": self,
     ]
     profileViews["currentTitleLabel"] = [
       "text": "Job Title",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[currentTitle] = [
       "placeholder": "Current title",
       "text": draftMe.currentTitle,
-      "font": draftMe.currentTitle == me.currentTitle ? normalFont : boldFont,
+      "font": draftMe.currentTitle == me.currentTitle ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "delegate": self,
     ]
     profileViews["currentLocationLabel"] = [
       "text": "Your location",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[currentLocation] = [
       "placeholder": "Current location",
       "text": draftMe.currentLocation,
-      "font": draftMe.currentLocation == me.currentLocation ? normalFont : boldFont,
+      "font": draftMe.currentLocation == me.currentLocation ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "delegate": self,
     ]
     profileViews["willingToRelocateLabel"] = [
       "text": "Willing to relocate?",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[willingToRelocate] = [
       "placeholder": "Yes / No",
       "text": draftMe.willingToRelocate,
-      "font": draftMe.willingToRelocate == me.willingToRelocate ? normalFont : boldFont,
+      "font": draftMe.willingToRelocate == me.willingToRelocate ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "keyboardType": UIKeyboardType.NumberPad.rawValue, // fake
       "delegate": self,
     ]
     profileViews["minCashComensationLabel"] = [
       "text": "Min cash compensation",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[minCashComensation] = [
       "placeholder": "(inc. bonus) for a new job",
       "text": draftMe.minCashComensation,
-      "font": draftMe.minCashComensation == me.minCashComensation ? normalFont : boldFont,
+      "font": draftMe.minCashComensation == me.minCashComensation ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "keyboardType": UIKeyboardType.NumberPad.rawValue,
       "delegate": self,
     ]
     profileViews["minEquityComensationLabel"] = [
       "text": "Min equity compensation",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[minEquityComensation] = [
       "placeholder": "(X %) for a new job",
       "text": draftMe.minEquityComensation,
-      "font": draftMe.minEquityComensation == me.minEquityComensation ? normalFont : boldFont,
+      "font": draftMe.minEquityComensation == me.minEquityComensation ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "keyboardType": UIKeyboardType.NumberPad.rawValue,
       "delegate": self,
     ]
     profileViews["targetCompanySizeLabel"] = [
       "text": "Target company size",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[targetCompanySize] = [
       "placeholder": "Number of employees",
       "text": draftMe.targetCompanySize,
-      "font": draftMe.targetCompanySize == me.targetCompanySize ? normalFont : boldFont,
+      "font": draftMe.targetCompanySize == me.targetCompanySize ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "keyboardType": UIKeyboardType.NumberPad.rawValue,
       "delegate": self,
     ]
     profileViews["thankYouTipLabel"] = [
       "text": "Thank you tip $ amount",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[thankYouTip] = [
       "placeholder": "When I get a new job",
       "text": draftMe.thankYouTip,
-      "font": draftMe.thankYouTip == me.thankYouTip ? normalFont : boldFont,
+      "font": draftMe.thankYouTip == me.thankYouTip ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "keyboardType": UIKeyboardType.NumberPad.rawValue,
       "delegate": self,
     ]
     profileViews["dreamCompaniesLabel"] = [
       "text": "Dream companies",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[dreamCompanies] = [
       "placeholder": "Comma separated",
       "text": draftMe.dreamCompanies,
-      "font": draftMe.dreamCompanies == me.dreamCompanies ? normalFont : boldFont,
+      "font": draftMe.dreamCompanies == me.dreamCompanies ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "delegate": self,
     ]
     profileViews["lookingForLabel"] = [
       "text": "Objectives / Looking for",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[lookingFor] = [
       "placeholder": "Comma separated",
       "text": draftMe.lookingFor,
-      "font": draftMe.lookingFor == me.lookingFor ? normalFont : boldFont,
+      "font": draftMe.lookingFor == me.lookingFor ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "delegate": self,
     ]
     profileViews["skillsLabel"] = [
       "text": "Skills",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[skills] = [
       "placeholder": "Comma separated",
       "text": draftMe.skills,
-      "font": draftMe.skills == me.skills ? normalFont : boldFont,
+      "font": draftMe.skills == me.skills ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "delegate": self,
     ]
     profileViews["blogLabel"] = [
       "text": "Blog URL",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[blog] = [
       "placeholder": "Talk about yourself",
       "text": draftMe.blog,
-      "font": draftMe.blog == me.blog ? normalFont : boldFont,
+      "font": draftMe.blog == me.blog ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "keyboardType": UIKeyboardType.URL.rawValue,
       "delegate": self,
     ]
     profileViews["githubLabel"] = [
       "text": "Github URL",
-      "font": boldFont,
+      "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
     profileViews[github] = [
       "placeholder": "Show your work",
       "text": draftMe.github,
-      "font": draftMe.github == me.github ? normalFont : boldFont,
+      "font": draftMe.github == me.github ? AppFonts.normalFont : AppFonts.boldFont,
       "textColor": AppColors.Black,
       "keyboardType": UIKeyboardType.URL.rawValue,
       "delegate": self,

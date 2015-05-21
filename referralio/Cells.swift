@@ -8,8 +8,6 @@
 
 import UIKit
 
-let titleFont = UIFont.systemFontOfSize(17.0)
-let subTitleFont = UIFont.systemFontOfSize(12.0)
 let profileSize:CGFloat = 56
 let bigPad = 24
 let pad = 16
@@ -21,12 +19,12 @@ var cells:[ConstrainedViews] = [
   ConstrainedViews(views: [
     "title": [
       "text": "Your Name",
-      "font": titleFont,
+      "font": AppFonts.titleFont,
       "textColor": AppColors.Orange,
     ],
     "subTitle": [
       "text": "Tap to pdate your title and affiliation",
-      "font": subTitleFont,
+      "font": AppFonts.subTitleFont,
       "textColor": AppColors.DarkGray,
     ],
     "photo": [
@@ -47,12 +45,12 @@ var cells:[ConstrainedViews] = [
   ConstrainedViews(views: [
     "title": [
       "text": "Referral Center",
-      "font": titleFont,
+      "font": AppFonts.titleFont,
       "textColor": AppColors.Orange,
     ],
     "subTitle": [
       "text": "Check your referral status or Update your interview status",
-      "font": subTitleFont,
+      "font": AppFonts.subTitleFont,
       "textColor": AppColors.DarkGray,
     ],
     "preview": UIView(),
@@ -66,12 +64,12 @@ var cells:[ConstrainedViews] = [
   ConstrainedViews(views: [
     "title": [
       "text": "Notifications",
-      "font": titleFont,
+      "font": AppFonts.titleFont,
       "textColor": AppColors.Orange,
     ],
     "subTitle": [
       "text": "0 new notifications",
-      "font": subTitleFont,
+      "font": AppFonts.subTitleFont,
       "textColor": AppColors.DarkGray,
     ],
     "preview": UIView(),
@@ -85,7 +83,7 @@ var cells:[ConstrainedViews] = [
   ConstrainedViews(views: [
     "title": [
       "text": "News Feed 1",
-      "font": titleFont,
+      "font": AppFonts.titleFont,
       "textColor": AppColors.Orange,
     ],
     "preview": UIView(),
@@ -98,7 +96,7 @@ var cells:[ConstrainedViews] = [
   ConstrainedViews(views: [
     "title": [
       "text": "News Feed 2",
-      "font": titleFont,
+      "font": AppFonts.titleFont,
       "textColor": AppColors.Orange,
     ],
     "preview": UIView(),

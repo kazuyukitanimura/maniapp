@@ -95,7 +95,7 @@ class UpdatePhotoButton: AppButton {
     self.idOfPhoto = idOfPhoto
     setTitle("Update photo", forState: .Normal)
     setTitleColor(AppColors.Orange, forState: .Normal)
-    titleLabel!.font = UIFont.boldSystemFontOfSize(13.0)
+    titleLabel!.font = AppFonts.boldFont
     layer.borderColor = AppColors.Orange.CGColor
     addTarget(self, action: "onClickButton:", forControlEvents: .TouchUpInside)
     activityView.frame = CGRect(x: 8, y: 4, width: 25, height: 25)

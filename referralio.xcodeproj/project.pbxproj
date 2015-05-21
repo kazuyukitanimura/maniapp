@@ -43,6 +43,7 @@
 		80E8221A1AD3068600D85EF7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E822191AD3068600D85EF7 /* ProfileViewController.swift */; };
 		80E8221C1ADB597000D85EF7 /* AppButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E8221B1ADB597000D85EF7 /* AppButtons.swift */; };
 		80F9AA691B0C2FF80033BF51 /* ReferralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9AA681B0C2FF80033BF51 /* ReferralViewController.swift */; };
+		80F9AA6B1B0DBCDE0033BF51 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9AA6A1B0DBCDE0033BF51 /* AppFonts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		80E822191AD3068600D85EF7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		80E8221B1ADB597000D85EF7 /* AppButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppButtons.swift; sourceTree = "<group>"; };
 		80F9AA681B0C2FF80033BF51 /* ReferralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralViewController.swift; sourceTree = "<group>"; };
+		80F9AA6A1B0DBCDE0033BF51 /* AppFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				80D669E91AC547B400D8B8CE /* AppColors.swift */,
 				80D669BB1ABEB06900D8B8CE /* AppDelegate.swift */,
 				80E8221B1ADB597000D85EF7 /* AppButtons.swift */,
+				80F9AA6A1B0DBCDE0033BF51 /* AppFonts.swift */,
 				8038B8231ADB999500FC9515 /* AppKV.swift */,
 				802CC3961ACA538B00465D88 /* Cells.swift */,
 				80CC30C41AECC38900DFA988 /* Extensions.swift */,
@@ -322,6 +325,7 @@
 			files = (
 				80D669E81AC482D700D8B8CE /* LoginViewController.swift in Sources */,
 				80CC30C51AECC38900DFA988 /* Extensions.swift in Sources */,
+				80F9AA6B1B0DBCDE0033BF51 /* AppFonts.swift in Sources */,
 				80D669C11ABEB06900D8B8CE /* ViewController.swift in Sources */,
 				80D669E61AC2981E00D8B8CE /* MenuViewController.swift in Sources */,
 				80E8221C1ADB597000D85EF7 /* AppButtons.swift in Sources */,

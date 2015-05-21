@@ -29,6 +29,8 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     navigationController!.navigationBar.tintColor = AppColors.White
     navigationController!.hidesBarsOnSwipe = true
     navigationController!.barHideOnSwipeGestureRecognizer.addTarget(self, action: "handleHideOnSwipe:")
+    //navigationController!.hidesBarsOnTap = false
+    navigationController!.barHideOnTapGestureRecognizer.addTarget(self, action: "handleHideOnTap:")
     searchBar.placeholder = "Search friends, updates, referrals"
     searchBar.tintColor = AppColors.White
     searchBar.searchBarStyle = .Minimal
@@ -53,6 +55,11 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     if (!hideStatusBar) {
       automaticallyAdjustsScrollViewInsets = true
     }
+  }
+
+  func handleHideOnTap(recognizer: UITapGestureRecognizer) {
+    //recognizer.
+    println("###################################")
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

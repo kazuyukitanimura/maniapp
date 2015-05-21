@@ -48,7 +48,7 @@ class MultipleChoiceView: UIPickerView, UIPickerViewDataSource, UIPickerViewDele
     let pickerLabel = UILabel()
     pickerLabel.textColor = AppColors.White
     pickerLabel.text = choices[row]
-    pickerLabel.font = UIFont.systemFontOfSize(26.0)
+    pickerLabel.font = AppFonts.pickerFont
     pickerLabel.textAlignment = NSTextAlignment.Center
     return pickerLabel
   }

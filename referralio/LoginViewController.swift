@@ -29,8 +29,16 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     let loginButton = FBSDKLoginButton()
     loginButton.readPermissions = ["public_profile", "email", "user_friends"]
     loginButton.delegate = self
-    loginButton.center = view.center
-    view.addSubview(loginButton)
+    let constrainedViews = ConstrainedViews(views: [
+      "title": [
+        "text": "Referral I/O",
+        "font": AppFonts.logoFont,
+        "textColor": AppColors.White,
+        "textAlignment": NSTextAlignment.Center.rawValue,
+      ],
+      "loginButton": loginButton,
+    ], formats:["H:|-[title]-|", "H:|-\(bigPad)-[loginButton]-\(bigPad)-|", "V:|-229-[title]-(>=\(bigPad))-[loginButton(\(bigPad * 2))]-229-|"])
+    view.addConstrainedViews(constrainedViews)
     FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "onProfileUpdated:", name: FBSDKProfileDidChangeNotification, object: nil)
     activityView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
