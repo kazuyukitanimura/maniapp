@@ -9,11 +9,6 @@
 import UIKit
 
 let profileSize:CGFloat = 56
-let bigPad = 24
-let pad = 16
-let padThreeQuarter = 12
-let padHalf = 8
-let padQuarter = 4
 var cells:[ConstrainedViews] = [
   // 0
   ConstrainedViews(views: [
@@ -35,11 +30,11 @@ var cells:[ConstrainedViews] = [
     ],
     "preview": UIView(),
     ], formats: [
-      "H:|-\(padThreeQuarter)-[photo(\(profileSize))]-\(pad)-[title]-\(pad)-|",
-      "H:|-\(padThreeQuarter)-[photo(\(profileSize))]-\(pad)-[subTitle]-\(pad)-|",
-      "H:|-\(pad)-[preview]-\(pad)-|",
-      "V:|-\(pad)-[title]-\(padHalf)-[subTitle]-(>=\(pad))-|",
-      "V:|-\(pad)-[photo(\(profileSize))]-\(padHalf)-[preview]-(>=\(padHalf))-|",
+      "H:|-\(AppPaddings.threeQuarter)-[photo(\(profileSize))]-\(AppPaddings.one)-[title]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.threeQuarter)-[photo(\(profileSize))]-\(AppPaddings.one)-[subTitle]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
+      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-(>=\(AppPaddings.one))-|",
+      "V:|-\(AppPaddings.one)-[photo(\(profileSize))]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
   // 1
   ConstrainedViews(views: [
@@ -60,11 +55,11 @@ var cells:[ConstrainedViews] = [
     ],
     "preview": UIView(),
     ], formats: [
-      "H:|-\(padThreeQuarter)-[title]-\(pad)-|",
-      "H:|-\(padThreeQuarter)-[subTitle]-\(pad)-|",
-      "H:|-\(padThreeQuarter)-[notifications]-\(pad)-|",
-      "H:|-\(pad)-[preview]-\(pad)-|",
-      "V:|-\(pad)-[title]-\(padHalf)-[subTitle]-\(padHalf)-[notifications]-\(padHalf)-[preview]-(>=\(padHalf))-|",
+      "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.threeQuarter)-[subTitle]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.threeQuarter)-[notifications]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
+      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-\(AppPaddings.half)-[notifications]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
   // 2
   ConstrainedViews(views: [
@@ -75,9 +70,9 @@ var cells:[ConstrainedViews] = [
     ],
     "preview": UIView(),
     ], formats: [
-      "H:|-\(padThreeQuarter)-[title]-\(pad)-|",
-      "H:|-\(pad)-[preview]-\(pad)-|",
-      "V:|-\(pad)-[title]-\(padHalf)-[preview]-(>=\(padHalf))-|",
+      "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
+      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
   // 3
   ConstrainedViews(views: [
@@ -88,9 +83,9 @@ var cells:[ConstrainedViews] = [
     ],
     "preview": UIView(),
     ], formats: [
-      "H:|-\(padThreeQuarter)-[title]-\(pad)-|",
-      "H:|-\(pad)-[preview]-\(pad)-|",
-      "V:|-\(pad)-[title]-\(padHalf)-[preview]-(>=\(padHalf))-|",
+      "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
+      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
   // 4
   ConstrainedViews(views: [
@@ -101,8 +96,8 @@ var cells:[ConstrainedViews] = [
     ],
     "preview": UIView(),
     ], formats: [
-      "H:|-\(padThreeQuarter)-[title]-\(pad)-|",
-      "H:|-\(pad)-[preview]-\(pad)-|",
-      "V:|-\(pad)-[title]-\(padHalf)-[preview]-(>=\(padHalf))-|",
+      "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
+      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
 ]

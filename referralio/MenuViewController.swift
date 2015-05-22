@@ -17,7 +17,7 @@ class MenuViewController: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = AppColors.Black
     loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-    let constrainedViews = ConstrainedViews(views: ["loginButton": loginButton], formats:["H:|-(>=16)-[loginButton]-16-|", "V:|-64-[loginButton]-(>=32)-|"])
+    let constrainedViews = ConstrainedViews(views: ["loginButton": loginButton], formats:["H:|-(>=\(AppPaddings.one))-[loginButton]-\(AppPaddings.one)-|", "V:|-\(AppPaddings.quadruple)-[loginButton]-(>=\(AppPaddings.double))-|"])
     view.addConstrainedViews(constrainedViews)
   }
 

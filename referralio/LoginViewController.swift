@@ -37,7 +37,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         "textAlignment": NSTextAlignment.Center.rawValue,
       ],
       "loginButton": loginButton,
-    ], formats:["H:|-[title]-|", "H:|-\(bigPad)-[loginButton]-\(bigPad)-|", "V:|-229-[title]-(>=\(bigPad))-[loginButton(\(bigPad * 2))]-229-|"])
+    ], formats:["H:|-[title]-|", "H:|-\(AppPaddings.oneHalf)-[loginButton]-\(AppPaddings.oneHalf)-|", "V:|-229-[title]-(>=\(AppPaddings.oneHalf))-[loginButton(\(AppPaddings.triple))]-229-|"])
     view.addConstrainedViews(constrainedViews)
     FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "onProfileUpdated:", name: FBSDKProfileDidChangeNotification, object: nil)

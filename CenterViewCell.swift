@@ -20,7 +20,7 @@ class CenterViewCell: UITableViewCell {
     innerView.layer.shadowOpacity = 0.1
     innerView.layer.shadowRadius = 1;
     innerView.layer.shadowOffset = CGSizeMake(0, 0);
-    let constrainedViews = ConstrainedViews(views: ["innerView": innerView], formats:["H:|-8-[innerView]-8-|", "V:|-4-[innerView]-4-|"])
+    let constrainedViews = ConstrainedViews(views: ["innerView": innerView], formats:["H:|-\(AppPaddings.half)-[innerView]-\(AppPaddings.half)-|", "V:|-\(AppPaddings.quarter)-[innerView]-\(AppPaddings.quarter)-|"])
     contentView.addConstrainedViews(constrainedViews)
     selectionStyle = .None
   }
