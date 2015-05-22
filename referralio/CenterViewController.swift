@@ -30,7 +30,7 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     navigationController!.hidesBarsOnSwipe = true
     navigationController!.barHideOnSwipeGestureRecognizer.addTarget(self, action: "handleHideOnSwipe:")
     //navigationController!.hidesBarsOnTap = false
-    navigationController!.barHideOnTapGestureRecognizer.addTarget(self, action: "handleHideOnTap:")
+    //navigationController!.barHideOnTapGestureRecognizer.addTarget(self, action: "handleHideOnTap:")
     searchBar.placeholder = "Search friends, updates, referrals"
     searchBar.tintColor = AppColors.White
     searchBar.searchBarStyle = .Minimal
@@ -57,10 +57,10 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     }
   }
 
-  func handleHideOnTap(recognizer: UITapGestureRecognizer) {
+  //func handleHideOnTap(recognizer: UITapGestureRecognizer) {
     // FIXME do not show the navigation bar when one taps at the very top of the screen
-    println("###################################")
-  }
+  //  println("###################################")
+  //}
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return cells.count

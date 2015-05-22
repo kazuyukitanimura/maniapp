@@ -478,6 +478,7 @@
 				INFOPLIST_FILE = referralio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = referralio;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -493,6 +494,7 @@
 				INFOPLIST_FILE = referralio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = referralio;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

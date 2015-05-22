@@ -53,21 +53,7 @@ var cells:[ConstrainedViews] = [
       "font": AppFonts.subTitleFont,
       "textColor": AppColors.DarkGray,
     ],
-    "preview": UIView(),
-    ], formats: [
-      "H:|-\(padThreeQuarter)-[title]-\(pad)-|",
-      "H:|-\(padThreeQuarter)-[subTitle]-\(pad)-|",
-      "H:|-\(pad)-[preview]-\(pad)-|",
-      "V:|-\(pad)-[title]-\(padHalf)-[subTitle]-\(padHalf)-[preview]-(>=\(padHalf))-|",
-    ]),
-  // 2
-  ConstrainedViews(views: [
-    "title": [
-      "text": "Notifications",
-      "font": AppFonts.titleFont,
-      "textColor": AppColors.Orange,
-    ],
-    "subTitle": [
+    "notifications": [
       "text": "0 new notifications",
       "font": AppFonts.subTitleFont,
       "textColor": AppColors.DarkGray,
@@ -76,8 +62,22 @@ var cells:[ConstrainedViews] = [
     ], formats: [
       "H:|-\(padThreeQuarter)-[title]-\(pad)-|",
       "H:|-\(padThreeQuarter)-[subTitle]-\(pad)-|",
+      "H:|-\(padThreeQuarter)-[notifications]-\(pad)-|",
       "H:|-\(pad)-[preview]-\(pad)-|",
-      "V:|-\(pad)-[title]-\(padHalf)-[subTitle]-\(padHalf)-[preview]-(>=\(padHalf))-|",
+      "V:|-\(pad)-[title]-\(padHalf)-[subTitle]-\(padHalf)-[notifications]-\(padHalf)-[preview]-(>=\(padHalf))-|",
+    ]),
+  // 2
+  ConstrainedViews(views: [
+    "title": [
+      "text": "Friends",
+      "font": AppFonts.titleFont,
+      "textColor": AppColors.Orange,
+    ],
+    "preview": UIView(),
+    ], formats: [
+      "H:|-\(padThreeQuarter)-[title]-\(pad)-|",
+      "H:|-\(pad)-[preview]-\(pad)-|",
+      "V:|-\(pad)-[title]-\(padHalf)-[preview]-(>=\(padHalf))-|",
     ]),
   // 3
   ConstrainedViews(views: [

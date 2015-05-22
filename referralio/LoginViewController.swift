@@ -79,7 +79,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
       logout()
       return
     }
-    view.addSubview(ReferralViewController().view)
+    if TARGET_IPHONE_SIMULATOR != 1 { // for non simulators
+      view.addSubview(ReferralViewController().view)
+    }
     kvStore(LOGGEDIN, true)
   }
 
