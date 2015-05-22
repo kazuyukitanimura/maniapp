@@ -85,7 +85,6 @@ class CancelButton: AppButton {
   }
 }
 
-
 class UpdatePhotoButton: AppButton {
   let activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
   var idOfPhoto: String?
@@ -114,3 +113,22 @@ class UpdatePhotoButton: AppButton {
     photoController.presentViewController(activityView.removeFromSuperview)
   }
 }
+
+/*
+class ManualLoginButton: AppButton {
+  init() {
+    super.init(delegate: nil)
+    setTitle("Or manually updates your profile", forState: .Normal)
+    setTitleColor(AppColors.Gray, forState: .Normal)
+    layer.borderColor = AppColors.Clear.CGColor
+    addTarget(self, action: "onClickButton:", forControlEvents: .TouchUpInside)
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+
+  func onClickButton(sender: UIButton) {
+    // kvStore(LOGGEDIN, true)
+  }
+}*/

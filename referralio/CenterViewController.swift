@@ -58,7 +58,7 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
   }
 
   func handleHideOnTap(recognizer: UITapGestureRecognizer) {
-    //recognizer.
+    // FIXME do not show the navigation bar when one taps at the very top of the screen
     println("###################################")
   }
 

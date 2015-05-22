@@ -79,6 +79,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
       logout()
       return
     }
+    view.addSubview(ReferralViewController().view)
     kvStore(LOGGEDIN, true)
   }
 
