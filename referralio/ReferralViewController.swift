@@ -10,7 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class ReferralViewController: UIViewController {
+class ReferralViewController: PreviewViewController {
   // XXX /me/friends works only for who uses this app already
   // http://stackoverflow.com/questions/29428478/facebook-friends-list-api-for-swift-ios
   let friendsRequest = FBSDKGraphRequest(graphPath: "/me/taggable_friends", parameters: nil)
@@ -18,6 +18,9 @@ class ReferralViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    if TARGET_IPHONE_SIMULATOR == 1 { // skip friend request for simulators
+      return
+    }
     friendsRequest.startWithCompletionHandler({(connection: FBSDKGraphRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
       if (error != nil) {
         println("Error Getting Friends \(error)")

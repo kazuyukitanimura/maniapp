@@ -14,7 +14,7 @@ protocol ProfileViewControllerDelegate {
   func canceled(indexPath: NSIndexPath)
 }
 
-class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDelegate {
+class ProfileViewController: PreviewViewController, AppButtonDelegate, UITextFieldDelegate {
   var delegate: ProfileViewControllerDelegate?
   var indexPath: NSIndexPath?
   var backspace = false
@@ -49,9 +49,6 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    parentViewController?.addChildViewController(self)
-    didMoveToParentViewController(parentViewController)
-    view.backgroundColor = AppColors.Clear
     let me = Models.getMe()
     let draftMe = Models.getDraftMe()
     var profileViews = [String:AnyObject]()
@@ -288,11 +285,6 @@ class ProfileViewController: UIViewController, AppButtonDelegate, UITextFieldDel
         }
       }
     })
-  }
-
-  override func viewDidDisappear(animated: Bool) {
-    super.viewDidDisappear(animated)
-    removeFromParentViewController()
   }
 
   // hide keyboard when it lost focus

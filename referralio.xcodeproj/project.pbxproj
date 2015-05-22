@@ -45,6 +45,8 @@
 		80F9AA691B0C2FF80033BF51 /* ReferralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9AA681B0C2FF80033BF51 /* ReferralViewController.swift */; };
 		80F9AA6B1B0DBCDE0033BF51 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9AA6A1B0DBCDE0033BF51 /* AppFonts.swift */; };
 		80F9AA6D1B0F99FA0033BF51 /* AppPaddings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9AA6C1B0F99FA0033BF51 /* AppPaddings.swift */; };
+		80F9AA6F1B0F9DD90033BF51 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9AA6E1B0F9DD90033BF51 /* FriendsViewController.swift */; };
+		80F9AA711B0FA14B0033BF51 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9AA701B0FA14B0033BF51 /* PreviewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,8 @@
 		80F9AA681B0C2FF80033BF51 /* ReferralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralViewController.swift; sourceTree = "<group>"; };
 		80F9AA6A1B0DBCDE0033BF51 /* AppFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
 		80F9AA6C1B0F99FA0033BF51 /* AppPaddings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPaddings.swift; sourceTree = "<group>"; };
+		80F9AA6E1B0F9DD90033BF51 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		80F9AA701B0FA14B0033BF51 /* PreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,12 +167,14 @@
 				80D669E31AC2969F00D8B8CE /* CenterViewController.swift */,
 				802CC39A1ACE66BC00465D88 /* ConstrainedViews.swift */,
 				80E17DC21B0024D600CCE800 /* DoneBar.swift */,
+				80F9AA6E1B0F9DD90033BF51 /* FriendsViewController.swift */,
 				801976851AEA0AAA00FE8220 /* LinkedDictionary.swift */,
 				80D669E71AC482D700D8B8CE /* LoginViewController.swift */,
 				80D669E51AC2981E00D8B8CE /* MenuViewController.swift */,
 				80228F6A1AE36E4000B9D0AC /* Models.swift */,
 				809714E51AF28D9C00D313BD /* MultipleChoiceView.swift */,
 				809714E71AF5A4ED00D313BD /* PhotoController.swift */,
+				80F9AA701B0FA14B0033BF51 /* PreviewViewController.swift */,
 				80E822191AD3068600D85EF7 /* ProfileViewController.swift */,
 				80F9AA681B0C2FF80033BF51 /* ReferralViewController.swift */,
 				80D669C01ABEB06900D8B8CE /* ViewController.swift */,
@@ -337,6 +343,8 @@
 				801976861AEA0AAA00FE8220 /* LinkedDictionary.swift in Sources */,
 				8038B8241ADB999500FC9515 /* AppKV.swift in Sources */,
 				80E17DC31B0024D600CCE800 /* DoneBar.swift in Sources */,
+				80F9AA711B0FA14B0033BF51 /* PreviewViewController.swift in Sources */,
+				80F9AA6F1B0F9DD90033BF51 /* FriendsViewController.swift in Sources */,
 				80228F691AE36B7D00B9D0AC /* RLMSupport.swift in Sources */,
 				809714E81AF5A4ED00D313BD /* PhotoController.swift in Sources */,
 				802CC3971ACA538B00465D88 /* Cells.swift in Sources */,

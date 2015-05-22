@@ -107,8 +107,18 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     if (constrainedView.state == CellState.Collapsed) {
       scrollToRowAtIndexPath(indexPath)
       constrainedView.state = .Expanded
+      var previewViewController: PreviewViewController!
+      if (indexPath.row == 0) {
+        previewViewController = ProfileViewController(delegate: self, indexPath: indexPath)
+      } else if (indexPath.row == 1) {
+        previewViewController = ReferralViewController()
+      } else if (indexPath.row == 2) {
+        previewViewController = FriendsViewController()
+      } else {
+        previewViewController = PreviewViewController()
+      }
       constrainedView.updateViews([
-        "preview": ProfileViewController(delegate: self, indexPath: indexPath),
+        "preview": previewViewController,
       ])
       updateSingleRow(indexPath)
     }
