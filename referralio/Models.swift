@@ -22,9 +22,13 @@ struct Models {
     //println(REALM.path)
   }
 
+  static func hasProfile(rowId: UInt, profiles: RLMResults! = Profile.allObjects()) -> Bool {
+    return (profiles.count > rowId) // TODO think the deleting profile case
+  }
+
   static func getProfile(rowId: UInt) -> Profile {
     let profiles = Profile.allObjects()
-    if (profiles.count <= rowId) {
+    if !hasProfile(rowId, profiles: profiles) {
       REALM.transactionWithBlock({ () -> Void in
         for _ in profiles.count...rowId {
           self.REALM.addObject(Profile())

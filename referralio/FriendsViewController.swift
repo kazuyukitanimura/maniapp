@@ -9,20 +9,15 @@
 import UIKit
 
 class Friend: ConstrainedViews {
-  init() {
-    let firstName = "Friend"
-    let lastName = "1"
-    let currentTitle = "boss"
-    let currentAffiliation = "somewhere"
-
+  init(profile: Profile) {
     super.init(views: [
       "title": [
-        "text": "\(firstName) \(lastName)",
+        "text": "\(profile.firstName) \(profile.lastName)",
         "font": AppFonts.smallTitleFont,
         "textColor": AppColors.Orange,
       ],
       "subTitle": [
-        "text": "\(currentTitle) at \(currentAffiliation)",
+        "text": (profile.currentTitle.isEmpty || profile.currentAffiliation.isEmpty) ? "\(profile.currentTitle)\(profile.currentAffiliation)" : "\(profile.currentTitle) at \(profile.currentAffiliation)",
         "font": AppFonts.subTitleFont,
         "textColor": AppColors.DarkGray,
       ],
@@ -46,20 +41,16 @@ class FriendsViewController: PreviewViewController {
     super.viewDidLoad()
     // import contacts
 
-    let friendRows = ConstrainedViews(views: [
-      "friend1": Friend(),
-      "friend2": Friend(),
-      "friend3": Friend(),
-      "friend4": Friend(),
-      "friend5": Friend(),
-    ], formats: [
-      "H:|-0-[friend1]-0-|",
-      "H:|-0-[friend2]-0-|",
-      "H:|-0-[friend3]-0-|",
-      "H:|-0-[friend4]-0-|",
-      "H:|-0-[friend5]-0-|",
-      "V:|-\(AppPaddings.half)-[friend1]-[friend2]-[friend3]-[friend4]-[friend5]-\(AppPaddings.half)-|",
-    ])
-    view.addConstrainedViews(friendRows)
+    var views = [String: Friend]()
+    var formats = [String]()
+    var vFormats = [String]()
+    for i:UInt in 2..<7 {
+      let key = "friend\(i)"
+      views[key] = Friend(profile: Models.getProfile(i))
+      formats.append("H:|-0-[\(key)]-0-|")
+      vFormats.append("[\(key)]")
+    }
+    formats.append("V:|-\(AppPaddings.half)-" + "-".join(vFormats) + "-\(AppPaddings.half)-|")
+    view.addConstrainedViews(ConstrainedViews(views: views, formats: formats))
   }
 }
