@@ -36,21 +36,61 @@ class Friend: ConstrainedViews {
   }
 }
 
-class FriendsViewController: PreviewViewController {
+class FriendsViewController: PreviewViewController, AppButtonDelegate {
+  var page:UInt = 0
+
   override func viewDidLoad() {
     super.viewDidLoad()
     // import contacts
+    createList()
+  }
 
-    var views = [String: Friend]()
+  func createList() {
+    let countPerPage:UInt = 5
+    let countBase:UInt = 2
+    var views = [String: AnyObject]()
     var formats = [String]()
     var vFormats = [String]()
-    for i:UInt in 2..<7 {
+    for i:UInt in (page * countPerPage + countBase)..<min((page + 1) * countPerPage + countBase, Models.count) {
       let key = "friend\(i)"
       views[key] = Friend(profile: Models.getProfile(i))
       formats.append("H:|-0-[\(key)]-0-|")
       vFormats.append("[\(key)]")
     }
-    formats.append("V:|-\(AppPaddings.half)-" + "-".join(vFormats) + "-\(AppPaddings.half)-|")
+
+    if (formats.count == 0) {
+      // TODO no friends
+      var alert = UIAlertController(title: "You have no friends!", message: "Login with Facebook to import firends", preferredStyle: UIAlertControllerStyle.Alert)
+      alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+      presentViewController(alert, animated: true, completion: nil)
+      return
+    }
+
+    views["next"] = NextButton(delegate: self)
+    if (Models.count <= (page + 1) * countPerPage + countBase) {
+      (views["next"] as! NextButton).hidden = true
+    }
+    views["prev"] = PrevButton(delegate: self)
+    if (page == 0) {
+      (views["prev"] as! PrevButton).hidden = true
+    }
+    formats.append("H:|-0-[prev(80)]-(>=\(AppPaddings.one))-[next(80)]-0-|")
+    formats.append("V:|-\(AppPaddings.half)-" + "-".join(vFormats) + "-[next]-\(AppPaddings.half)-|")
+    formats.append("V:|-\(AppPaddings.half)-" + "-".join(vFormats) + "-[prev]-\(AppPaddings.half)-|")
     view.addConstrainedViews(ConstrainedViews(views: views, formats: formats))
   }
+
+  func next() {
+    page += 1
+    createList()
+  }
+
+  func prev() {
+    page -= 1
+    createList()
+  }
+
+  func saved(){}
+  func drafted(){}
+  func canceled(){}
 }

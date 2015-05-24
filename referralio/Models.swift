@@ -20,15 +20,26 @@ struct Models {
       // do nothing here, auto migration
     })
     //println(REALM.path)
+    if TARGET_IPHONE_SIMULATOR == 1 { // skip authentication for debugging
+      REALM.transactionWithBlock({ () -> Void in
+        self.REALM.deleteAllObjects()
+      })
+    }
   }
 
-  static func hasProfile(rowId: UInt, profiles: RLMResults! = Profile.allObjects()) -> Bool {
-    return (profiles.count > rowId) // TODO think the deleting profile case
+  static var count:UInt {
+    get {
+      return Profile.allObjects().count
+    }
+  }
+
+  static func hasProfile(rowId: UInt, count: UInt = count) -> Bool {
+    return (count > rowId) // TODO think the deleting profile case
   }
 
   static func getProfile(rowId: UInt) -> Profile {
     let profiles = Profile.allObjects()
-    if !hasProfile(rowId, profiles: profiles) {
+    if !hasProfile(rowId, count: profiles.count) {
       REALM.transactionWithBlock({ () -> Void in
         for _ in profiles.count...rowId {
           self.REALM.addObject(Profile())

@@ -12,6 +12,8 @@ protocol AppButtonDelegate {
   func saved()
   func drafted()
   func canceled()
+  func next()
+  func prev()
 }
 
 class AppButton: UIButton {
@@ -82,6 +84,42 @@ class CancelButton: AppButton {
 
   func onClickButton(sender: UIButton) {
     delegate?.canceled()
+  }
+}
+
+class NextButton: AppButton {
+  override init(delegate: AppButtonDelegate?) {
+    super.init(delegate: delegate)
+    setTitle("Next", forState: .Normal)
+    setTitleColor(AppColors.Orange, forState: .Normal)
+    layer.borderColor = AppColors.Orange.CGColor
+    addTarget(self, action: "onClickButton:", forControlEvents: .TouchUpInside)
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+
+  func onClickButton(sender: UIButton) {
+    delegate?.next()
+  }
+}
+
+class PrevButton: AppButton {
+  override init(delegate: AppButtonDelegate?) {
+    super.init(delegate: delegate)
+    setTitle("Prev", forState: .Normal)
+    setTitleColor(AppColors.Orange, forState: .Normal)
+    layer.borderColor = AppColors.Orange.CGColor
+    addTarget(self, action: "onClickButton:", forControlEvents: .TouchUpInside)
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+
+  func onClickButton(sender: UIButton) {
+    delegate?.prev()
   }
 }
 

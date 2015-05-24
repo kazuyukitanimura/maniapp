@@ -69,7 +69,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
       // alert error
       var alert = UIAlertController(title: error.localizedDescription, message: "Please check the network connection", preferredStyle: UIAlertControllerStyle.Alert)
       alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-      self.presentViewController(alert, animated: true, completion: nil)
+      presentViewController(alert, animated: true, completion: nil)
       return
     } else if (result.isCancelled) {
       // do nothing

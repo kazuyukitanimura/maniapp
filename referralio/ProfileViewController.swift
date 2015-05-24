@@ -374,4 +374,10 @@ class ProfileViewController: PreviewViewController, AppButtonDelegate, UITextFie
     }
     delegate?.canceled(indexPath!)
   }
+  func next() {
+    // dummy
+  }
+  func prev() {
+    // dummy
+  }
 }
