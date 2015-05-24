@@ -129,6 +129,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
         me.photo = imageData
       }
+      me.facebookID = "me"
+      draftMe.facebookID = "draftMe"
     })
   }
 }

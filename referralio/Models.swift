@@ -16,11 +16,11 @@ struct Models {
   static let REALM = RLMRealm.defaultRealm()
 
   static func setup() {
-    RLMRealm.setDefaultRealmSchemaVersion(8, withMigrationBlock: {migration, oldSchemaVersion in
+    RLMRealm.setDefaultRealmSchemaVersion(9, withMigrationBlock: {migration, oldSchemaVersion in
       // do nothing here, auto migration
     })
     //println(REALM.path)
-    if TARGET_IPHONE_SIMULATOR == 1 { // skip authentication for debugging
+    if TARGET_IPHONE_SIMULATOR == 1 { // delete db for simulator
       REALM.transactionWithBlock({ () -> Void in
         self.REALM.deleteAllObjects()
       })
@@ -77,5 +77,6 @@ class Profile: RLMObject {
   dynamic var github = ""
   dynamic var photo:NSData! = NSData()
   dynamic var email = ""
+  dynamic var facebookID = ""
   dynamic var distance = 0 // myself is 0, direct friend is 1
 }

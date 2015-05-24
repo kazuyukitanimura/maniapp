@@ -37,7 +37,7 @@ class Friend: ConstrainedViews {
 }
 
 class FriendsViewController: PreviewViewController, AppButtonDelegate {
-  var page:UInt = 0
+  private var page:UInt = 0
 
   override func viewDidLoad() {
     super.viewDidLoad()
