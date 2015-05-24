@@ -7,12 +7,13 @@
 //
 
 struct AppPaddings {
-  static let quadruple = 64
-  static let triple = 48
-  static let double = 32
-  static let oneHalf = 24
-  static let one = 16
-  static let threeQuarter = 12
-  static let half = 8
-  static let quarter = 4
+  static let quadruple = double + double
+  static let triple = one + double
+  static let double = one + one
+  static let oneHalf = one + half
+  static let one = half + half
+  static let threeQuarter = quarter + half
+  static let half = quarter + quarter
+  static let quarter = halfQuarter + halfQuarter
+  static let halfQuarter = 2
 }

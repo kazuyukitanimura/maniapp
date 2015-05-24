@@ -19,6 +19,9 @@ extension UIView {
         subView = viewSelf
       } else if let viewSelfController = viewObject as? UIViewController {
         subView = viewSelfController.view
+      } else if let subConstrainedViews = viewObject as? ConstrainedViews {
+        subView = UIView()
+        subView.addConstrainedViews(subConstrainedViews, yield: yield)
       } else {
         var viewProps = viewObject as! Dictionary<String, AnyObject>
         if let textProp = viewProps["placeholder"] as? String {

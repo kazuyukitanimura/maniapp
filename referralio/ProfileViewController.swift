@@ -85,7 +85,7 @@ class ProfileViewController: PreviewViewController, AppButtonDelegate, UITextFie
     ]
     profileViews[updatePhotoLabel] = [
       "image": (draftMe.photo.length > 0) ? draftMe.photo : "defaultProfile2.png",
-      "frame": NSValue(CGRect: CGRectMake(0, 0, profileSize * 0.6, profileSize * 0.6)),
+      "frame": NSValue(CGRect: CGRectMake(0, 0, smallProfileSize, smallProfileSize)),
       "toCircle": true,
       "contentMode": UIViewContentMode.ScaleAspectFill.rawValue,
     ]
@@ -254,7 +254,7 @@ class ProfileViewController: PreviewViewController, AppButtonDelegate, UITextFie
     let profileFields = ConstrainedViews(views: profileViews, formats: [
       "H:|-0-[firstNameLabel]-(>=\(AppPaddings.half))-[\(firstName)(>=160)]-0-|",
       "H:|-0-[lastNameLabel]-(>=\(AppPaddings.half))-[\(lastName)(>=160)]-0-|",
-      "H:|-0-[\(updatePhotoLabel)(\(profileSize * 0.6))]-(>=\(AppPaddings.half))-[updatePhoto(>=160)]-0-|",
+      "H:|-0-[\(updatePhotoLabel)(\(smallProfileSize))]-(>=\(AppPaddings.half))-[updatePhoto(>=160)]-0-|",
       "H:|-0-[currentAffiliationLabel]-(>=\(AppPaddings.half))-[\(currentAffiliation)(>=160)]-0-|",
       "H:|-0-[currentTitleLabel]-(>=\(AppPaddings.half))-[\(currentTitle)(>=160)]-0-|",
       "H:|-0-[currentLocationLabel]-(>=\(AppPaddings.half))-[\(currentLocation)(>=160)]-0-|",
@@ -269,9 +269,9 @@ class ProfileViewController: PreviewViewController, AppButtonDelegate, UITextFie
       "H:|-0-[blogLabel]-(>=\(AppPaddings.half))-[\(blog)(>=160)]-0-|",
       "H:|-0-[githubLabel]-(>=\(AppPaddings.half))-[\(github)(>=160)]-0-|",
       "H:|-0-[save(72)]-\(AppPaddings.half)-[draft(128)]-(>=\(AppPaddings.half))-[cancel(80)]-0-|",
-      "V:|-\(AppPaddings.one)-[firstNameLabel]-\(AppPaddings.half)-[lastNameLabel]-\(AppPaddings.half)-[\(updatePhotoLabel)(\(profileSize * 0.6))]-\(AppPaddings.oneHalf)-[currentAffiliationLabel]-\(AppPaddings.half)-[currentTitleLabel]-\(AppPaddings.half)-[currentLocationLabel]-\(AppPaddings.oneHalf)-[willingToRelocateLabel]-\(AppPaddings.half)-[minCashComensationLabel]-\(AppPaddings.half)-[minEquityComensationLabel]-\(AppPaddings.half)-[targetCompanySizeLabel]-\(AppPaddings.half)-[thankYouTipLabel]-\(AppPaddings.oneHalf)-[dreamCompaniesLabel]-\(AppPaddings.half)-[lookingForLabel]-\(AppPaddings.half)-[skillsLabel]-\(AppPaddings.oneHalf)-[blogLabel]-\(AppPaddings.half)-[githubLabel]-\(AppPaddings.oneHalf)-[save]-\(AppPaddings.half)-|",
+      "V:|-\(AppPaddings.one)-[firstNameLabel]-\(AppPaddings.half)-[lastNameLabel]-\(AppPaddings.half)-[\(updatePhotoLabel)(\(smallProfileSize))]-\(AppPaddings.oneHalf)-[currentAffiliationLabel]-\(AppPaddings.half)-[currentTitleLabel]-\(AppPaddings.half)-[currentLocationLabel]-\(AppPaddings.oneHalf)-[willingToRelocateLabel]-\(AppPaddings.half)-[minCashComensationLabel]-\(AppPaddings.half)-[minEquityComensationLabel]-\(AppPaddings.half)-[targetCompanySizeLabel]-\(AppPaddings.half)-[thankYouTipLabel]-\(AppPaddings.oneHalf)-[dreamCompaniesLabel]-\(AppPaddings.half)-[lookingForLabel]-\(AppPaddings.half)-[skillsLabel]-\(AppPaddings.oneHalf)-[blogLabel]-\(AppPaddings.half)-[githubLabel]-\(AppPaddings.oneHalf)-[save]-\(AppPaddings.half)-|",
       "V:|-(>=\(AppPaddings.one))-[draft]-\(AppPaddings.half)-|",
-      "V:|-\(AppPaddings.one)-[\(firstName)]-\(AppPaddings.half)-[\(lastName)]-\(AppPaddings.half)-[updatePhoto(\(profileSize * 0.6))]-\(AppPaddings.oneHalf)-[\(currentAffiliation)]-\(AppPaddings.half)-[\(currentTitle)]-\(AppPaddings.half)-[\(currentLocation)]-\(AppPaddings.oneHalf)-[\(willingToRelocate)]-\(AppPaddings.half)-[\(minCashComensation)]-\(AppPaddings.half)-[\(minEquityComensation)]-\(AppPaddings.half)-[\(targetCompanySize)]-\(AppPaddings.half)-[\(thankYouTip)]-\(AppPaddings.oneHalf)-[\(dreamCompanies)]-\(AppPaddings.half)-[\(lookingFor)]-\(AppPaddings.half)-[\(skills)]-\(AppPaddings.oneHalf)-[\(blog)]-\(AppPaddings.half)-[\(github)]-\(AppPaddings.oneHalf)-[cancel]-\(AppPaddings.half)-|",
+      "V:|-\(AppPaddings.one)-[\(firstName)]-\(AppPaddings.half)-[\(lastName)]-\(AppPaddings.half)-[updatePhoto(\(smallProfileSize))]-\(AppPaddings.oneHalf)-[\(currentAffiliation)]-\(AppPaddings.half)-[\(currentTitle)]-\(AppPaddings.half)-[\(currentLocation)]-\(AppPaddings.oneHalf)-[\(willingToRelocate)]-\(AppPaddings.half)-[\(minCashComensation)]-\(AppPaddings.half)-[\(minEquityComensation)]-\(AppPaddings.half)-[\(targetCompanySize)]-\(AppPaddings.half)-[\(thankYouTip)]-\(AppPaddings.oneHalf)-[\(dreamCompanies)]-\(AppPaddings.half)-[\(lookingFor)]-\(AppPaddings.half)-[\(skills)]-\(AppPaddings.oneHalf)-[\(blog)]-\(AppPaddings.half)-[\(github)]-\(AppPaddings.oneHalf)-[cancel]-\(AppPaddings.half)-|",
     ])
     ids = [firstName, lastName, currentAffiliation, currentTitle, currentLocation, willingToRelocate, minCashComensation, minEquityComensation, targetCompanySize, thankYouTip, dreamCompanies, lookingFor, skills, blog, github]
     view.addConstrainedViews(profileFields, yield: { (subView: UIView) -> Void in

@@ -9,6 +9,8 @@
 import UIKit
 
 let profileSize:CGFloat = 56
+let smallProfileSize = profileSize * 0.6
+
 var cells:[ConstrainedViews] = [
   // 0
   ConstrainedViews(views: [
