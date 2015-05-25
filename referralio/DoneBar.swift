@@ -9,8 +9,8 @@
 import UIKit
 
 class DoneBar: UIToolbar {
-  var target: UITextFieldDelegate!
-  var textField: UITextField!
+  private var target: UITextFieldDelegate!
+  private var textField: UITextField!
 
   init(target: UITextFieldDelegate, textField: UITextField) {
     super.init(frame: CGRectMake(0, 0, 1, 44))

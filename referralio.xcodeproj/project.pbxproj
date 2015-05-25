@@ -30,7 +30,6 @@
 		80D669BC1ABEB06900D8B8CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669BB1ABEB06900D8B8CE /* AppDelegate.swift */; };
 		80D669BF1ABEB06900D8B8CE /* referralio.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80D669BD1ABEB06900D8B8CE /* referralio.xcdatamodeld */; };
 		80D669C11ABEB06900D8B8CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669C01ABEB06900D8B8CE /* ViewController.swift */; };
-		80D669C41ABEB06900D8B8CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80D669C21ABEB06900D8B8CE /* Main.storyboard */; };
 		80D669C61ABEB06900D8B8CE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80D669C51ABEB06900D8B8CE /* Images.xcassets */; };
 		80D669C91ABEB06900D8B8CE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D669C71ABEB06900D8B8CE /* LaunchScreen.xib */; };
 		80D669D51ABEB06900D8B8CE /* referralioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D669D41ABEB06900D8B8CE /* referralioTests.swift */; };
@@ -85,7 +84,6 @@
 		80D669BB1ABEB06900D8B8CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80D669BE1ABEB06900D8B8CE /* referralio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = referralio.xcdatamodel; sourceTree = "<group>"; };
 		80D669C01ABEB06900D8B8CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		80D669C31ABEB06900D8B8CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80D669C51ABEB06900D8B8CE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80D669C81ABEB06900D8B8CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		80D669CE1ABEB06900D8B8CE /* referralioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = referralioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,7 +176,6 @@
 				80E822191AD3068600D85EF7 /* ProfileViewController.swift */,
 				80F9AA681B0C2FF80033BF51 /* ReferralViewController.swift */,
 				80D669C01ABEB06900D8B8CE /* ViewController.swift */,
-				80D669C21ABEB06900D8B8CE /* Main.storyboard */,
 				80D669C51ABEB06900D8B8CE /* Images.xcassets */,
 				80D669DE1ABFC32C00D8B8CE /* images */,
 				80D669C71ABEB06900D8B8CE /* LaunchScreen.xib */,
@@ -307,7 +304,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				806CB2951AF9CF1100923A65 /* defaultProfile.png in Resources */,
-				80D669C41ABEB06900D8B8CE /* Main.storyboard in Resources */,
 				806CB2971AF9D08000923A65 /* defaultProfile2.png in Resources */,
 				80D11DBE1B01DAF600DE6B1C /* search2.png in Resources */,
 				80D11DBC1B01DAF600DE6B1C /* menu.png in Resources */,
@@ -380,14 +376,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		80D669C21ABEB06900D8B8CE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				80D669C31ABEB06900D8B8CE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		80D669C71ABEB06900D8B8CE /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

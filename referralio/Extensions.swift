@@ -101,3 +101,7 @@ extension UIImage {
     return scaledImage
   }
 }
+
+func ??(left: NSData, right: AnyObject) -> AnyObject {
+  return (left.length > 0) ? left : right
+}

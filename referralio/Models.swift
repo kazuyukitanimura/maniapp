@@ -14,12 +14,18 @@ struct Models {
 
   // Get the default Realm
   static let REALM = RLMRealm.defaultRealm()
+  private static var me: Profile!
+  private static var draftMe: Profile!
 
   static func setup() {
-    RLMRealm.setDefaultRealmSchemaVersion(9, withMigrationBlock: {migration, oldSchemaVersion in
+    RLMRealm.setDefaultRealmSchemaVersion(10, withMigrationBlock: {migration, oldSchemaVersion in
       // do nothing here, auto migration
     })
     //println(REALM.path)
+    Models.REALM.transactionWithBlock({ () -> Void in
+      self.me = Profile.createOrUpdateInDefaultRealmWithObject([Profile.primaryKey()!: "me"])
+      self.draftMe = Profile.createOrUpdateInDefaultRealmWithObject([Profile.primaryKey()!: "draftMe"])
+    })
     if TARGET_IPHONE_SIMULATOR == 1 { // delete db for simulator
       REALM.transactionWithBlock({ () -> Void in
         self.REALM.deleteAllObjects()
@@ -37,29 +43,32 @@ struct Models {
     return (count > rowId) // TODO think the deleting profile case
   }
 
+  static func createOrUpdate(object: AnyObject!) {
+    Models.REALM.transactionWithBlock({ () -> Void in
+      Profile.createOrUpdateInDefaultRealmWithObject(object)
+    })
+  }
+
   static func getProfile(rowId: UInt) -> Profile {
     let profiles = Profile.allObjects()
     if !hasProfile(rowId, count: profiles.count) {
-      REALM.transactionWithBlock({ () -> Void in
-        for _ in profiles.count...rowId {
-          self.REALM.addObject(Profile())
-        }
-      })
+      return Profile()
     }
     return profiles[rowId] as! Profile
   }
 
   static func getMe() -> Profile {
-    return getProfile(0)
+    return me
   }
 
   static func getDraftMe() -> Profile {
-    return getProfile(1)
+    return draftMe
   }
 }
 
 
 class Profile: RLMObject {
+  dynamic var facebookID = ""
   dynamic var firstName = ""
   dynamic var lastName = ""
   dynamic var currentAffiliation = ""
@@ -77,6 +86,9 @@ class Profile: RLMObject {
   dynamic var github = ""
   dynamic var photo:NSData! = NSData()
   dynamic var email = ""
-  dynamic var facebookID = ""
   dynamic var distance = 0 // myself is 0, direct friend is 1
+
+  override static func primaryKey() -> String? {
+    return "facebookID"
+  }
 }

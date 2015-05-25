@@ -84,7 +84,7 @@ class ProfileViewController: PreviewViewController, AppButtonDelegate, UITextFie
       "textColor": AppColors.Orange,
     ]
     profileViews[updatePhotoLabel] = [
-      "image": (draftMe.photo.length > 0) ? draftMe.photo : "defaultProfile2.png",
+      "image": draftMe.photo ?? "defaultProfile2.png",
       "frame": NSValue(CGRect: CGRectMake(0, 0, smallProfileSize, smallProfileSize)),
       "toCircle": true,
       "contentMode": UIViewContentMode.ScaleAspectFill.rawValue,

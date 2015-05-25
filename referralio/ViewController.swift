@@ -74,7 +74,7 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
     authenticateUser()
   }
 
-  func loadData(notification: NSNotification) {
+  func loadData() {
     if (centerNavigationController == nil) {
       let centerViewController = CenterViewController()
       centerViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu.png"), style: .Plain, target: self, action: "toggleMenuView")
@@ -94,6 +94,10 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
       menuViewController.loginButton.delegate = loginViewController
     }
     hideLoginView()
+  }
+
+  func loadData(notification: NSNotification) {
+    loadData()
   }
 
   func showLoginView() {
@@ -119,7 +123,7 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
       context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString, reply: { (success: Bool, evalPolicyError: NSError?) -> Void in
         if success {
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-            NSNotificationCenter.defaultCenter().postNotificationName("loadData", object: nil) // self.loadData()
+            self.loadData()
           })
         } else {
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
@@ -130,7 +134,7 @@ class ViewController: UIViewController, UIAlertViewDelegate, UIGestureRecognizer
       })
     } else {
       NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-        NSNotificationCenter.defaultCenter().postNotificationName("loadData", object: nil) // self.loadData()
+        self.loadData()
       })
     }
   }
