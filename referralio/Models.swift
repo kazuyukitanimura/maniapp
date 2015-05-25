@@ -23,8 +23,8 @@ struct Models {
     })
     //println(REALM.path)
     Models.REALM.transactionWithBlock({ () -> Void in
-      self.me = Profile.createOrUpdateInDefaultRealmWithObject([Profile.primaryKey()!: "me"])
-      self.draftMe = Profile.createOrUpdateInDefaultRealmWithObject([Profile.primaryKey()!: "draftMe"])
+      self.me = Profile.createOrUpdateInRealm(self.REALM, withObject: [Profile.primaryKey()!: "me"])
+      self.draftMe = Profile.createOrUpdateInRealm(self.REALM, withObject: [Profile.primaryKey()!: "draftMe"])
     })
     if TARGET_IPHONE_SIMULATOR == 1 { // delete db for simulator
       REALM.transactionWithBlock({ () -> Void in
@@ -44,9 +44,7 @@ struct Models {
   }
 
   static func createOrUpdate(object: AnyObject!) {
-    Models.REALM.transactionWithBlock({ () -> Void in
-      Profile.createOrUpdateInDefaultRealmWithObject(object)
-    })
+    Profile.createOrUpdateInRealm(REALM, withObject: object)
   }
 
   static func getProfile(rowId: UInt) -> Profile {

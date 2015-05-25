@@ -130,14 +130,19 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         me.photo = imageData
       }
     })
+    importFacebookFriends()
+  }
 
+  func importFacebookFriends(var after: String = "") {
     if TARGET_IPHONE_SIMULATOR == 1 { // skip friend request for simulators
       return
     }
     // XXX /me/friends works only for who uses this app already
     // http://stackoverflow.com/questions/29428478/facebook-friends-list-api-for-swift-ios
     let parameters = [
-      "fields": "id,first_name,last_name,picture",
+      "fields": "first_name,last_name,picture",
+      "limit": "50",
+      "after": after,
     ]
     let friendsRequest = FBSDKGraphRequest(graphPath: "/me/taggable_friends", parameters: parameters)
     // XXX we cannot run this in background threads
@@ -148,18 +153,28 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
       }
       if let resultdict = result as? NSDictionary {
         if let data = resultdict["data"] as? NSArray {
-          for datum in data {
-            if let valueDict = datum as? NSDictionary {
-              let picture = (valueDict["picture"] ?? NSDictionary()) as! NSDictionary
-              let pictureData = (picture["data"] ?? NSDictionary()) as! NSDictionary
-              let imageUrl = (pictureData["url"] ?? "") as! String
-              let profileObject:[String: AnyObject!] = [
-                Profile.primaryKey()!: (valueDict["id"] ?? "") as! String,
-                "firstName": (valueDict["first_name"] ?? "") as! String,
-                "lastName": (valueDict["last_name"] ?? "") as! String,
-                "photo": NSData(contentsOfURL: NSURL(string: imageUrl)!), // TODO this is a blocking call
-              ]
-              Models.createOrUpdate(profileObject)
+          Models.REALM.transactionWithBlock({ () -> Void in
+            for datum in data {
+              if let valueDict = datum as? NSDictionary {
+                let picture = (valueDict["picture"] ?? NSDictionary()) as! NSDictionary
+                let pictureData = (picture["data"] ?? NSDictionary()) as! NSDictionary
+                let imageUrl = (pictureData["url"] ?? "") as! String
+                let profileObject:[String: AnyObject!] = [
+                  Profile.primaryKey()!: (valueDict["id"] ?? "") as! String,
+                  "firstName": (valueDict["first_name"] ?? "") as! String,
+                  "lastName": (valueDict["last_name"] ?? "") as! String,
+                  "photo": NSData(contentsOfURL: NSURL(string: imageUrl)!), // TODO this is a blocking call
+                ]
+                Models.createOrUpdate(profileObject)
+              }
+            }
+          })
+        }
+        if let paging = resultdict["paging"] as? NSDictionary {
+          if let cursors = paging["cursors"] as? NSDictionary {
+            after = (cursors["after"] ?? "") as! String
+            if (!after.isEmpty) {
+              self.importFacebookFriends(after: after)
             }
           }
         }
