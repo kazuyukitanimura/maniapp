@@ -41,16 +41,11 @@ var cells:[ConstrainedViews] = [
   // 1
   ConstrainedViews(views: [
     "title": [
-      "text": "Referral Center",
+      "text": "Referral Status",
       "font": AppFonts.titleFont,
       "textColor": AppColors.Orange,
     ],
     "subTitle": [
-      "text": "Check your referral status or Update your interview status",
-      "font": AppFonts.subTitleFont,
-      "textColor": AppColors.DarkGray,
-    ],
-    "notifications": [
       "text": "0 new notifications",
       "font": AppFonts.subTitleFont,
       "textColor": AppColors.DarkGray,
@@ -59,11 +54,67 @@ var cells:[ConstrainedViews] = [
     ], formats: [
       "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
       "H:|-\(AppPaddings.threeQuarter)-[subTitle]-\(AppPaddings.one)-|",
-      "H:|-\(AppPaddings.threeQuarter)-[notifications]-\(AppPaddings.one)-|",
       "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
-      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-\(AppPaddings.half)-[notifications]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
+      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
   // 2
+  ConstrainedViews(views: [
+    "title": [
+      "text": "Send Referrals of Me or Friends",
+      "font": AppFonts.titleFont,
+      "textColor": AppColors.Orange,
+    ],
+    "subTitle": [
+      "text": "0 in-coming referrals to send out",
+      "font": AppFonts.subTitleFont,
+      "textColor": AppColors.DarkGray,
+    ],
+    "preview": UIView(),
+    ], formats: [
+      "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.threeQuarter)-[subTitle]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
+      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
+    ]),
+  // 3
+  ConstrainedViews(views: [
+    "title": [
+      "text": "I Know a Job to Offer",
+      "font": AppFonts.titleFont,
+      "textColor": AppColors.Orange,
+    ],
+    "subTitle": [
+      "text": "0 in-coming referrals to reply",
+      "font": AppFonts.subTitleFont,
+      "textColor": AppColors.DarkGray,
+    ],
+    "preview": UIView(),
+    ], formats: [
+      "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.threeQuarter)-[subTitle]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
+      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
+    ]),
+  // 4
+  ConstrainedViews(views: [
+    "title": [
+      "text": "Pay \"Thank You\" Tips",
+      "font": AppFonts.titleFont,
+      "textColor": AppColors.Orange,
+    ],
+    "subTitle": [
+      "text": "0 referrals to tip",
+      "font": AppFonts.subTitleFont,
+      "textColor": AppColors.DarkGray,
+    ],
+    "preview": UIView(),
+    ], formats: [
+      "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.threeQuarter)-[subTitle]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
+      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
+    ]),
+  // 5
   ConstrainedViews(views: [
     "title": [
       "text": "Friends",
@@ -76,7 +127,7 @@ var cells:[ConstrainedViews] = [
       "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
-  // 3
+  // 6
   ConstrainedViews(views: [
     "title": [
       "text": "News Feed 1",
@@ -89,7 +140,7 @@ var cells:[ConstrainedViews] = [
       "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
-  // 4
+  // 7
   ConstrainedViews(views: [
     "title": [
       "text": "News Feed 2",

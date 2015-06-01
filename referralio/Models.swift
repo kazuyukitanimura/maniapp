@@ -22,15 +22,15 @@ struct Models {
       // do nothing here, auto migration
     })
     //println(REALM.path)
-    Models.REALM.transactionWithBlock({ () -> Void in
-      self.me = Profile.createOrUpdateInRealm(self.REALM, withObject: [Profile.primaryKey()!: "me"])
-      self.draftMe = Profile.createOrUpdateInRealm(self.REALM, withObject: [Profile.primaryKey()!: "draftMe"])
-    })
     if TARGET_IPHONE_SIMULATOR == 1 { // delete db for simulator
       REALM.transactionWithBlock({ () -> Void in
         self.REALM.deleteAllObjects()
       })
     }
+    REALM.transactionWithBlock({ () -> Void in
+      self.me = Profile.createOrUpdateInRealm(self.REALM, withObject: [Profile.primaryKey()!: "me"])
+      self.draftMe = Profile.createOrUpdateInRealm(self.REALM, withObject: [Profile.primaryKey()!: "draftMe"])
+    })
   }
 
   static var count:UInt {

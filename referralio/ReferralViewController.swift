@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import FBSDKCoreKit
-import FBSDKLoginKit
 
 class ReferralViewController: PreviewViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
+    
   }
 }

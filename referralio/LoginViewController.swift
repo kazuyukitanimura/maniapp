@@ -141,7 +141,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     // http://stackoverflow.com/questions/29428478/facebook-friends-list-api-for-swift-ios
     let parameters = [
       "fields": "first_name,last_name,picture",
-      "limit": "50",
+      "limit": "20",
       "after": after,
     ]
     let friendsRequest = FBSDKGraphRequest(graphPath: "/me/taggable_friends", parameters: parameters)
@@ -160,7 +160,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 let pictureData = (picture["data"] ?? NSDictionary()) as! NSDictionary
                 let imageUrl = (pictureData["url"] ?? "") as! String
                 let profileObject:[String: AnyObject!] = [
-                  Profile.primaryKey()!: (valueDict["id"] ?? "") as! String,
+                  Profile.primaryKey()!: (valueDict["id"] ?? "") as! String, // XXX this id changes everytime
                   "firstName": (valueDict["first_name"] ?? "") as! String,
                   "lastName": (valueDict["last_name"] ?? "") as! String,
                   "photo": NSData(contentsOfURL: NSURL(string: imageUrl)!), // TODO this is a blocking call
