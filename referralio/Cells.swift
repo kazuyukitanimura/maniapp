@@ -128,7 +128,7 @@ var cells:[ConstrainedViews] = [
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
   // 6
-  ConstrainedViews(views: [
+  /*ConstrainedViews(views: [
     "title": [
       "text": "News Feed 1",
       "font": AppFonts.titleFont,
@@ -139,9 +139,9 @@ var cells:[ConstrainedViews] = [
       "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
       "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
-    ]),
+    ]),*/
   // 7
-  ConstrainedViews(views: [
+  /*ConstrainedViews(views: [
     "title": [
       "text": "News Feed 2",
       "font": AppFonts.titleFont,
@@ -152,5 +152,5 @@ var cells:[ConstrainedViews] = [
       "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
       "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
-    ]),
+    ]),*/
 ]
