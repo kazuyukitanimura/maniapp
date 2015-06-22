@@ -54,25 +54,6 @@ var cells:[ConstrainedViews] = [
   // 2
   ConstrainedViews(views: [
     "title": [
-      "text": "(Friend Name) Asked for a Referral",
-      "font": AppFonts.titleFont,
-      "textColor": AppColors.Orange,
-    ],
-    "subTitle": [
-      "text": "0 new notifications",
-      "font": AppFonts.subTitleFont,
-      "textColor": AppColors.DarkGray,
-    ],
-    "preview": UIView(),
-    ], formats: [
-      "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
-      "H:|-\(AppPaddings.threeQuarter)-[subTitle]-\(AppPaddings.one)-|",
-      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
-      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
-    ]),
-  // 3
-  ConstrainedViews(views: [
-    "title": [
       "text": "Ask Referrals to Friends",
       "font": AppFonts.titleFont,
       "textColor": AppColors.Orange,
@@ -89,7 +70,7 @@ var cells:[ConstrainedViews] = [
       "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
-  // 4
+  // 3
   ConstrainedViews(views: [
     "title": [
       "text": "Pay \"Thank You\" Tips",
@@ -107,6 +88,37 @@ var cells:[ConstrainedViews] = [
       "H:|-\(AppPaddings.threeQuarter)-[subTitle]-\(AppPaddings.one)-|",
       "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
+    ]),
+  // 4
+  ConstrainedViews(views: [
+    "title": [
+      "text": "(Friend Name) Asked for a Referral",
+      "font": AppFonts.titleFont,
+      "textColor": AppColors.Orange,
+    ],
+    "from": [
+      "image": "defaultProfile2.png",
+      "frame": NSValue(CGRect: CGRectMake(0, 0, profileSize, profileSize)),
+      "toCircle": true,
+      "contentMode": UIViewContentMode.ScaleAspectFill.rawValue,
+    ],
+    "arrow": [
+      "image": "arrowRight.png",
+    ],
+    "to": [
+      "image": "defaultProfile2.png",
+      "frame": NSValue(CGRect: CGRectMake(0, 0, profileSize, profileSize)),
+      "toCircle": true,
+      "contentMode": UIViewContentMode.ScaleAspectFill.rawValue,
+    ],
+    "preview": UIView(),
+    ], formats: [
+      "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.threeQuarter)-[from(\(profileSize))]-\(AppPaddings.one)-[arrow(\(profileSize))]-\(AppPaddings.one)-[to(\(profileSize))]-(>=\(AppPaddings.one))-|",
+      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
+      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[from(\(profileSize))]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
+      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[arrow(\(profileSize))]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
+      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[to(\(profileSize))]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
   // 5
   /*ConstrainedViews(views: [

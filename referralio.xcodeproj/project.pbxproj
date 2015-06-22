@@ -42,6 +42,7 @@
 		80E17DC71B01C85800CCE800 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E17DC61B01C85800CCE800 /* FBSDKCoreKit.framework */; };
 		80E8221A1AD3068600D85EF7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E822191AD3068600D85EF7 /* ProfileViewController.swift */; };
 		80E8221C1ADB597000D85EF7 /* AppButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E8221B1ADB597000D85EF7 /* AppButtons.swift */; };
+		80EF29CE1B37DA5C0067A48A /* arrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 80EF29CD1B37DA5C0067A48A /* arrowRight.png */; };
 		80F9AA691B0C2FF80033BF51 /* ReferralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9AA681B0C2FF80033BF51 /* ReferralViewController.swift */; };
 		80F9AA6B1B0DBCDE0033BF51 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9AA6A1B0DBCDE0033BF51 /* AppFonts.swift */; };
 		80F9AA6D1B0F99FA0033BF51 /* AppPaddings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9AA6C1B0F99FA0033BF51 /* AppPaddings.swift */; };
@@ -99,6 +100,7 @@
 		80E17DC61B01C85800CCE800 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		80E822191AD3068600D85EF7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		80E8221B1ADB597000D85EF7 /* AppButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppButtons.swift; sourceTree = "<group>"; };
+		80EF29CD1B37DA5C0067A48A /* arrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowRight.png; sourceTree = "<group>"; };
 		80F9AA681B0C2FF80033BF51 /* ReferralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralViewController.swift; sourceTree = "<group>"; };
 		80F9AA6A1B0DBCDE0033BF51 /* AppFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
 		80F9AA6C1B0F99FA0033BF51 /* AppPaddings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPaddings.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				802CC3B01ACE887C00465D88 /* clear.png */,
 				806CB2941AF9CF1100923A65 /* defaultProfile.png */,
 				806CB2961AF9D08000923A65 /* defaultProfile2.png */,
+				80EF29CD1B37DA5C0067A48A /* arrowRight.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				806CB2971AF9D08000923A65 /* defaultProfile2.png in Resources */,
 				80D11DBE1B01DAF600DE6B1C /* search2.png in Resources */,
 				80D11DBC1B01DAF600DE6B1C /* menu.png in Resources */,
+				80EF29CE1B37DA5C0067A48A /* arrowRight.png in Resources */,
 				80D11DBD1B01DAF600DE6B1C /* search.png in Resources */,
 				802CC3B11ACE887C00465D88 /* clear.png in Resources */,
 				80D669C91ABEB06900D8B8CE /* LaunchScreen.xib in Resources */,
