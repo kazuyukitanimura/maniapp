@@ -111,9 +111,9 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
       if (indexPath.row == 0) {
         previewViewController = ProfileViewController(delegate: self, indexPath: indexPath)
       } else if (indexPath.row == 1) {
-        previewViewController = ReferralViewController()
-      } else if (indexPath.row == 5) {
         previewViewController = FriendsViewController()
+      } else if (indexPath.row == 2) {
+        previewViewController = ReferralViewController()
       } else {
         previewViewController = PreviewViewController()
       }

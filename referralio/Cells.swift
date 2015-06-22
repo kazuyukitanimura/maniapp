@@ -41,7 +41,20 @@ var cells:[ConstrainedViews] = [
   // 1
   ConstrainedViews(views: [
     "title": [
-      "text": "Referral Status",
+      "text": "Friends",
+      "font": AppFonts.titleFont,
+      "textColor": AppColors.Orange,
+    ],
+    "preview": UIView(),
+    ], formats: [
+      "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
+      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
+      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
+    ]),
+  // 2
+  ConstrainedViews(views: [
+    "title": [
+      "text": "(Friend Name) Asked for a Referral",
       "font": AppFonts.titleFont,
       "textColor": AppColors.Orange,
     ],
@@ -57,34 +70,15 @@ var cells:[ConstrainedViews] = [
       "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
-  // 2
-  ConstrainedViews(views: [
-    "title": [
-      "text": "Send Referrals of Me or Friends",
-      "font": AppFonts.titleFont,
-      "textColor": AppColors.Orange,
-    ],
-    "subTitle": [
-      "text": "0 in-coming referrals to send out",
-      "font": AppFonts.subTitleFont,
-      "textColor": AppColors.DarkGray,
-    ],
-    "preview": UIView(),
-    ], formats: [
-      "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
-      "H:|-\(AppPaddings.threeQuarter)-[subTitle]-\(AppPaddings.one)-|",
-      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
-      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
-    ]),
   // 3
   ConstrainedViews(views: [
     "title": [
-      "text": "I Know a Job to Offer",
+      "text": "Ask Referrals to Friends",
       "font": AppFonts.titleFont,
       "textColor": AppColors.Orange,
     ],
     "subTitle": [
-      "text": "0 in-coming referrals to reply",
+      "text": "0 active referrals sent out",
       "font": AppFonts.subTitleFont,
       "textColor": AppColors.DarkGray,
     ],
@@ -115,19 +109,6 @@ var cells:[ConstrainedViews] = [
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
   // 5
-  ConstrainedViews(views: [
-    "title": [
-      "text": "Friends",
-      "font": AppFonts.titleFont,
-      "textColor": AppColors.Orange,
-    ],
-    "preview": UIView(),
-    ], formats: [
-      "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
-      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
-      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
-    ]),
-  // 6
   /*ConstrainedViews(views: [
     "title": [
       "text": "News Feed 1",
@@ -140,7 +121,7 @@ var cells:[ConstrainedViews] = [
       "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),*/
-  // 7
+  // 6
   /*ConstrainedViews(views: [
     "title": [
       "text": "News Feed 2",
