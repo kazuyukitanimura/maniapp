@@ -103,7 +103,9 @@ var cells:[ConstrainedViews] = [
       "contentMode": UIViewContentMode.ScaleAspectFill.rawValue,
     ],
     "arrow": [
-      "image": "arrowRight.png",
+      "text": "> > > > > > >",
+      "font": AppFonts.boldFont,
+      "textColor": AppColors.DarkGray,
     ],
     "to": [
       "image": "defaultProfile2.png",
@@ -114,7 +116,7 @@ var cells:[ConstrainedViews] = [
     "preview": UIView(),
     ], formats: [
       "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
-      "H:|-\(AppPaddings.threeQuarter)-[from(\(profileSize))]-\(AppPaddings.one)-[arrow(\(profileSize))]-\(AppPaddings.one)-[to(\(profileSize))]-(>=\(AppPaddings.one))-|",
+      "H:|-\(AppPaddings.threeQuarter)-[from(\(profileSize))]-\(AppPaddings.one)-[arrow]-\(AppPaddings.one)-[to(\(profileSize))]-(>=\(AppPaddings.one))-|",
       "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[from(\(profileSize))]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[arrow(\(profileSize))]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
