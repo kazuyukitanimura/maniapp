@@ -82,6 +82,13 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
           "image": me.photo ?? "defaultProfile2.png",
         ],
       ])
+    } else if (indexPath.row == 4) {
+      let me = Models.getMe()
+      constrainedView.updateViews([
+        "to": [
+          "image": me.photo ?? "defaultProfile2.png",
+        ],
+      ])
     }
     cell.innerView.addConstrainedViews(constrainedView)
     cell.indexPath = indexPath
