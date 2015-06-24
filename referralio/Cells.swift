@@ -73,25 +73,6 @@ var cells:[ConstrainedViews] = [
   // 3
   ConstrainedViews(views: [
     "title": [
-      "text": "Pay \"Thank You\" Tips",
-      "font": AppFonts.titleFont,
-      "textColor": AppColors.Orange,
-    ],
-    "subTitle": [
-      "text": "0 referrals to tip",
-      "font": AppFonts.subTitleFont,
-      "textColor": AppColors.DarkGray,
-    ],
-    "preview": UIView(),
-    ], formats: [
-      "H:|-\(AppPaddings.threeQuarter)-[title]-\(AppPaddings.one)-|",
-      "H:|-\(AppPaddings.threeQuarter)-[subTitle]-\(AppPaddings.one)-|",
-      "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
-      "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[subTitle]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
-    ]),
-  // 4
-  ConstrainedViews(views: [
-    "title": [
       "text": "(Friend Name) Asked for a Referral",
       "font": AppFonts.titleFont,
       "textColor": AppColors.Orange,
@@ -122,7 +103,7 @@ var cells:[ConstrainedViews] = [
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[arrow(\(profileSize))]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[to(\(profileSize))]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),
-  // 5
+  // 4
   /*ConstrainedViews(views: [
     "title": [
       "text": "News Feed 1",
@@ -135,7 +116,7 @@ var cells:[ConstrainedViews] = [
       "H:|-\(AppPaddings.one)-[preview]-\(AppPaddings.one)-|",
       "V:|-\(AppPaddings.one)-[title]-\(AppPaddings.half)-[preview]-(>=\(AppPaddings.half))-|",
     ]),*/
-  // 6
+  // 5
   /*ConstrainedViews(views: [
     "title": [
       "text": "News Feed 2",

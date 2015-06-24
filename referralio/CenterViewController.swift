@@ -82,7 +82,7 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
           "image": me.photo ?? "defaultProfile2.png",
         ],
       ])
-    } else if (indexPath.row == 4) {
+    } else if (indexPath.row == 3) { // TODO the row number could be different
       let me = Models.getMe()
       constrainedView.updateViews([
         "to": [
