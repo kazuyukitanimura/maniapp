@@ -19,6 +19,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
   private let LOGGEDIN = "LOGGEDIN"
   private let FB_GRAPH_API_PREFIX = "https://graph.facebook.com/"
   private var notificationToken: Models.NotificationToken!
+  private let tutorialViewController = TutorialViewController()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,8 +37,14 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         "textColor": AppColors.White,
         "textAlignment": NSTextAlignment.Center.rawValue,
       ],
+      "tutorial": tutorialViewController,
       "loginButton": loginButton,
-    ], formats:["H:|-[title]-|", "H:|-\(AppPaddings.oneHalf)-[loginButton]-\(AppPaddings.oneHalf)-|", "V:|-229-[title]-(>=\(AppPaddings.oneHalf))-[loginButton(\(AppPaddings.triple))]-229-|"])
+    ], formats:[
+      "H:|-0-[title]-0-|",
+      "H:|-0-[tutorial]-0-|",
+      "H:|-\(AppPaddings.oneHalf)-[loginButton]-\(AppPaddings.oneHalf)-|",
+      "V:|-229-[title]-(>=\(AppPaddings.oneHalf))-[tutorial]-\(AppPaddings.triple)-[loginButton(\(AppPaddings.triple))]-129-|",
+    ])
     view.addConstrainedViews(constrainedViews)
     FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "onProfileUpdated:", name: FBSDKProfileDidChangeNotification, object: nil)
