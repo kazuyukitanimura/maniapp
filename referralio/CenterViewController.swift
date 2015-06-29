@@ -21,6 +21,7 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     tableView?.estimatedRowHeight = 68
     tableView?.rowHeight = UITableViewAutomaticDimension
     tableView?.tableHeaderView = UIView(frame: CGRectMake(0, 0, headerFooterHight, headerFooterHight))
+    tableView?.tableHeaderView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "tapTableHeader:"))
   }
 
   override func didMoveToParentViewController(parent: UIViewController?) {
@@ -29,8 +30,6 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     navigationController!.navigationBar.tintColor = AppColors.White
     navigationController!.hidesBarsOnSwipe = true
     navigationController!.barHideOnSwipeGestureRecognizer.addTarget(self, action: "handleHideOnSwipe:")
-    //navigationController!.hidesBarsOnTap = false
-    //navigationController!.barHideOnTapGestureRecognizer.addTarget(self, action: "handleHideOnTap:")
     searchBar.placeholder = "Search friends, updates, referrals"
     searchBar.tintColor = AppColors.White
     searchBar.searchBarStyle = .Minimal
@@ -57,10 +56,9 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
     }
   }
 
-  //func handleHideOnTap(recognizer: UITapGestureRecognizer) {
-    // FIXME do not show the navigation bar when one taps at the very top of the screen
-  //  println("###################################")
-  //}
+  func tapTableHeader(recognizer: UITapGestureRecognizer) {
+    // empty function to swallow the default behavior, which is showing the navigation bar
+  }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return cells.count
