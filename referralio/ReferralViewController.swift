@@ -9,8 +9,7 @@
 import UIKit
 
 class ReferralViewController: PreviewViewController {
-  let firstName = "firstName"
-  let lastName = "lastName"
+  let name = "name"
   let currentAffiliation = "currentAffiliation"
   let currentTitle = "currentTitle"
   let currentLocation = "currentLocation"
@@ -29,28 +28,14 @@ class ReferralViewController: PreviewViewController {
     super.viewDidLoad()
     let referee = Models.getProfile(2) // TODO change to user id
     var profileViews = [String:AnyObject]()
-    profileViews["firstNameLabel"] = [
-      "text": "First",
+    profileViews["nameLabel"] = [
+      "text": "Name",
       "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
-    profileViews[firstName] = [
-      "placeholder": "First name",
-      "text": referee.firstName,
-      "font": AppFonts.normalFont,
-      "textColor": AppColors.Black,
-      "keyboardType": UIKeyboardType.NamePhonePad.rawValue,
-      "delegate": self,
-      "enabled": false,
-    ]
-    profileViews["lastNameLabel"] = [
-      "text": "Last",
-      "font": AppFonts.boldFont,
-      "textColor": AppColors.Orange,
-    ]
-    profileViews[lastName] = [
-      "placeholder": "Last name",
-      "text": referee.lastName,
+    profileViews[name] = [
+      "placeholder": "Name",
+      "text": "*** (Hidden)",
       "font": AppFonts.normalFont,
       "textColor": AppColors.Black,
       "keyboardType": UIKeyboardType.NamePhonePad.rawValue,
@@ -234,8 +219,7 @@ class ReferralViewController: PreviewViewController {
       "enabled": false,
     ]
     let profileFields = ConstrainedViews(views: profileViews, formats: [
-      "H:|-0-[firstNameLabel]-(>=\(AppPaddings.half))-[\(firstName)(>=160)]-0-|",
-      "H:|-0-[lastNameLabel]-(>=\(AppPaddings.half))-[\(lastName)(>=160)]-0-|",
+      "H:|-0-[nameLabel]-(>=\(AppPaddings.half))-[\(name)(>=160)]-0-|",
       "H:|-0-[currentAffiliationLabel]-(>=\(AppPaddings.half))-[\(currentAffiliation)(>=160)]-0-|",
       "H:|-0-[currentTitleLabel]-(>=\(AppPaddings.half))-[\(currentTitle)(>=160)]-0-|",
       "H:|-0-[currentLocationLabel]-(>=\(AppPaddings.half))-[\(currentLocation)(>=160)]-0-|",
@@ -249,8 +233,8 @@ class ReferralViewController: PreviewViewController {
       "H:|-0-[skillsLabel]-(>=\(AppPaddings.half))-[\(skills)(>=160)]-0-|",
       "H:|-0-[blogLabel]-(>=\(AppPaddings.half))-[\(blog)(>=160)]-0-|",
       "H:|-0-[githubLabel]-(>=\(AppPaddings.half))-[\(github)(>=160)]-0-|",
-      "V:|-\(AppPaddings.one)-[firstNameLabel]-\(AppPaddings.half)-[lastNameLabel]-\(AppPaddings.oneHalf)-[currentAffiliationLabel]-\(AppPaddings.half)-[currentTitleLabel]-\(AppPaddings.half)-[currentLocationLabel]-\(AppPaddings.oneHalf)-[willingToRelocateLabel]-\(AppPaddings.half)-[minCashComensationLabel]-\(AppPaddings.half)-[minEquityComensationLabel]-\(AppPaddings.half)-[targetCompanySizeLabel]-\(AppPaddings.half)-[thankYouTipLabel]-\(AppPaddings.oneHalf)-[dreamCompaniesLabel]-\(AppPaddings.half)-[lookingForLabel]-\(AppPaddings.half)-[skillsLabel]-\(AppPaddings.oneHalf)-[blogLabel]-\(AppPaddings.half)-[githubLabel]-\(AppPaddings.half)-|",
-      "V:|-\(AppPaddings.one)-[\(firstName)]-\(AppPaddings.half)-[\(lastName)]-\(AppPaddings.oneHalf)-[\(currentAffiliation)]-\(AppPaddings.half)-[\(currentTitle)]-\(AppPaddings.half)-[\(currentLocation)]-\(AppPaddings.oneHalf)-[\(willingToRelocate)]-\(AppPaddings.half)-[\(minCashComensation)]-\(AppPaddings.half)-[\(minEquityComensation)]-\(AppPaddings.half)-[\(targetCompanySize)]-\(AppPaddings.half)-[\(thankYouTip)]-\(AppPaddings.oneHalf)-[\(dreamCompanies)]-\(AppPaddings.half)-[\(lookingFor)]-\(AppPaddings.half)-[\(skills)]-\(AppPaddings.oneHalf)-[\(blog)]-\(AppPaddings.half)-[\(github)]-\(AppPaddings.half)-|",
+      "V:|-\(AppPaddings.one)-[nameLabel]-\(AppPaddings.oneHalf)-[currentAffiliationLabel]-\(AppPaddings.half)-[currentTitleLabel]-\(AppPaddings.half)-[currentLocationLabel]-\(AppPaddings.oneHalf)-[willingToRelocateLabel]-\(AppPaddings.half)-[minCashComensationLabel]-\(AppPaddings.half)-[minEquityComensationLabel]-\(AppPaddings.half)-[targetCompanySizeLabel]-\(AppPaddings.half)-[thankYouTipLabel]-\(AppPaddings.oneHalf)-[dreamCompaniesLabel]-\(AppPaddings.half)-[lookingForLabel]-\(AppPaddings.half)-[skillsLabel]-\(AppPaddings.oneHalf)-[blogLabel]-\(AppPaddings.half)-[githubLabel]-\(AppPaddings.half)-|",
+      "V:|-\(AppPaddings.one)-[\(name)]-\(AppPaddings.oneHalf)-[\(currentAffiliation)]-\(AppPaddings.half)-[\(currentTitle)]-\(AppPaddings.half)-[\(currentLocation)]-\(AppPaddings.oneHalf)-[\(willingToRelocate)]-\(AppPaddings.half)-[\(minCashComensation)]-\(AppPaddings.half)-[\(minEquityComensation)]-\(AppPaddings.half)-[\(targetCompanySize)]-\(AppPaddings.half)-[\(thankYouTip)]-\(AppPaddings.oneHalf)-[\(dreamCompanies)]-\(AppPaddings.half)-[\(lookingFor)]-\(AppPaddings.half)-[\(skills)]-\(AppPaddings.oneHalf)-[\(blog)]-\(AppPaddings.half)-[\(github)]-\(AppPaddings.half)-|",
       ])
     view.addConstrainedViews(profileFields)
   }
