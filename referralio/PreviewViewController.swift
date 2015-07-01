@@ -15,10 +15,15 @@ class PreviewViewController: UIViewController {
     parentViewController?.addChildViewController(self)
     didMoveToParentViewController(parentViewController)
     view.backgroundColor = AppColors.Clear
+    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "tapHandler:"))
   }
 
   override func viewDidDisappear(animated: Bool) {
     super.viewDidDisappear(animated)
     removeFromParentViewController()
+  }
+
+  func tapHandler(recognizer: UITapGestureRecognizer) {
+    // empty function to swallow the default behavior, which is showing the navigation bar
   }
 }

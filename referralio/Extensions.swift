@@ -68,7 +68,7 @@ extension UITextField {
 
   func highlight() {
     boldFont()
-    textColor = AppColors.Orange
+    textColor = AppColors.DarkOrange
   }
 }
 

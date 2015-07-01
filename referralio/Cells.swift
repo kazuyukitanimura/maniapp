@@ -86,7 +86,7 @@ var cells:[ConstrainedViews] = [
     "arrow": [
       "text": "> > > > > > >",
       "font": AppFonts.boldFont,
-      "textColor": AppColors.Orange,
+      "textColor": AppColors.DarkOrange,
     ],
     "to": [
       "image": "defaultProfile2.png",
