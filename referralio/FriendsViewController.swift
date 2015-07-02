@@ -90,7 +90,10 @@ class FriendsViewController: PreviewViewController, AppButtonDelegate {
     createList()
   }
 
+  // dummy functions
   func saved(){}
   func drafted(){}
   func canceled(){}
+  func offer() {}
+  func forward() {}
 }

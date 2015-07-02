@@ -359,13 +359,16 @@ class ProfileViewController: PreviewViewController, AppButtonDelegate, UITextFie
       profile.photo = UIImageJPEGRepresentation(self.imageWithConstrainedViewID(self.updatePhotoLabel), 1.0)
     })
   }
+
   func saved() {
     Vibrrate()
     delegate?.saved(indexPath!)
   }
+
   func drafted() {
     delegate?.drafted(indexPath!)
   }
+
   func canceled() {
     for id in ids {
       if view.viewWithConstrainedViewID(id)!.resignFirstResponder() {
@@ -374,10 +377,10 @@ class ProfileViewController: PreviewViewController, AppButtonDelegate, UITextFie
     }
     delegate?.canceled(indexPath!)
   }
-  func next() {
-    // dummy
-  }
-  func prev() {
-    // dummy
-  }
+
+  // dummy functions
+  func next() {}
+  func prev() {}
+  func offer() {}
+  func forward() {}
 }

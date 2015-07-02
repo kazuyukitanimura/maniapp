@@ -8,19 +8,21 @@
 
 import UIKit
 
-protocol AppButtonDelegate {
+protocol AppButtonDelegate { // TODO user protocol extension not to require all these functions
   func saved()
   func drafted()
   func canceled()
   func next()
   func prev()
+  func offer()
+  func forward()
 }
 
 class AppButton: UIButton {
   var delegate: AppButtonDelegate?
 
   init(delegate: AppButtonDelegate?) {
-    super.init(frame: CGRectMake(0,0,0,0))
+    super.init(frame: CGRectMake(0, 0, 0, 0))
     self.delegate = delegate
     layer.masksToBounds = true
     layer.cornerRadius = 4.0
@@ -149,5 +151,42 @@ class UpdatePhotoButton: AppButton {
     let photoController = PhotoController(photoView: photoView)
     addSubview(photoController.view)
     photoController.presentViewController(activityView.removeFromSuperview)
+  }
+}
+
+class OfferButton: AppButton {
+  override init(delegate: AppButtonDelegate?) {
+    super.init(delegate: delegate)
+    backgroundColor = AppColors.Orange
+    setTitle("Introduce a job", forState: .Normal)
+    setTitleColor(AppColors.White, forState: .Normal)
+    layer.borderColor = AppColors.Orange.CGColor
+    addTarget(self, action: "onClickButton:", forControlEvents: .TouchUpInside)
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+
+  func onClickButton(sender: UIButton) {
+    delegate?.offer()
+  }
+}
+
+class ForwardButton: AppButton {
+  override init(delegate: AppButtonDelegate?) {
+    super.init(delegate: delegate)
+    setTitle("Forward to friends", forState: .Normal)
+    setTitleColor(AppColors.Orange, forState: .Normal)
+    layer.borderColor = AppColors.Orange.CGColor
+    addTarget(self, action: "onClickButton:", forControlEvents: .TouchUpInside)
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+
+  func onClickButton(sender: UIButton) {
+    delegate?.forward()
   }
 }
