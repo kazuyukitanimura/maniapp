@@ -26,7 +26,7 @@ class ReferralViewController: PreviewViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    let referee = Models.getProfile(2) // TODO change to user id
+    let referee = Models.getProfile(3) // TODO change to user id
     var profileViews = [String:AnyObject]()
     profileViews["nameLabel"] = [
       "text": "Name",

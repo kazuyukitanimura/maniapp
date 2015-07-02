@@ -82,9 +82,16 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
       ])
     } else if (indexPath.row == 3) { // TODO the row number could be different
       let me = Models.getMe()
+      let referee = Models.getProfile(3) // TODO change to user id
       constrainedView.updateViews([
+        "title": [
+          "text": "\(referee.firstName) Asked for a Referral",
+        ],
         "to": [
           "image": me.photo ?? "defaultProfile2.png",
+        ],
+        "from": [
+          "image": referee.photo ?? "defaultProfile2.png",
         ],
       ])
     }

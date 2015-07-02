@@ -73,7 +73,7 @@ var cells:[ConstrainedViews] = [
   // 3
   ConstrainedViews(views: [
     "title": [
-      "text": "(Friend Name) Asked for a Referral",
+      "text": "Your Friend Asked for a Referral",
       "font": AppFonts.titleFont,
       "textColor": AppColors.Orange,
     ],
