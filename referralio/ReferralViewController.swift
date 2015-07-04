@@ -9,7 +9,7 @@
 import UIKit
 
 class ReferralViewController: PreviewViewController, AppButtonDelegate {
-  let name = "name"
+  let message = "message"
   let currentAffiliation = "currentAffiliation"
   let currentTitle = "currentTitle"
   let currentLocation = "currentLocation"
@@ -28,14 +28,13 @@ class ReferralViewController: PreviewViewController, AppButtonDelegate {
     super.viewDidLoad()
     let referee = Models.getProfile(3) // TODO change to user id
     var profileViews = [String:AnyObject]()
-    profileViews["nameLabel"] = [
-      "text": "Name",
+    profileViews["messageLabel"] = [
+      "text": "Message",
       "font": AppFonts.boldFont,
       "textColor": AppColors.Orange,
     ]
-    profileViews[name] = [
-      "placeholder": "Name",
-      "text": "*** (Hidden)",
+    profileViews[message] = [
+      "placeholder": "Comments",
       "font": AppFonts.normalFont,
       "textColor": AppColors.Black,
       "keyboardType": UIKeyboardType.NamePhonePad.rawValue,
@@ -221,7 +220,7 @@ class ReferralViewController: PreviewViewController, AppButtonDelegate {
     profileViews["offer"] = OfferButton(delegate: self)
     profileViews["forward"] = ForwardButton(delegate: self)
     let profileFields = ConstrainedViews(views: profileViews, formats: [
-      "H:|-0-[nameLabel]-(>=\(AppPaddings.half))-[\(name)(>=160)]-0-|",
+      "H:|-0-[messageLabel]-(>=\(AppPaddings.half))-[\(message)(>=160)]-0-|",
       "H:|-0-[currentAffiliationLabel]-(>=\(AppPaddings.half))-[\(currentAffiliation)(>=160)]-0-|",
       "H:|-0-[currentTitleLabel]-(>=\(AppPaddings.half))-[\(currentTitle)(>=160)]-0-|",
       "H:|-0-[currentLocationLabel]-(>=\(AppPaddings.half))-[\(currentLocation)(>=160)]-0-|",
@@ -236,8 +235,8 @@ class ReferralViewController: PreviewViewController, AppButtonDelegate {
       "H:|-0-[blogLabel]-(>=\(AppPaddings.half))-[\(blog)(>=160)]-0-|",
       "H:|-0-[githubLabel]-(>=\(AppPaddings.half))-[\(github)(>=160)]-0-|",
       "H:|-0-[offer(144)]-(>=\(AppPaddings.half))-[forward(168)]-0-|",
-      "V:|-\(AppPaddings.one)-[nameLabel]-\(AppPaddings.oneHalf)-[currentAffiliationLabel]-\(AppPaddings.half)-[currentTitleLabel]-\(AppPaddings.half)-[currentLocationLabel]-\(AppPaddings.oneHalf)-[willingToRelocateLabel]-\(AppPaddings.half)-[minCashComensationLabel]-\(AppPaddings.half)-[minEquityComensationLabel]-\(AppPaddings.half)-[targetCompanySizeLabel]-\(AppPaddings.half)-[thankYouTipLabel]-\(AppPaddings.oneHalf)-[dreamCompaniesLabel]-\(AppPaddings.half)-[lookingForLabel]-\(AppPaddings.half)-[skillsLabel]-\(AppPaddings.oneHalf)-[blogLabel]-\(AppPaddings.half)-[githubLabel]-\(AppPaddings.oneHalf)-[offer]-\(AppPaddings.half)-|",
-      "V:|-\(AppPaddings.one)-[\(name)]-\(AppPaddings.oneHalf)-[\(currentAffiliation)]-\(AppPaddings.half)-[\(currentTitle)]-\(AppPaddings.half)-[\(currentLocation)]-\(AppPaddings.oneHalf)-[\(willingToRelocate)]-\(AppPaddings.half)-[\(minCashComensation)]-\(AppPaddings.half)-[\(minEquityComensation)]-\(AppPaddings.half)-[\(targetCompanySize)]-\(AppPaddings.half)-[\(thankYouTip)]-\(AppPaddings.oneHalf)-[\(dreamCompanies)]-\(AppPaddings.half)-[\(lookingFor)]-\(AppPaddings.half)-[\(skills)]-\(AppPaddings.oneHalf)-[\(blog)]-\(AppPaddings.half)-[\(github)]-\(AppPaddings.oneHalf)-[forward]-\(AppPaddings.half)-|",
+      "V:|-\(AppPaddings.one)-[messageLabel]-\(AppPaddings.oneHalf)-[currentAffiliationLabel]-\(AppPaddings.half)-[currentTitleLabel]-\(AppPaddings.half)-[currentLocationLabel]-\(AppPaddings.oneHalf)-[willingToRelocateLabel]-\(AppPaddings.half)-[minCashComensationLabel]-\(AppPaddings.half)-[minEquityComensationLabel]-\(AppPaddings.half)-[targetCompanySizeLabel]-\(AppPaddings.half)-[thankYouTipLabel]-\(AppPaddings.oneHalf)-[dreamCompaniesLabel]-\(AppPaddings.half)-[lookingForLabel]-\(AppPaddings.half)-[skillsLabel]-\(AppPaddings.oneHalf)-[blogLabel]-\(AppPaddings.half)-[githubLabel]-\(AppPaddings.oneHalf)-[offer]-\(AppPaddings.half)-|",
+      "V:|-\(AppPaddings.one)-[\(message)]-\(AppPaddings.oneHalf)-[\(currentAffiliation)]-\(AppPaddings.half)-[\(currentTitle)]-\(AppPaddings.half)-[\(currentLocation)]-\(AppPaddings.oneHalf)-[\(willingToRelocate)]-\(AppPaddings.half)-[\(minCashComensation)]-\(AppPaddings.half)-[\(minEquityComensation)]-\(AppPaddings.half)-[\(targetCompanySize)]-\(AppPaddings.half)-[\(thankYouTip)]-\(AppPaddings.oneHalf)-[\(dreamCompanies)]-\(AppPaddings.half)-[\(lookingFor)]-\(AppPaddings.half)-[\(skills)]-\(AppPaddings.oneHalf)-[\(blog)]-\(AppPaddings.half)-[\(github)]-\(AppPaddings.oneHalf)-[forward]-\(AppPaddings.half)-|",
       ])
     view.addConstrainedViews(profileFields)
   }
