@@ -181,7 +181,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
           if let cursors = paging["cursors"] as? NSDictionary {
             after = (cursors["after"] ?? "") as! String
             if (!after.isEmpty) {
-              self.importFacebookFriends(after: after)
+              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                self.importFacebookFriends(after: after)
+              })
             }
           }
         }
