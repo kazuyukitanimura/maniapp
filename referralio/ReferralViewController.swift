@@ -241,12 +241,17 @@ class ReferralViewController: PreviewViewController, AppButtonDelegate {
     view.addConstrainedViews(profileFields)
   }
 
+  func offer() {
+    presentViewController(OfferViewController(), animated: true, completion: nil)
+  }
+
+  func forward() {
+  }
+
   // dummy functions
   func saved() {}
   func drafted() {}
   func canceled() {}
   func next() {}
   func prev() {}
-  func offer() {}
-  func forward() {}
 }

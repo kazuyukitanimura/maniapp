@@ -22,6 +22,8 @@
 		806CB2971AF9D08000923A65 /* defaultProfile2.png in Resources */ = {isa = PBXBuildFile; fileRef = 806CB2961AF9D08000923A65 /* defaultProfile2.png */; };
 		809714E61AF28D9C00D313BD /* MultipleChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809714E51AF28D9C00D313BD /* MultipleChoiceView.swift */; };
 		809714E81AF5A4ED00D313BD /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809714E71AF5A4ED00D313BD /* PhotoController.swift */; };
+		80BEFBB11B4F86E20060F96E /* OfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BEFBB01B4F86E20060F96E /* OfferViewController.swift */; };
+		80BEFBB31B4F96BF0060F96E /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BEFBB21B4F96BF0060F96E /* ModalViewController.swift */; };
 		80CC30C51AECC38900DFA988 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC30C41AECC38900DFA988 /* Extensions.swift */; };
 		80D11DBC1B01DAF600DE6B1C /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D11DB91B01DAF600DE6B1C /* menu.png */; };
 		80D11DBD1B01DAF600DE6B1C /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D11DBA1B01DAF600DE6B1C /* search.png */; };
@@ -76,6 +78,8 @@
 		806CB2961AF9D08000923A65 /* defaultProfile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultProfile2.png; sourceTree = "<group>"; };
 		809714E51AF28D9C00D313BD /* MultipleChoiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceView.swift; sourceTree = "<group>"; };
 		809714E71AF5A4ED00D313BD /* PhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
+		80BEFBB01B4F86E20060F96E /* OfferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferViewController.swift; sourceTree = "<group>"; };
+		80BEFBB21B4F96BF0060F96E /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		80CC30C41AECC38900DFA988 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		80D11DB91B01DAF600DE6B1C /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		80D11DBA1B01DAF600DE6B1C /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
@@ -173,8 +177,10 @@
 				801976851AEA0AAA00FE8220 /* LinkedDictionary.swift */,
 				80D669E71AC482D700D8B8CE /* LoginViewController.swift */,
 				80D669E51AC2981E00D8B8CE /* MenuViewController.swift */,
+				80BEFBB21B4F96BF0060F96E /* ModalViewController.swift */,
 				80228F6A1AE36E4000B9D0AC /* Models.swift */,
 				809714E51AF28D9C00D313BD /* MultipleChoiceView.swift */,
+				80BEFBB01B4F86E20060F96E /* OfferViewController.swift */,
 				809714E71AF5A4ED00D313BD /* PhotoController.swift */,
 				80F9AA701B0FA14B0033BF51 /* PreviewViewController.swift */,
 				80E822191AD3068600D85EF7 /* ProfileViewController.swift */,
@@ -352,11 +358,13 @@
 				80228F691AE36B7D00B9D0AC /* RLMSupport.swift in Sources */,
 				809714E81AF5A4ED00D313BD /* PhotoController.swift in Sources */,
 				802CC3971ACA538B00465D88 /* Cells.swift in Sources */,
+				80BEFBB11B4F86E20060F96E /* OfferViewController.swift in Sources */,
 				80E8221A1AD3068600D85EF7 /* ProfileViewController.swift in Sources */,
 				80D669E41AC2969F00D8B8CE /* CenterViewController.swift in Sources */,
 				80228F6B1AE36E4000B9D0AC /* Models.swift in Sources */,
 				802CC3991ACE606100465D88 /* Animations.swift in Sources */,
 				80D669EA1AC547B400D8B8CE /* AppColors.swift in Sources */,
+				80BEFBB31B4F96BF0060F96E /* ModalViewController.swift in Sources */,
 				80D669BF1ABEB06900D8B8CE /* referralio.xcdatamodeld in Sources */,
 				80F9AA691B0C2FF80033BF51 /* ReferralViewController.swift in Sources */,
 				809714E61AF28D9C00D313BD /* MultipleChoiceView.swift in Sources */,
