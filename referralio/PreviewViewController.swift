@@ -26,4 +26,13 @@ class PreviewViewController: UIViewController {
   func tapHandler(recognizer: UITapGestureRecognizer) {
     // empty function to swallow the default behavior, which is showing the navigation bar
   }
+
+  override func presentViewController(viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
+    // HACK add to the root view controller in order to avoid issue between
+    // translatesAutoresizingMaskIntoConstraints and auto-layout
+    // http://stackoverflow.com/questions/18156774/view-unusable-after-dismissviewcontrolleranimatedcompletion
+    view.window?.rootViewController!.presentViewController(viewControllerToPresent, animated: flag, completion: completion)
+
+    //view.window?.subviews[0].addSubview(OfferViewController().view) // directly adding to the root view
+  }
 }

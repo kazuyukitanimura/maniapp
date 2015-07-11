@@ -14,9 +14,11 @@ class ModalViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // for iPad
+    modalPresentationStyle = .FormSheet
+
     // set the transition style
-    modalTransitionStyle = .CrossDissolve
-    //modalPresentationStyle = .PageSheet
+    modalTransitionStyle = .CoverVertical
 
     // Build a modal background
     view.backgroundColor = AppColors.BlackAlpha

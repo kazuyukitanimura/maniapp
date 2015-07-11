@@ -44,7 +44,7 @@ class CenterViewController: UITableViewController, ProfileViewControllerDelegate
 
   override func viewDidDisappear(animated: Bool) {
     super.viewDidDisappear(animated)
-    removeFromParentViewController()
+    //removeFromParentViewController() // FIXME not removing from parents since we do not want to recreate the navigation bar
   }
 
   func handleHideOnSwipe(recognizer: UISwipeGestureRecognizer) {
