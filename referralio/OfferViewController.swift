@@ -41,6 +41,7 @@ class OfferViewController: ModalViewController {
     textView.font = AppFonts.normalFont
     textView.textColor = AppColors.Black
     textView.text = "the job description"
+    textView.scrollEnabled = false // http://stackoverflow.com/questions/16868117/uitextview-that-expands-to-text-using-auto-layout
     let innerViews = ConstrainedViews(views: [
       "from": [
         "image": "defaultProfile2.png",
@@ -48,15 +49,10 @@ class OfferViewController: ModalViewController {
         "toCircle": true,
         "contentMode": UIViewContentMode.ScaleAspectFill.rawValue,
       ],
-//      "message": [
-//        "placeholder": "the job description",
-//        "font": AppFonts.normalFont,
-//        "textColor": AppColors.Black,
-//      ],
       "message": textView,
       ], formats:[
         "H:|-\(AppPaddings.threeQuarter)-[from(\(profileSize))]-(>=\(AppPaddings.one))-|",
-        "H:|-\(AppPaddings.one)-[message]-\(AppPaddings.one)-|",
+        "H:|-\(AppPaddings.threeQuarter)-[message]-\(AppPaddings.one)-|",
         "V:|-\(AppPaddings.threeQuarter)-[from(\(profileSize))]-\(AppPaddings.oneHalf)-[message]-(>=\(AppPaddings.one))-|",
       ])
     innerView.addConstrainedViews(innerViews)
