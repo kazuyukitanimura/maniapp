@@ -9,38 +9,56 @@
 import UIKit
 
 class OfferViewController: ModalViewController {
-  let dismissButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+  let cancelButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+  let sendButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    // the done button
-    dismissButton.setTitle("Send", forState: .Normal)
-    dismissButton.titleLabel!.font = UIFont(name: "Helvetica", size: 24)
-    dismissButton.titleLabel!.textAlignment = .Left
-    dismissButton.frame = CGRectMake(0,0,200,50)
-    dismissButton.setTitleColor(AppColors.Orange, forState: .Normal)
-    dismissButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
+    cancelButton.setTitle("Cancel", forState: .Normal)
+    cancelButton.titleLabel!.font = UIFont.systemFontOfSize(24.0)
+    cancelButton.frame = CGRectMake(0,0,200,50)
+    cancelButton.setTitleColor(AppColors.White, forState: .Normal)
+    cancelButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
 
-    let constrainedViews = ConstrainedViews(views: [
+    sendButton.setTitle("Send", forState: .Normal)
+    sendButton.titleLabel!.font = UIFont.systemFontOfSize(24.0)
+    sendButton.frame = CGRectMake(0,0,200,50)
+    sendButton.setTitleColor(AppColors.White, forState: .Normal)
+    sendButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
+
+    let headerViews = ConstrainedViews(views: [
+      "cancel": cancelButton,
+      "send": sendButton,
+      ], formats: [
+        "H:|-[cancel]-(>=\(AppPaddings.one))-[send]-|",
+        "V:|-[cancel]-|",
+        "V:|-[send]-|",
+      ])
+    headerView.addConstrainedViews(headerViews)
+
+    let textView = UITextView(frame: CGRect())
+    textView.font = AppFonts.normalFont
+    textView.textColor = AppColors.Black
+    textView.text = "the job description"
+    let innerViews = ConstrainedViews(views: [
       "from": [
         "image": "defaultProfile2.png",
         "frame": NSValue(CGRect: CGRectMake(0, 0, profileSize, profileSize)),
         "toCircle": true,
         "contentMode": UIViewContentMode.ScaleAspectFill.rawValue,
       ],
-      "message": [
-        "placeholder": "the job description",
-        "font": AppFonts.normalFont,
-        "textColor": AppColors.Black,
-      ],
-      "send": dismissButton,
+//      "message": [
+//        "placeholder": "the job description",
+//        "font": AppFonts.normalFont,
+//        "textColor": AppColors.Black,
+//      ],
+      "message": textView,
       ], formats:[
-        "H:|-[from(\(profileSize))]-[send]-|",
-        "H:|-[message]-|",
-        "V:|-[from(\(profileSize))]-\(AppPaddings.one)-[message]-|",
-        "V:|-[send(\(profileSize))]-\(AppPaddings.one)-[message]-|",
+        "H:|-\(AppPaddings.threeQuarter)-[from(\(profileSize))]-(>=\(AppPaddings.one))-|",
+        "H:|-\(AppPaddings.one)-[message]-\(AppPaddings.one)-|",
+        "V:|-\(AppPaddings.threeQuarter)-[from(\(profileSize))]-\(AppPaddings.oneHalf)-[message]-(>=\(AppPaddings.one))-|",
       ])
-    innerView.addConstrainedViews(constrainedViews)
+    innerView.addConstrainedViews(innerViews)
   }
 }

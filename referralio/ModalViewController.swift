@@ -10,6 +10,7 @@ import UIKit
 
 class ModalViewController: UIViewController {
   let innerView = UIView()
+  let headerView = UIView()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,17 +21,18 @@ class ModalViewController: UIViewController {
     // set the transition style
     modalTransitionStyle = .CoverVertical
 
-    // Build a modal background
-    view.backgroundColor = AppColors.BlackAlpha
-
     // innerView
+    headerView.backgroundColor = AppColors.DarkOrange
+    headerView.tintColor = AppColors.White
     innerView.backgroundColor = AppColors.White
 
     let constrainedViews = ConstrainedViews(views: [
-      "innerView": innerView
+      "headerView": headerView,
+      "innerView": innerView,
       ], formats:[
-        "H:|-\(AppPaddings.double)-[innerView]-\(AppPaddings.double)-|",
-        "V:|-\(AppPaddings.double)-[innerView]-\(AppPaddings.double)-|"
+        "H:|-0-[headerView]-0-|",
+        "H:|-0-[innerView]-0-|",
+        "V:|-0-[headerView(64)]-0-[innerView]-0-|"
       ])
     view.addConstrainedViews(constrainedViews)
   }
