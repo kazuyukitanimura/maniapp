@@ -24,7 +24,16 @@ extension UIView {
         subView.addConstrainedViews(subConstrainedViews, yield: yield)
       } else {
         var viewProps = viewObject as! Dictionary<String, AnyObject>
-        if let textProp = viewProps["placeholder"] as? String {
+        if let templateProp = viewProps["template"] as? Array<String> {
+          subView = UITextView()
+          (subView as! UITextView).scrollEnabled = false // http://stackoverflow.com/questions/16868117/uitextview-that-expands-to-text-using-auto-layout
+          (subView as! UITextView).text = "\n\n".join(templateProp)
+          viewProps.removeValueForKey("template")
+          if let keyboardType = viewProps["keyboardType"] as? Int {
+            (subView as! UITextView).keyboardType = UIKeyboardType(rawValue: keyboardType)!
+            viewProps.removeValueForKey("keyboardType")
+          }
+        } else if let placeholderProp = viewProps["placeholder"] as? String {
           subView = UITextField()
           if let keyboardType = viewProps["keyboardType"] as? Int {
             (subView as! UITextField).keyboardType = UIKeyboardType(rawValue: keyboardType)!
