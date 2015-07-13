@@ -246,6 +246,7 @@ class ReferralViewController: PreviewViewController, AppButtonDelegate {
   }
 
   func forward() {
+    presentViewController(ForwardViewController(), animated: true, completion: nil)
   }
 
   // dummy functions

@@ -1,14 +1,14 @@
 //
-//  OfferViewController.swift
+//  ForwardViewController.swift
 //  referralio
 //
-//  Created by Kazuyuki Tanimura on 7/9/15.
+//  Created by Kazuyuki Tanimura on 7/12/15.
 //  Copyright (c) 2015 Kazuyuki Tanimura. All rights reserved.
 //
 
 import UIKit
 
-class OfferViewController: ModalViewController {
+class ForwardViewController: ModalViewController {
   let cancelButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
   let sendButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
 
